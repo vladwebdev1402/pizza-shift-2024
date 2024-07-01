@@ -1,0 +1,72 @@
+@import '@/styles/variables.scss';
+
+.invert {
+  color: $text-invert;
+}
+
+.primary {
+  color: $text-primary;
+}
+
+.secondary {
+  color: $text-secondary;
+}
+
+.tertiary {
+  color: $text-tertiary;
+}
+
+.quartenery {
+  color: $text-quartenery;
+}
+
+.body-primary {
+  color: $text-body-primary;
+}
+
+.title {
+  color: $text-title;
+}
+
+.regular {
+  font-weight: 400;
+}
+
+.medium {
+  font-weight: 500;
+}
+
+.semibold {
+  font-weight: 600;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.paragraph_16 {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.paragraph_14 {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.paragraph_12 {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.h2 {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.h3 {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+}

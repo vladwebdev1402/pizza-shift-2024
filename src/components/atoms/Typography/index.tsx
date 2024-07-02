@@ -10,39 +10,20 @@ type TypographyVariants =
   | 'paragraph_14'
   | 'paragraph_12';
 
-type TypographyColors =
-  | 'title'
-  | 'invert'
-  | 'primary'
-  | 'secondary'
-  | 'tertiary'
-  | 'quartenery'
-  | 'body-primary';
-
-type TypographyWeights = 'regular' | 'medium' | 'semibold' | 'bold';
-
 type TypographyProps = {
+  className?: string;
   variant?: TypographyVariants;
-  color?: TypographyColors;
-  weight?: TypographyWeights;
   tag?: 'h1' | 'h2' | 'h3' | 'p' | 'span' | 'div';
   children: ReactNode;
 };
 
 const Typography: FC<TypographyProps> = ({
+  className = '',
   variant = 'paragraph_16',
-  color = 'primary',
-  weight = 'regular',
-  tag = 'p',
+  tag: Tag = 'p',
   children,
 }) => {
-  const Tag = tag;
-
-  return (
-    <Tag className={clsx(style[variant], style[color], style[weight])}>
-      {children}
-    </Tag>
-  );
+  return <Tag className={clsx(className, style[variant])}>{children}</Tag>;
 };
 
 export { Typography };

@@ -7,7 +7,6 @@ import { Loader } from '../Loader';
 type ButtonProps = {
   variant?: 'contained' | 'outlined' | 'text';
   iconPosition?: 'center' | 'start';
-  fullWidth?: boolean;
   loading?: boolean;
   icon?: ReactNode;
 } & ComponentProps<'button'>;
@@ -15,7 +14,6 @@ type ButtonProps = {
 const Button: FC<ButtonProps> = ({
   variant = 'contained',
   iconPosition = 'center',
-  fullWidth = false,
   loading = false,
   className = '',
   icon,
@@ -31,7 +29,6 @@ const Button: FC<ButtonProps> = ({
         [style.button_contained]: variant === 'contained',
         [style.button_outlined]: variant === 'outlined',
         [style.button_text]: variant === 'text',
-        [style.button_fullWidth]: fullWidth,
         [style.button_iconCenter]: iconPosition === 'center',
         [style.button_iconStart]: iconPosition === 'start',
       })}

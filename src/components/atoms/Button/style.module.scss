@@ -63,10 +63,6 @@
     }
   }
 
-  &_fullWidth {
-    width: 100%;
-  }
-
   &:disabled {
     background-color: $bg-disabled;
     cursor: not-allowed;

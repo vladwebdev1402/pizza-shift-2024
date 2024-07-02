@@ -9,9 +9,9 @@ type InputProps = {
 } & ComponentPropsWithRef<'input'>;
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, error, required, ...props }, ref) => {
+  ({ label, error, required, className, ...props }, ref) => {
     return (
-      <div>
+      <div className={className}>
         <div className={style.label}>
           {label}
           {required && '*'}

@@ -1,49 +1,5 @@
 @import '@/styles/variables.scss';
 
-.invert {
-  color: $text-invert;
-}
-
-.primary {
-  color: $text-primary;
-}
-
-.secondary {
-  color: $text-secondary;
-}
-
-.tertiary {
-  color: $text-tertiary;
-}
-
-.quartenery {
-  color: $text-quartenery;
-}
-
-.body-primary {
-  color: $text-body-primary;
-}
-
-.title {
-  color: $text-title;
-}
-
-.regular {
-  font-weight: 400;
-}
-
-.medium {
-  font-weight: 500;
-}
-
-.semibold {
-  font-weight: 600;
-}
-
-.bold {
-  font-weight: 700;
-}
-
 .paragraph_16 {
   font-size: 16px;
   line-height: 24px;

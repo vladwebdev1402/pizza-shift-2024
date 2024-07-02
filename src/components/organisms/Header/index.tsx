@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { Container, NavLink } from '@/components/atoms';
+import { NavLink } from '@/components/atoms';
 import { ROUTER_PATHS } from '@/constants';
 import LogoSVG from '@/assets/decorative/logo.svg?react';
 import ProfileSVG from '@/assets/decorative/profile.svg?react';
@@ -13,7 +13,8 @@ import style from './style.module.scss';
 const Header = () => {
   return (
     <header className={style.header}>
-      <Container>
+      <div className={'container'}>
+        {' '}
         <nav className={style.nav}>
           <Link to={ROUTER_PATHS.main}>
             <LogoSVG />
@@ -59,7 +60,7 @@ const Header = () => {
             </ul>
           </div>
         </nav>
-      </Container>
+      </div>
     </header>
   );
 };

@@ -1,5 +1,6 @@
 import './styles/reset.scss';
 import './styles/fonts.scss';
+import './styles/globalClasses.scss';
 
 import { Router } from './components';
 

@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import { ComponentProps, ReactNode } from 'react';
 import { clsx } from 'clsx';
 
 import style from './style.module.scss';
@@ -10,19 +10,20 @@ type TypographyVariants =
   | 'paragraph_14'
   | 'paragraph_12';
 
-type TypographyProps = {
-  className?: string;
+type TypographyTags = 'h1' | 'h2' | 'h3' | 'div' | 'p' | 'span';
+
+type TypographyProps<Tag extends TypographyTags> = ComponentProps<Tag> & {
   variant?: TypographyVariants;
-  tag?: 'h1' | 'h2' | 'h3' | 'p' | 'span' | 'div';
+  tag?: TypographyTags;
   children: ReactNode;
 };
 
-const Typography: FC<TypographyProps> = ({
+const Typography = <Tag extends TypographyTags = 'div'>({
   className = '',
   variant = 'paragraph_16',
   tag: Tag = 'p',
   children,
-}) => {
+}: TypographyProps<Tag>) => {
   return <Tag className={clsx(className, style[variant])}>{children}</Tag>;
 };
 

@@ -24,14 +24,25 @@ const AuthForm: FC<AuthFormProps> = ({ className, title }) => {
   const { isCreateOtpLoading, delay } = useAppSelector(
     (state) => state.AuthReducer,
   );
-  const { seconds, resetTimer } = useTimer(120);
+  const { seconds, resetTimer } = useTimer(0);
 
-  const { formState, watch, register, setValue, handleSubmit } =
+  const { formState, watch, register, setValue, handleSubmit, setError } =
     useForm<AuthData>();
 
   const onFormSubmit = (data: AuthData) => {
     if (delay === null) {
       dispatch(AuthActions.createOtp(data.phone));
+    }
+  };
+
+  const onNewOtpClick = () => {
+    const phone = replaceToNumbers(watch('phone'));
+    if (phone.length === 0)
+      setError('phone', { message: 'Поле обязательное для заполнения' });
+    else if (phone.length < 11)
+      setError('phone', { message: 'Длина телефона равна 11 числам' });
+    else {
+      dispatch(AuthActions.createOtp(phone));
     }
   };
 
@@ -46,10 +57,14 @@ const AuthForm: FC<AuthFormProps> = ({ className, title }) => {
   };
 
   useEffect(() => {
+    console.log(seconds);
+  }, [seconds]);
+
+  useEffect(() => {
     if (delay !== null) {
       resetTimer(Math.ceil(delay / 1000));
     }
-  }, [delay, resetTimer]);
+  }, [delay]);
 
   return (
     <div className={clsx('container', className)}>
@@ -98,6 +113,7 @@ const AuthForm: FC<AuthFormProps> = ({ className, title }) => {
             <Button loading={isCreateOtpLoading}>
               {delay ? 'Войти' : 'Продолжить'}
             </Button>
+
             {delay !== null && seconds !== 0 && (
               <Typography variant="paragraph_14" className={style.info}>
                 Запросить код повторно можно через {seconds} секунд
@@ -105,7 +121,14 @@ const AuthForm: FC<AuthFormProps> = ({ className, title }) => {
             )}
 
             {delay !== null && seconds === 0 && (
-              <Button variant="outlined">Запросить ещё раз</Button>
+              <Button
+                variant="outlined"
+                type="button"
+                onClick={onNewOtpClick}
+                loading={isCreateOtpLoading}
+              >
+                Запросить ещё раз
+              </Button>
             )}
           </div>
         </form>

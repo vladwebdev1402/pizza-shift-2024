@@ -23,10 +23,6 @@ const useTimer = (startTime: number) => {
 
   const resetTimer = (seconds: number) => {
     setSeconds(seconds);
-    if (timerRef.current !== null) {
-      clearTimeout(timerRef.current);
-      timerRef.current = null;
-    }
   };
 
   return { seconds, resetTimer };

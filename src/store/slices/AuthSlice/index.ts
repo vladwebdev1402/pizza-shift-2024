@@ -27,7 +27,13 @@ const initialState: InitialState = {
 const AuthSlice = createSlice({
   name: 'AuthSlice',
   initialState,
-  reducers: {},
+  reducers: {
+    signOut: (state) => {
+      state.isAuth = false;
+      state.delay = null;
+      LocaleStorageService.removeToken();
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(createOtp.pending, (state) => {
       state.isCreateOtpLoading = true;

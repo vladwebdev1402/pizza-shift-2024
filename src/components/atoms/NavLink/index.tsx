@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 import style from './style.module.scss';
 
-type Props = {
+type NavLinkProps = {
   to: string;
   type: 'header' | 'footer';
   svgStyle?: 'stroke' | 'fill';
@@ -12,7 +12,7 @@ type Props = {
   children: ReactNode;
 };
 
-const NavLink: FC<Props> = ({
+const NavLink: FC<NavLinkProps> = ({
   to,
   type,
   svgStyle = 'fill',

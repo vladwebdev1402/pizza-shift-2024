@@ -3,15 +3,15 @@ import { ComponentPropsWithRef, forwardRef } from 'react';
 import style from './style.module.scss';
 import clsx from 'clsx';
 
-type Props = {
+type InputProps = {
   label: string;
   error?: string;
 } & ComponentPropsWithRef<'input'>;
 
-const Input = forwardRef<HTMLInputElement, Props>(
-  ({ label, error, required, ...props }, ref) => {
+const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ label, error, required, className, ...props }, ref) => {
     return (
-      <div>
+      <div className={className}>
         <div className={style.label}>
           {label}
           {required && '*'}

@@ -4,23 +4,22 @@ import clsx from 'clsx';
 import style from './style.module.scss';
 
 type Props = {
-  isFullWidth?: boolean;
+  className?: string;
   isActive?: boolean;
   onClick: () => void;
   children: ReactNode;
 };
 
 const Tab: FC<Props> = ({
-  isFullWidth = true,
+  className = '',
   isActive = false,
   onClick,
   children,
 }) => {
   return (
     <button
-      className={clsx(style.tab, {
+      className={clsx(className, style.tab, {
         [style.tab_active]: isActive,
-        [style.tab_fullWidth]: isFullWidth,
       })}
       onClick={onClick}
     >

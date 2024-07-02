@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import { ComponentProps, ReactNode } from 'react';
 import { clsx } from 'clsx';
 
 import style from './style.module.scss';
@@ -10,39 +10,21 @@ type TypographyVariants =
   | 'paragraph_14'
   | 'paragraph_12';
 
-type TypographyColors =
-  | 'title'
-  | 'invert'
-  | 'primary'
-  | 'secondary'
-  | 'tertiary'
-  | 'quartenery'
-  | 'body-primary';
+type TypographyTags = 'h1' | 'h2' | 'h3' | 'div' | 'p' | 'span';
 
-type TypographyWeights = 'regular' | 'medium' | 'semibold' | 'bold';
-
-type Props = {
+type TypographyProps<Tag extends TypographyTags> = ComponentProps<Tag> & {
   variant?: TypographyVariants;
-  color?: TypographyColors;
-  weight?: TypographyWeights;
-  tag?: 'h1' | 'h2' | 'h3' | 'p' | 'span' | 'div';
+  tag?: TypographyTags;
   children: ReactNode;
 };
 
-const Typography: FC<Props> = ({
+const Typography = <Tag extends TypographyTags = 'div'>({
+  className = '',
   variant = 'paragraph_16',
-  color = 'primary',
-  weight = 'regular',
-  tag = 'p',
+  tag: Tag = 'p',
   children,
-}) => {
-  const Tag = tag;
-
-  return (
-    <Tag className={clsx(style[variant], style[color], style[weight])}>
-      {children}
-    </Tag>
-  );
+}: TypographyProps<Tag>) => {
+  return <Tag className={clsx(className, style[variant])}>{children}</Tag>;
 };
 
 export { Typography };

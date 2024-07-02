@@ -5,20 +5,20 @@ import CrossSVG from '@/assets/decorative/cross.svg?react';
 
 import style from './style.module.scss';
 
-type Props = {
+type ModalProps = {
   size?: 'medium' | 'large';
   isOpen: boolean;
-  isWithCross?: boolean;
+  isClosable?: boolean;
   isMobileFullScreen?: boolean;
   onClose: () => void;
   title?: ReactNode;
   children: ReactNode;
 };
 
-const Modal: FC<Props> = ({
+const Modal: FC<ModalProps> = ({
   size = 'medium',
   isOpen,
-  isWithCross = true,
+  isClosable = true,
   isMobileFullScreen = false,
   onClose,
   title,
@@ -55,7 +55,7 @@ const Modal: FC<Props> = ({
       >
         <div className={style.title}>
           {title}
-          {isWithCross && (
+          {isClosable && (
             <button className={style.close} onClick={onClose}>
               <CrossSVG />
             </button>

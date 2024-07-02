@@ -1,0 +1,21 @@
+@import '@/styles/variables.scss';
+
+.loader {
+  width: 24px;
+  height: 24px;
+  border-radius: 100%;
+  border: 2px solid $orange;
+  border-top: none;
+  border-left: none;
+  animation: loading 0.5s linear infinite;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

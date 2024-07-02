@@ -4,4 +4,9 @@ type CreateOtpResponse = {
   retryDelay: number;
 };
 
-export type { CreateOtpResponse };
+type SignInData = {
+  phone: string;
+  code: number;
+};
+
+export type { CreateOtpResponse, SignInData };

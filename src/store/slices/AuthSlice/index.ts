@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { User } from '@/types';
 import { LocaleStorageService } from '@/api';
-import { createOtp } from './actionCreators';
+import { createOtp, userSignin } from './actionCreators';
 
 type InitialState = {
   user: null | User;
@@ -44,9 +44,27 @@ const AuthSlice = createSlice({
           ? action.payload
           : 'Произошла неизвестная ошибка';
     });
+
+    builder.addCase(userSignin.pending, (state) => {
+      state.isCheckOtpLoading = true;
+      state.error = '';
+    });
+    builder.addCase(userSignin.fulfilled, (state, action) => {
+      state.isCheckOtpLoading = false;
+      state.user = action.payload.user;
+      state.isAuth = true;
+      LocaleStorageService.setToken(action.payload.token);
+    });
+    builder.addCase(userSignin.rejected, (state, action) => {
+      state.isCheckOtpLoading = false;
+      state.error =
+        typeof action.payload === 'string'
+          ? action.payload
+          : 'Произошла неизвестная ошибка';
+    });
   },
 });
 
 const AuthReducer = AuthSlice.reducer;
-const AuthActions = { ...AuthSlice.actions, createOtp };
+const AuthActions = { ...AuthSlice.actions, createOtp, userSignin };
 export { AuthReducer, AuthActions };

@@ -17,21 +17,30 @@ type AuthData = {
 type AuthFormProps = {
   className?: string;
   title?: ReactNode;
+  onSuccessAuth: () => void;
 };
 
-const AuthForm: FC<AuthFormProps> = ({ className, title }) => {
+const AuthForm: FC<AuthFormProps> = ({ className, title, onSuccessAuth }) => {
   const dispatch = useAppDispatch();
-  const { isCreateOtpLoading, delay } = useAppSelector(
-    (state) => state.AuthReducer,
-  );
+  const { isCreateOtpLoading, delay, isCheckOtpLoading, error } =
+    useAppSelector((state) => state.AuthReducer);
   const { seconds, resetTimer } = useTimer(0);
 
   const { formState, watch, register, setValue, handleSubmit, setError } =
     useForm<AuthData>();
 
-  const onFormSubmit = (data: AuthData) => {
+  const onFormSubmit = async (data: AuthData) => {
     if (delay === null) {
-      dispatch(AuthActions.createOtp(data.phone));
+      dispatch(AuthActions.createOtp(replaceToNumbers(data.phone)));
+      return;
+    }
+
+    const resultAction = await dispatch(
+      AuthActions.userSignin({ ...data, code: Number(data.otp) }),
+    );
+
+    if (resultAction.meta.requestStatus === 'fulfilled') {
+      onSuccessAuth();
     }
   };
 
@@ -55,10 +64,6 @@ const AuthForm: FC<AuthFormProps> = ({ className, title }) => {
     const value = replaceToNumbers(e.target.value);
     setValue('otp', value.slice(0, 6));
   };
-
-  useEffect(() => {
-    console.log(seconds);
-  }, [seconds]);
 
   useEffect(() => {
     if (delay !== null) {
@@ -110,7 +115,9 @@ const AuthForm: FC<AuthFormProps> = ({ className, title }) => {
             )}
           </div>
           <div className={clsx(style.group, style.buttons)}>
-            <Button loading={isCreateOtpLoading}>
+            <Button
+              loading={(!delay && isCreateOtpLoading) || isCheckOtpLoading}
+            >
               {delay ? 'Войти' : 'Продолжить'}
             </Button>
 
@@ -132,6 +139,11 @@ const AuthForm: FC<AuthFormProps> = ({ className, title }) => {
             )}
           </div>
         </form>
+        {error && (
+          <Typography variant="paragraph_16" className={style.error}>
+            {error}
+          </Typography>
+        )}
       </div>
     </div>
   );

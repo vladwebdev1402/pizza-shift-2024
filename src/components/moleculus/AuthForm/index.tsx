@@ -36,7 +36,10 @@ const AuthForm: FC<AuthFormProps> = ({ className, title, onSuccessAuth }) => {
     }
 
     const resultAction = await dispatch(
-      AuthActions.userSignin({ ...data, code: Number(data.otp) }),
+      AuthActions.userSignin({
+        phone: replaceToNumbers(data.phone),
+        code: Number(data.otp),
+      }),
     );
 
     if (resultAction.meta.requestStatus === 'fulfilled') {

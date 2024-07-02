@@ -1,12 +1,21 @@
-import { Input } from '@/components/atoms';
+import { Button, Modal } from '@/components/atoms';
+import { useState } from 'react';
 
 const MainPage = () => {
+  const [isOpen, setIsOpen] = useState(true);
+
   return (
-    <div>
-      <Input value="asdasads" label="label" />
-      <Input value="asdasads" label="label" disabled />
-      <Input placeholder="asdasads" label="label" />
-      <Input placeholder="asdasads" label="label" error="asdad" />
+    <div style={{ height: '1000px' }}>
+      <Button onClick={() => setIsOpen(true)}>открыть модальное окно</Button>
+      <Modal
+        isOpen={isOpen}
+        isMobileFullScreen
+        onClose={() => {
+          setIsOpen(false);
+        }}
+      >
+        <div style={{ height: '1000px' }}></div>
+      </Modal>
     </div>
   );
 };

@@ -1,12 +1,13 @@
-import { ChangeEvent, FC, ReactNode } from 'react';
+import { useForm } from 'react-hook-form';
+import { ChangeEvent, FC, ReactNode, useEffect } from 'react';
 import clsx from 'clsx';
 
 import { Button, Input, Typography } from '@/components/atoms';
-import { useAppSelector } from '@/store';
+import { AuthActions, useAppDispatch, useAppSelector } from '@/store';
 import { makeMaskedPhone, replaceToNumbers } from '@/helpers';
 
 import style from './style.module.scss';
-import { useForm } from 'react-hook-form';
+import { useTimer } from './useTimer';
 
 type AuthData = {
   phone: string;
@@ -19,13 +20,19 @@ type AuthFormProps = {
 };
 
 const AuthForm: FC<AuthFormProps> = ({ className, title }) => {
-  const { otp } = useAppSelector((state) => state.AuthReducer);
+  const dispatch = useAppDispatch();
+  const { isCreateOtpLoading, delay } = useAppSelector(
+    (state) => state.AuthReducer,
+  );
+  const { seconds, resetTimer } = useTimer(120);
 
   const { formState, watch, register, setValue, handleSubmit } =
     useForm<AuthData>();
 
   const onFormSubmit = (data: AuthData) => {
-    console.log(data);
+    if (delay === null) {
+      dispatch(AuthActions.createOtp(data.phone));
+    }
   };
 
   const onPhoneChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -37,6 +44,12 @@ const AuthForm: FC<AuthFormProps> = ({ className, title }) => {
     const value = replaceToNumbers(e.target.value);
     setValue('otp', value.slice(0, 6));
   };
+
+  useEffect(() => {
+    if (delay !== null) {
+      resetTimer(Math.ceil(delay / 1000));
+    }
+  }, [delay, resetTimer]);
 
   return (
     <div className={clsx('container', className)}>
@@ -61,7 +74,7 @@ const AuthForm: FC<AuthFormProps> = ({ className, title }) => {
               })}
               error={formState.errors.phone?.message}
             />
-            {otp && (
+            {delay && (
               <Input
                 placeholder="Проверочный код"
                 required
@@ -82,8 +95,18 @@ const AuthForm: FC<AuthFormProps> = ({ className, title }) => {
             )}
           </div>
           <div className={clsx(style.group, style.buttons)}>
-            <Button>Войти</Button>
-            {/* <Button variant="outlined">Запросить ещё раз</Button> */}
+            <Button loading={isCreateOtpLoading}>
+              {delay ? 'Войти' : 'Продолжить'}
+            </Button>
+            {delay !== null && seconds !== 0 && (
+              <Typography variant="paragraph_14" className={style.info}>
+                Запросить код повторно можно через {seconds} секунд
+              </Typography>
+            )}
+
+            {delay !== null && seconds === 0 && (
+              <Button variant="outlined">Запросить ещё раз</Button>
+            )}
           </div>
         </form>
       </div>

@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { AuthReducer } from './slices/AuthSlice';
+import { AuthReducer, AuthActions } from './slices/AuthSlice';
 
 const store = configureStore({
   reducer: {
@@ -16,4 +16,4 @@ const useAppDispatch = useDispatch.withTypes<AppDispatch>();
 const useAppSelector = useSelector.withTypes<RootState>();
 
 export type { RootState };
-export { useAppDispatch, useAppSelector, store };
+export { useAppDispatch, useAppSelector, store, AuthActions };

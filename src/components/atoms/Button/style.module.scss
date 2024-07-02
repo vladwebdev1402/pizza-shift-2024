@@ -1,5 +1,13 @@
 @import '@/styles/variables.scss';
 
+.icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .button {
   font-weight: 600;
   line-height: 24px;
@@ -8,6 +16,9 @@
   padding: 16px 32px;
   border-radius: 16px;
   border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
 
   &_contained {
     background-color: $orange;
@@ -34,5 +45,30 @@
     &:hover {
       background-color: $bg-secondary;
     }
+  }
+
+  &_iconCenter {
+    justify-content: center;
+  }
+
+  &_iconStart {
+    position: relative;
+    justify-content: center;
+    text-align: center;
+    padding-left: 72px;
+
+    .icon {
+      position: absolute;
+      left: 32px;
+    }
+  }
+
+  &_fullWidth {
+    width: 100%;
+  }
+
+  &:disabled {
+    background-color: $bg-disabled;
+    cursor: not-allowed;
   }
 }

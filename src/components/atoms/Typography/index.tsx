@@ -21,7 +21,7 @@ type TypographyColors =
 
 type TypographyWeights = 'regular' | 'medium' | 'semibold' | 'bold';
 
-type Props = {
+type TypographyProps = {
   variant?: TypographyVariants;
   color?: TypographyColors;
   weight?: TypographyWeights;
@@ -29,7 +29,7 @@ type Props = {
   children: ReactNode;
 };
 
-const Typography: FC<Props> = ({
+const Typography: FC<TypographyProps> = ({
   variant = 'paragraph_16',
   color = 'primary',
   weight = 'regular',

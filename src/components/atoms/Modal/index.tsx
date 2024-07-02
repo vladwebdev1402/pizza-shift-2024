@@ -5,7 +5,7 @@ import CrossSVG from '@/assets/decorative/cross.svg?react';
 
 import style from './style.module.scss';
 
-type Props = {
+type ModalProps = {
   size?: 'medium' | 'large';
   isOpen: boolean;
   isWithCross?: boolean;
@@ -15,7 +15,7 @@ type Props = {
   children: ReactNode;
 };
 
-const Modal: FC<Props> = ({
+const Modal: FC<ModalProps> = ({
   size = 'medium',
   isOpen,
   isWithCross = true,

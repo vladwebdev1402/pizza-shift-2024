@@ -4,14 +4,14 @@ import clsx from 'clsx';
 
 import style from './style.module.scss';
 
-type Props = {
+type NavLinkProps = {
   to: string;
   type: 'header' | 'footer';
   icon: ReactNode;
   children: ReactNode;
 };
 
-const NavLink: FC<Props> = ({ to, type, icon, children }) => {
+const NavLink: FC<NavLinkProps> = ({ to, type, icon, children }) => {
   const match = useMatch(to);
 
   return (

@@ -1,0 +1,58 @@
+@import '@/styles/variables.scss';
+
+.header {
+  padding: 24px 0px;
+  border-bottom: 1px solid $border-light;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 58px;
+  align-items: center;
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.list {
+  display: flex;
+  list-style: none;
+  gap: 32px;
+}
+
+.exit {
+  display: inline-flex;
+  gap: 16px;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  transition: $transition;
+  color: $text-secondary;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+
+  svg path {
+    transition: $transition;
+    fill: $indicator-normal;
+  }
+
+  &:hover {
+    color: $orange;
+    svg path {
+      fill: $orange;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    display: none;
+  }
+}

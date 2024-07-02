@@ -1,9 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { User } from '@/types';
+import { LocaleStorageService } from '@/api';
 
 type InitialState = {
   user: null | User;
+  otp: null | number;
   isAuth: boolean;
   isLoading: boolean;
   error: string;
@@ -11,7 +13,8 @@ type InitialState = {
 
 const initialState: InitialState = {
   user: null,
-  isAuth: false,
+  otp: null,
+  isAuth: LocaleStorageService.checkToken(),
   isLoading: false,
   error: '',
 };

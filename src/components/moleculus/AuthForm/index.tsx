@@ -26,8 +26,15 @@ const AuthForm: FC<AuthFormProps> = ({ className, title, onSuccessAuth }) => {
     useAppSelector((state) => state.AuthReducer);
   const { seconds, resetTimer } = useTimer(0);
 
-  const { formState, watch, register, setValue, handleSubmit, setError } =
-    useForm<AuthData>();
+  const {
+    formState,
+    watch,
+    register,
+    setValue,
+    handleSubmit,
+    setError,
+    reset,
+  } = useForm<AuthData>();
 
   const onFormSubmit = async (data: AuthData) => {
     if (delay === null) {
@@ -44,6 +51,7 @@ const AuthForm: FC<AuthFormProps> = ({ className, title, onSuccessAuth }) => {
 
     if (resultAction.meta.requestStatus === 'fulfilled') {
       onSuccessAuth();
+      reset();
     }
   };
 

@@ -84,7 +84,7 @@ const AuthForm: FC<AuthFormProps> = ({
     if (delay !== null) {
       resetTimer(Math.ceil(delay / 1000));
     }
-  }, [delay, resetTimer]);
+  }, [delay]);
 
   return (
     <div className={clsx('container', className)}>

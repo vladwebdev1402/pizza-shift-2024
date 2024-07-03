@@ -23,8 +23,8 @@ const Typography = <Tag extends TypographyTags = 'div'>({
   variant = 'paragraph_16',
   tag: Tag = 'p',
   children,
-}: TypographyProps<Tag>) => {
-  return <Tag className={clsx(style[variant], className)}>{children}</Tag>;
-};
+}: TypographyProps<Tag>) => (
+  <Tag className={clsx(style[variant], className)}>{children}</Tag>
+);
 
 export { Typography };

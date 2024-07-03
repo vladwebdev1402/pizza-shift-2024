@@ -35,11 +35,9 @@ const useAuthForm = (onSuccessAuth = () => {}) => {
     phone: string,
     setErrorPhone: (value?: string) => void,
   ) => {
-    const numbersPhone = replaceToNumbers(phone);
-    if (numbersPhone.length === 0)
-      setErrorPhone('Поле обязательное для заполнения');
-    else if (numbersPhone.length < 11)
-      setErrorPhone('Длина телефона равна 11 числам');
+    if (phone.length === 0) setErrorPhone('Поле обязательное для заполнения');
+    else if (!/\+\d \d\d\d \d\d\d \d\d \d\d/g.test(phone))
+      setErrorPhone('Введите телфон в формате +X XXX XXX XX XX');
     else {
       dispatch(AuthActions.createOtp(phone));
     }

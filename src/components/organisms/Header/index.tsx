@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Modal, NavLink, Typography } from '@/components/atoms';
+import { Modal, NavLink } from '@/components/atoms';
 import { AuthForm } from '@/components/moleculus';
 import { ROUTER_PATHS } from '@/constants';
 import { AuthActions, useAppDispatch, useAppSelector } from '@/store';
@@ -86,14 +86,7 @@ const Header = () => {
         </div>
       </header>
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-        <AuthForm
-          title={
-            <Typography variant="h3" tag="h3">
-              Авторизация
-            </Typography>
-          }
-          onSuccessAuth={() => setIsOpen(false)}
-        />
+        <AuthForm isShowTitle onSuccessAuth={() => setIsOpen(false)} />
       </Modal>
     </>
   );

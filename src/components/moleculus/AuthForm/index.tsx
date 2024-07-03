@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { ChangeEvent, FC, ReactNode, useEffect } from 'react';
+import { ChangeEvent, FC, useEffect } from 'react';
 import clsx from 'clsx';
 
 import { Button, Input, Typography } from '@/components/atoms';
@@ -16,11 +16,15 @@ type AuthData = {
 
 type AuthFormProps = {
   className?: string;
-  title?: ReactNode;
+  isShowTitle?: boolean;
   onSuccessAuth: () => void;
 };
 
-const AuthForm: FC<AuthFormProps> = ({ className, title, onSuccessAuth }) => {
+const AuthForm: FC<AuthFormProps> = ({
+  className,
+  isShowTitle,
+  onSuccessAuth,
+}) => {
   const dispatch = useAppDispatch();
   const { isCreateOtpLoading, delay, isCheckOtpLoading, error } =
     useAppSelector((state) => state.AuthReducer);
@@ -85,7 +89,13 @@ const AuthForm: FC<AuthFormProps> = ({ className, title, onSuccessAuth }) => {
   return (
     <div className={clsx('container', className)}>
       <div className={style.auth}>
-        {title && <div className={style.title}>{title}</div>}
+        {isShowTitle && (
+          <div className={style.title}>
+            <Typography variant="h2" tag="h2">
+              Авторизация
+            </Typography>
+          </div>
+        )}
         <Typography className={style.info}>
           Введите номер телефона для входа
           <br /> в личный кабинет

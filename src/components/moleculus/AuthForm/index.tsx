@@ -5,9 +5,9 @@ import clsx from 'clsx';
 import { Button, Input, Typography } from '@/components/atoms';
 import { AuthActions, useAppDispatch, useAppSelector } from '@/store';
 import { makeMaskedPhone, replaceToNumbers } from '@/helpers';
+import { useTimer } from '@/hooks';
 
 import style from './style.module.scss';
-import { useTimer } from './useTimer';
 
 type AuthData = {
   phone: string;

@@ -7,7 +7,7 @@ type LoaderProps = {
 };
 
 const Loader: FC<LoaderProps> = ({ className }) => {
-  return <div className={clsx(className, style.loader)} />;
+  return <div className={clsx(style.loader, className)} />;
 };
 
 export { Loader };

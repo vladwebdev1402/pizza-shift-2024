@@ -3,14 +3,14 @@ import clsx from 'clsx';
 
 import style from './style.module.scss';
 
-type Props = {
+type TabProps = {
   className?: string;
   isActive?: boolean;
   onClick: () => void;
   children: ReactNode;
 };
 
-const Tab: FC<Props> = ({
+const Tab: FC<TabProps> = ({
   className = '',
   isActive = false,
   onClick,

@@ -6,10 +6,11 @@ import clsx from 'clsx';
 type InputProps = {
   label?: string;
   error?: string;
+  inputClassName?: string;
 } & ComponentPropsWithRef<'input'>;
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, error, required, className, ...props }, ref) => {
+  ({ label, error, required, inputClassName, className, ...props }, ref) => {
     return (
       <div className={className}>
         {label && (
@@ -23,7 +24,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           {...props}
           ref={ref}
           required={required}
-          className={clsx(style.input, { [style.input_error]: error })}
+          className={clsx(
+            style.input,
+            { [style.input_error]: error },
+            inputClassName,
+          )}
         />
         {error && <div className={style.error}>{error}</div>}
       </div>

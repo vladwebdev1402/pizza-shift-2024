@@ -1,0 +1,45 @@
+@import '@/styles/variables.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.img {
+  width: 220px;
+  height: 220px;
+  margin: 0 auto;
+
+  img {
+    object-fit: cover;
+    max-width: 100%;
+  }
+}
+
+.title,
+.price {
+  color: $text-title;
+}
+
+.description {
+  color: $text-body-primary;
+}
+
+.info {
+  margin-top: 24px;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.skeleton {
+  align-self: flex-start;
+}

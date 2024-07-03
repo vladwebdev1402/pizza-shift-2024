@@ -1,11 +1,14 @@
 import axios, { AxiosError } from 'axios';
+
+import { API_URL } from '@/constants';
+
 import { LocaleStorageService } from './localStorage';
 
 const axiosInstance = axios.create();
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    config.baseURL = 'https://shift-backend.onrender.com';
+    config.baseURL = API_URL;
     config.headers.Authorization = `Bearer ${LocaleStorageService.getToken()}`;
     return config;
   },

@@ -127,9 +127,9 @@ const ProfileForm: FC<ProfileFormProps> = ({
             value: true,
             message: 'Поле обязательно для заполнеия',
           },
-          minLength: {
-            value: 11,
-            message: 'Длина номера телефона равна 11 символам',
+          pattern: {
+            value: /\+\d \d\d\d \d\d\d \d\d \d\d/g,
+            message: 'Введите телфон в формате +X XXX XXX XX XX',
           },
           value: watch('phone'),
           onChange: onPhoneChange,
@@ -144,7 +144,7 @@ const ProfileForm: FC<ProfileFormProps> = ({
           value: watch('email'),
           pattern: {
             value: /([a-zA-Z0-9._-]+@[a-zA-Z]+\.[a-zA-Z]+)/,
-            message: 'Пример почты: example@gmail.com',
+            message: 'Введите почту в формате example@gmail.com',
           },
           validate: emailFieldValidate,
         })}

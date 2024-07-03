@@ -1,11 +1,17 @@
-import { FC } from 'react';
+import { useForm } from 'react-hook-form';
+import { ChangeEvent, FC } from 'react';
 import clsx from 'clsx';
 
 import { Button, Input, Typography } from '@/components/atoms';
-import { makeMaskedPhone } from '@/helpers';
+import { makeMaskedPhone, replaceToNumbers } from '@/helpers';
 
 import style from './style.module.scss';
 import { useAuthForm } from './useAuthForm';
+
+type AuthData = {
+  phone: string;
+  otp: string;
+};
 
 type AuthFormProps = {
   className?: string;
@@ -19,20 +25,38 @@ const AuthForm: FC<AuthFormProps> = ({
   onSuccessAuth,
 }) => {
   const {
+    formState,
+    watch,
+    register,
+    setValue,
+    handleSubmit,
+    setError,
+    reset,
+  } = useForm<AuthData>();
+
+  const {
     delay,
     error,
-    formState,
-    handleSubmit,
     isCheckOtpLoading,
     isCreateOtpLoading,
     onFormSubmit,
     onNewOtpClick,
-    onOtpChange,
-    onPhoneChange,
-    register,
     seconds,
-    watch,
   } = useAuthForm(onSuccessAuth);
+
+  const setErrorPhone = (value?: string) => {
+    setError('phone', { message: value });
+  };
+
+  const onPhoneChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = replaceToNumbers(e.target.value);
+    setValue('phone', makeMaskedPhone(value));
+  };
+
+  const onOtpChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = replaceToNumbers(e.target.value);
+    setValue('otp', value.slice(0, 6));
+  };
 
   return (
     <div className={clsx('container', className)}>
@@ -48,7 +72,10 @@ const AuthForm: FC<AuthFormProps> = ({
           Введите номер телефона для входа
           <br /> в личный кабинет
         </Typography>
-        <form className={style.form} onSubmit={handleSubmit(onFormSubmit)}>
+        <form
+          className={style.form}
+          onSubmit={handleSubmit((data) => onFormSubmit(data, reset))}
+        >
           <div className={style.group}>
             <Input
               placeholder="+7 913 123 45 67"
@@ -100,7 +127,7 @@ const AuthForm: FC<AuthFormProps> = ({
               <Button
                 variant="outlined"
                 type="button"
-                onClick={onNewOtpClick}
+                onClick={() => onNewOtpClick(watch('phone'), setErrorPhone)}
                 loading={isCreateOtpLoading}
               >
                 Запросить ещё раз

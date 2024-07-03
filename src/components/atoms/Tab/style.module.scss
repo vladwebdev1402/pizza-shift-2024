@@ -1,0 +1,27 @@
+@import '@/styles/variables.scss';
+
+.tab {
+  border: none;
+  background-color: transparent;
+  padding: 10px 16px;
+  font-size: 14px;
+  line-height: 20px;
+  color: $text-tertiary;
+  border-radius: 14px;
+  transition: $transition;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $bg-primary;
+    color: $text-primary;
+  }
+
+  &_active {
+    color: $text-primary;
+    background-color: $bg-primary;
+  }
+
+  &_fullWidth {
+    width: 100%;
+  }
+}

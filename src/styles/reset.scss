@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 *,
 *::after,
 *::before {
@@ -8,4 +10,6 @@
 
 body {
   font-family: 'Inter';
+  font-size: 16px;
+  color: $text-primary;
 }

@@ -1,0 +1,108 @@
+@import '@/styles/variables.scss';
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0 16px 48px 16px;
+  overflow: auto;
+  transition: $transition;
+  opacity: 0;
+  pointer-events: none;
+  cursor: pointer;
+
+  &_open {
+    opacity: 1;
+    background-color: rgba(20, 28, 36, 0.3);
+    pointer-events: auto;
+
+    .body {
+      transform: scale(1);
+    }
+  }
+}
+
+.body {
+  position: relative;
+  margin: 150px auto 0px auto;
+  transition: $transition;
+  border-radius: 24px;
+  background-color: $text-invert;
+  padding: 0px 48px 48px 48px;
+  cursor: auto;
+  transform: scale(0.5);
+
+  &_medium {
+    max-width: 500px;
+  }
+
+  &_large {
+    max-width: 806px;
+  }
+}
+
+.close {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 16px;
+  right: 24px;
+  cursor: pointer;
+
+  svg path {
+    stroke: $border-extralight;
+    transition: $transition;
+  }
+
+  &:hover {
+    svg path {
+      stroke: $indicator-normal;
+    }
+  }
+}
+
+.title {
+  min-height: 48px;
+}
+
+.stop_scroll {
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .modal {
+    padding: 0;
+    display: flex;
+    align-items: end;
+
+    &_open {
+      .body {
+        transform: translateY(0);
+      }
+    }
+
+    &_mobileFullScreen {
+      align-items: start;
+
+      .body {
+        margin: 0;
+        min-height: 100%;
+        width: 100%;
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+      }
+    }
+  }
+
+  .body {
+    max-width: 100%;
+    flex: 1 0 100%;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    transform: translateY(100%);
+  }
+}

@@ -1,5 +1,3 @@
-const MainPage = () => {
-  return <div></div>;
-};
+const MainPage = () => <div></div>;
 
 export { MainPage };

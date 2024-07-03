@@ -6,13 +6,16 @@ import clsx from 'clsx';
 type InputProps = {
   label: string;
   error?: string;
-  inputClassName?: string;
+  containerClassName?: string;
 } & ComponentPropsWithRef<'input'>;
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, error, required, inputClassName, className, ...props }, ref) => {
+  (
+    { label, error, required, containerClassName, className, ...props },
+    ref,
+  ) => {
     return (
-      <div className={className}>
+      <div className={containerClassName}>
         <div className={style.label}>
           {label}
           {required && '*'}
@@ -24,7 +27,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           className={clsx(
             style.input,
             { [style.input_error]: error },
-            inputClassName,
+            className,
           )}
         />
         {error && <div className={style.error}>{error}</div>}

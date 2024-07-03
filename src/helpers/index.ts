@@ -1,2 +1,2 @@
-export * from './makePhoneMask';
+export * from './makeMaskedPhone';
 export * from './replaceToNumbers';

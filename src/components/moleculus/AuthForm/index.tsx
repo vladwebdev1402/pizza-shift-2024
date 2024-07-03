@@ -1,18 +1,13 @@
 import { useForm } from 'react-hook-form';
-import { ChangeEvent, FC, useEffect } from 'react';
+import { ChangeEvent, FC } from 'react';
 import clsx from 'clsx';
 
 import { Button, Input, Typography } from '@/components/atoms';
-import { AuthActions, useAppDispatch, useAppSelector } from '@/store';
 import { makeMaskedPhone, replaceToNumbers } from '@/helpers';
-import { useTimer } from '@/hooks';
 
 import style from './style.module.scss';
-
-type AuthData = {
-  phone: string;
-  otp: string;
-};
+import { useAuthForm } from './useAuthForm';
+import { AuthData } from './type';
 
 type AuthFormProps = {
   className?: string;
@@ -25,11 +20,6 @@ const AuthForm: FC<AuthFormProps> = ({
   isShowTitle,
   onSuccessAuth = () => {},
 }) => {
-  const dispatch = useAppDispatch();
-  const { isCreateOtpLoading, delay, isCheckOtpLoading, error } =
-    useAppSelector((state) => state.AuthReducer);
-  const { seconds, resetTimer } = useTimer(0);
-
   const {
     formState,
     watch,
@@ -40,34 +30,22 @@ const AuthForm: FC<AuthFormProps> = ({
     reset,
   } = useForm<AuthData>();
 
-  const onFormSubmit = async (data: AuthData) => {
-    if (delay === null) {
-      dispatch(AuthActions.createOtp(replaceToNumbers(data.phone)));
-      return;
-    }
+  const {
+    delay,
+    error,
+    isCheckOtpLoading,
+    isCreateOtpLoading,
+    onFormSubmit,
+    onNewOtpClick,
+    seconds,
+  } = useAuthForm(onSuccessAuth);
 
-    const resultAction = await dispatch(
-      AuthActions.userSignin({
-        phone: replaceToNumbers(data.phone),
-        code: Number(data.otp),
-      }),
-    );
-
-    if (resultAction.meta.requestStatus === 'fulfilled') {
-      onSuccessAuth();
-      reset();
-    }
+  const onSubmit = (data: AuthData) => {
+    onFormSubmit(data, reset);
   };
 
-  const onNewOtpClick = async () => {
-    const phone = replaceToNumbers(watch('phone'));
-    if (phone.length === 0)
-      setError('phone', { message: 'Поле обязательное для заполнения' });
-    else if (phone.length < 11)
-      setError('phone', { message: 'Длина телефона равна 11 числам' });
-    else {
-      dispatch(AuthActions.createOtp(phone));
-    }
+  const setErrorPhone = (value?: string) => {
+    setError('phone', { message: value });
   };
 
   const onPhoneChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -79,12 +57,6 @@ const AuthForm: FC<AuthFormProps> = ({
     const value = replaceToNumbers(e.target.value);
     setValue('otp', value.slice(0, 6));
   };
-
-  useEffect(() => {
-    if (delay !== null) {
-      resetTimer(Math.ceil(delay / 1000));
-    }
-  }, [delay, resetTimer]);
 
   return (
     <div className={clsx('container', className)}>
@@ -100,17 +72,16 @@ const AuthForm: FC<AuthFormProps> = ({
           Введите номер телефона для входа
           <br /> в личный кабинет
         </Typography>
-        <form className={style.form} onSubmit={handleSubmit(onFormSubmit)}>
+        <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={style.group}>
             <Input
               placeholder="+7 913 123 45 67"
               {...register('phone', {
                 onChange: onPhoneChange,
                 value: watch('phone'),
-                validate: (value) => {
-                  const phone = makeMaskedPhone(value);
-                  if (phone.length < 11)
-                    return 'Длина телефона равна 11 числам';
+                pattern: {
+                  value: /\+\d \d\d\d \d\d\d \d\d \d\d/g,
+                  message: 'Введите телфон в формате +X XXX XXX XX XX',
                 },
               })}
               error={formState.errors.phone?.message}
@@ -152,7 +123,7 @@ const AuthForm: FC<AuthFormProps> = ({
               <Button
                 variant="outlined"
                 type="button"
-                onClick={onNewOtpClick}
+                onClick={() => onNewOtpClick(watch('phone'), setErrorPhone)}
                 loading={isCreateOtpLoading}
               >
                 Запросить ещё раз

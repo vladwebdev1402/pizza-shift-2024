@@ -55,7 +55,7 @@ const AuthForm: FC<AuthFormProps> = ({ className, title, onSuccessAuth }) => {
     }
   };
 
-  const onNewOtpClick = () => {
+  const onNewOtpClick = async () => {
     const phone = replaceToNumbers(watch('phone'));
     if (phone.length === 0)
       setError('phone', { message: 'Поле обязательное для заполнения' });
@@ -80,7 +80,7 @@ const AuthForm: FC<AuthFormProps> = ({ className, title, onSuccessAuth }) => {
     if (delay !== null) {
       resetTimer(Math.ceil(delay / 1000));
     }
-  }, [delay]);
+  }, [delay, resetTimer]);
 
   return (
     <div className={clsx('container', className)}>

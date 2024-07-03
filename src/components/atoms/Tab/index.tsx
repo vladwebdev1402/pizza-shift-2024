@@ -15,17 +15,15 @@ const Tab: FC<TabProps> = ({
   isActive = false,
   onClick,
   children,
-}) => {
-  return (
-    <button
-      className={clsx(className, style.tab, {
-        [style.tab_active]: isActive,
-      })}
-      onClick={onClick}
-    >
-      {children}
-    </button>
-  );
-};
+}) => (
+  <button
+    className={clsx(className, style.tab, {
+      [style.tab_active]: isActive,
+    })}
+    onClick={onClick}
+  >
+    {children}
+  </button>
+);
 
 export { Tab };

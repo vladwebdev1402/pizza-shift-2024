@@ -13,27 +13,21 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     { label, error, required, containerClassName, className, ...props },
     ref,
-  ) => {
-    return (
-      <div className={containerClassName}>
-        <div className={style.label}>
-          {label}
-          {required && '*'}
-        </div>
-        <input
-          {...props}
-          ref={ref}
-          required={required}
-          className={clsx(
-            style.input,
-            { [style.input_error]: error },
-            className,
-          )}
-        />
-        {error && <div className={style.error}>{error}</div>}
+  ) => (
+    <div className={containerClassName}>
+      <div className={style.label}>
+        {label}
+        {required && '*'}
       </div>
-    );
-  },
+      <input
+        {...props}
+        ref={ref}
+        required={required}
+        className={clsx(style.input, { [style.input_error]: error }, className)}
+      />
+      {error && <div className={style.error}>{error}</div>}
+    </div>
+  ),
 );
 
 export { Input };

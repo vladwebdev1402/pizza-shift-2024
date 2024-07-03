@@ -5,12 +5,12 @@ import { Modal, NavLink } from '@/components/atoms';
 import { AuthForm } from '@/components/moleculus';
 import { ROUTER_PATHS } from '@/constants';
 import { AuthActions, useAppDispatch, useAppSelector } from '@/store';
-import LogoSVG from '@/assets/decorative/logo.svg?react';
-import ProfileSVG from '@/assets/decorative/profile.svg?react';
-import TimeSVG from '@/assets/decorative/time.svg?react';
-import BasketSVG from '@/assets/decorative/basket.svg?react';
-import ExitSVG from '@/assets/decorative/exit.svg?react';
-import EnterSVG from '@/assets/decorative/enter.svg?react';
+import LogoIcon from '@/assets/decorative/logo.svg?react';
+import ProfileIcon from '@/assets/decorative/profile.svg?react';
+import TimeIcon from '@/assets/decorative/time.svg?react';
+import BasketIcon from '@/assets/decorative/basket.svg?react';
+import ExitIcon from '@/assets/decorative/exit.svg?react';
+import EnterIcon from '@/assets/decorative/enter.svg?react';
 
 import style from './style.module.scss';
 
@@ -30,14 +30,14 @@ const Header = () => {
         <div className={'container'}>
           <nav className={style.nav}>
             <Link to={ROUTER_PATHS.main}>
-              <LogoSVG />
+              <LogoIcon />
             </Link>
             <div className={style.links}>
               <ul className={style.list}>
                 <li>
                   <NavLink
                     type="header"
-                    icon={<ProfileSVG />}
+                    icon={<ProfileIcon />}
                     to={ROUTER_PATHS.profile}
                   >
                     Профиль
@@ -46,7 +46,7 @@ const Header = () => {
                 <li>
                   <NavLink
                     type="header"
-                    icon={<TimeSVG />}
+                    icon={<TimeIcon />}
                     to={ROUTER_PATHS.orders}
                   >
                     Заказы
@@ -57,7 +57,7 @@ const Header = () => {
                 <li>
                   <NavLink
                     type="header"
-                    icon={<BasketSVG />}
+                    icon={<BasketIcon />}
                     to={ROUTER_PATHS.orders}
                     svgStyle="stroke"
                   >
@@ -68,13 +68,13 @@ const Header = () => {
                   <button className={style.exit} onClick={onAuthClick}>
                     {isAuth && (
                       <>
-                        <ExitSVG />
+                        <ExitIcon />
                         Выйти
                       </>
                     )}
                     {!isAuth && (
                       <>
-                        <EnterSVG />
+                        <EnterIcon />
                         Войти
                       </>
                     )}

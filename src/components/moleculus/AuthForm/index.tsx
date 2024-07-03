@@ -1,18 +1,11 @@
-import { useForm } from 'react-hook-form';
-import { ChangeEvent, FC, useEffect } from 'react';
+import { FC } from 'react';
 import clsx from 'clsx';
 
 import { Button, Input, Typography } from '@/components/atoms';
-import { AuthActions, useAppDispatch, useAppSelector } from '@/store';
-import { makeMaskedPhone, replaceToNumbers } from '@/helpers';
-import { useTimer } from '@/hooks';
+import { makeMaskedPhone } from '@/helpers';
 
 import style from './style.module.scss';
-
-type AuthData = {
-  phone: string;
-  otp: string;
-};
+import { useAuthForm } from './useAuthForm';
 
 type AuthFormProps = {
   className?: string;
@@ -25,66 +18,21 @@ const AuthForm: FC<AuthFormProps> = ({
   isShowTitle,
   onSuccessAuth,
 }) => {
-  const dispatch = useAppDispatch();
-  const { isCreateOtpLoading, delay, isCheckOtpLoading, error } =
-    useAppSelector((state) => state.AuthReducer);
-  const { seconds, resetTimer } = useTimer(0);
-
   const {
+    delay,
+    error,
     formState,
-    watch,
-    register,
-    setValue,
     handleSubmit,
-    setError,
-    reset,
-  } = useForm<AuthData>();
-
-  const onFormSubmit = async (data: AuthData) => {
-    if (delay === null) {
-      dispatch(AuthActions.createOtp(replaceToNumbers(data.phone)));
-      return;
-    }
-
-    const resultAction = await dispatch(
-      AuthActions.userSignin({
-        phone: replaceToNumbers(data.phone),
-        code: Number(data.otp),
-      }),
-    );
-
-    if (resultAction.meta.requestStatus === 'fulfilled') {
-      onSuccessAuth();
-      reset();
-    }
-  };
-
-  const onNewOtpClick = async () => {
-    const phone = replaceToNumbers(watch('phone'));
-    if (phone.length === 0)
-      setError('phone', { message: 'Поле обязательное для заполнения' });
-    else if (phone.length < 11)
-      setError('phone', { message: 'Длина телефона равна 11 числам' });
-    else {
-      dispatch(AuthActions.createOtp(phone));
-    }
-  };
-
-  const onPhoneChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = replaceToNumbers(e.target.value);
-    setValue('phone', makeMaskedPhone(value));
-  };
-
-  const onOtpChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = replaceToNumbers(e.target.value);
-    setValue('otp', value.slice(0, 6));
-  };
-
-  useEffect(() => {
-    if (delay !== null) {
-      resetTimer(Math.ceil(delay / 1000));
-    }
-  }, [delay]);
+    isCheckOtpLoading,
+    isCreateOtpLoading,
+    onFormSubmit,
+    onNewOtpClick,
+    onOtpChange,
+    onPhoneChange,
+    register,
+    seconds,
+    watch,
+  } = useAuthForm(onSuccessAuth);
 
   return (
     <div className={clsx('container', className)}>

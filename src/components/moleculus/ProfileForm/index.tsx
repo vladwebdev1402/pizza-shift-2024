@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { ChangeEvent, FC, ReactNode } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -13,10 +14,12 @@ import {
   removeCitySprecCharacters,
   removeNamefieldSpecCharacters,
 } from './helpers';
+import { ProfileFormSkeleton } from './ProfileFormSkeleton';
 
 type ProfileFormProps = {
   defaultValues?: User;
   isDisabledPhone?: boolean;
+  className?: string;
   onSubmit: (data: User) => void;
   buttons?: ReactNode;
 };
@@ -24,36 +27,40 @@ type ProfileFormProps = {
 const ProfileForm: FC<ProfileFormProps> = ({
   defaultValues,
   isDisabledPhone = false,
+  className,
   onSubmit,
   buttons,
 }) => {
   const { register, formState, handleSubmit, setValue, watch } = useForm<User>({
-    defaultValues,
+    defaultValues: {
+      ...defaultValues,
+      phone: makeMaskedPhone(defaultValues?.phone || ''),
+    },
   });
 
   const onLastnameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(
-      'profile.lastname',
+      'lastname',
       removeNamefieldSpecCharacters(e.target.value).slice(0, 60),
     );
   };
 
   const onFirstnameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(
-      'profile.firstname',
+      'firstname',
       removeNamefieldSpecCharacters(e.target.value).slice(0, 60),
     );
   };
 
   const onMiddlenameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(
-      'profile.middlename',
+      'middlename',
       removeNamefieldSpecCharacters(e.target.value).slice(0, 60),
     );
   };
 
   const onCityChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue('profile.city', removeCitySprecCharacters(e.target.value));
+    setValue('city', removeCitySprecCharacters(e.target.value));
   };
 
   const onPhoneChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -61,51 +68,54 @@ const ProfileForm: FC<ProfileFormProps> = ({
   };
 
   return (
-    <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className={clsx(style.form, className)}
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <Input
         label="Фамилия"
         required
         placeholder="Иванов"
-        {...register('profile.lastname', {
+        {...register('lastname', {
           required: {
             value: true,
             message: 'Поле обязательно для заполнеия',
           },
-          value: watch('profile.lastname'),
+          value: watch('lastname'),
           onChange: onLastnameChange,
           validate: nameFieldsValidate,
         })}
-        error={formState.errors.profile?.lastname?.message}
+        error={formState.errors.lastname?.message}
       />
       <Input
         label="Имя"
         required
         placeholder="Иван"
-        {...register('profile.firstname', {
+        {...register('firstname', {
           required: {
             value: true,
             message: 'Поле обязательно для заполнеия',
           },
           onChange: onFirstnameChange,
-          value: watch('profile.firstname'),
+          value: watch('firstname'),
           validate: nameFieldsValidate,
         })}
-        error={formState.errors.profile?.firstname?.message}
+        error={formState.errors.firstname?.message}
       />
       <Input
         label="Отчество"
         required
         placeholder="Иванович"
-        {...register('profile.middlename', {
+        {...register('middlename', {
           required: {
             value: true,
             message: 'Поле обязательно для заполнеия',
           },
           onChange: onMiddlenameChange,
-          value: watch('profile.middlename'),
+          value: watch('middlename'),
           validate: nameFieldsValidate,
         })}
-        error={formState.errors.profile?.middlename?.message}
+        error={formState.errors.middlename?.message}
       />
       <Input
         label="Телефон"
@@ -130,29 +140,29 @@ const ProfileForm: FC<ProfileFormProps> = ({
         label="Email"
         type="email"
         placeholder="user@example.com"
-        {...register('profile.email', {
-          value: watch('profile.email'),
+        {...register('email', {
+          value: watch('email'),
           pattern: {
             value: /([a-zA-Z0-9._-]+@[a-zA-Z]+\.[a-zA-Z]+)/,
             message: 'Пример почты: example@gmail.com',
           },
           validate: emailFieldValidate,
         })}
-        error={formState.errors.profile?.email?.message}
+        error={formState.errors.email?.message}
       />
       <Input
         label="Город"
         placeholder="г. Новосибирск"
-        {...register('profile.city', {
-          value: watch('profile.city'),
+        {...register('city', {
+          value: watch('city'),
           onChange: onCityChange,
           validate: cityFieldValidate,
         })}
-        error={formState.errors.profile?.city?.message}
+        error={formState.errors.city?.message}
       />
       {buttons && <div className={style.buttons}>{buttons}</div>}
     </form>
   );
 };
 
-export { ProfileForm };
+export { ProfileForm, ProfileFormSkeleton };

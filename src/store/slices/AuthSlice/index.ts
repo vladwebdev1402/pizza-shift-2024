@@ -2,7 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { User } from '@/types';
 import { LocaleStorageService } from '@/api';
-import { createOtp, userSignin } from './actionCreators';
+import {
+  createOtp,
+  getSession,
+  updateProfile,
+  userSignin,
+} from './actionCreators';
 
 type InitialState = {
   user: null | User;
@@ -11,6 +16,7 @@ type InitialState = {
   isFetchLoading: boolean;
   isCreateOtpLoading: boolean;
   isCheckOtpLoading: boolean;
+  isUpdateLoading: boolean;
   error: string;
 };
 
@@ -21,6 +27,7 @@ const initialState: InitialState = {
   isFetchLoading: false,
   isCreateOtpLoading: false,
   isCheckOtpLoading: false,
+  isUpdateLoading: false,
   error: '',
 };
 
@@ -68,9 +75,47 @@ const AuthSlice = createSlice({
           ? action.payload
           : 'Произошла неизвестная ошибка';
     });
+
+    builder.addCase(getSession.pending, (state) => {
+      state.isFetchLoading = true;
+      state.error = '';
+    });
+    builder.addCase(getSession.fulfilled, (state, action) => {
+      state.isFetchLoading = false;
+      state.user = action.payload.user;
+    });
+    builder.addCase(getSession.rejected, (state, action) => {
+      state.isFetchLoading = false;
+      state.error =
+        typeof action.payload === 'string'
+          ? action.payload
+          : 'Произошла неизвестная ошибка';
+    });
+
+    builder.addCase(updateProfile.pending, (state) => {
+      state.isUpdateLoading = true;
+      state.error = '';
+    });
+    builder.addCase(updateProfile.fulfilled, (state, action) => {
+      state.isUpdateLoading = false;
+      state.user = action.payload;
+    });
+    builder.addCase(updateProfile.rejected, (state, action) => {
+      state.isUpdateLoading = false;
+      state.error =
+        typeof action.payload === 'string'
+          ? action.payload
+          : 'Произошла неизвестная ошибка';
+    });
   },
 });
 
 const AuthReducer = AuthSlice.reducer;
-const AuthActions = { ...AuthSlice.actions, createOtp, userSignin };
+const AuthActions = {
+  ...AuthSlice.actions,
+  createOtp,
+  userSignin,
+  getSession,
+  updateProfile,
+};
 export { AuthReducer, AuthActions };

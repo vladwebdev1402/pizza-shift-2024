@@ -1,7 +1,9 @@
 import { axiosInstance } from '@/api';
 
-import { CreateOtpResponse, SignInData } from './type';
 import { User } from '@/types';
+import { replaceToNumbers } from '@/helpers';
+
+import { CreateOtpResponse, SignInData } from './type';
 
 class AuthApi {
   static async createOtp(phone: string) {
@@ -17,6 +19,18 @@ class AuthApi {
       data,
     );
     return response.data;
+  }
+
+  static async getSession() {
+    const response = await axiosInstance.get<{ user: User }>('/users/session');
+    return response.data;
+  }
+
+  static async updateProfile(user: User) {
+    await axiosInstance.patch('/users/profile', {
+      profile: { ...user },
+      phone: replaceToNumbers(user.phone),
+    });
   }
 }
 

@@ -17,13 +17,13 @@ type AuthData = {
 type AuthFormProps = {
   className?: string;
   isShowTitle?: boolean;
-  onSuccessAuth: () => void;
+  onSuccessAuth?: () => void;
 };
 
 const AuthForm: FC<AuthFormProps> = ({
   className,
   isShowTitle,
-  onSuccessAuth,
+  onSuccessAuth = () => {},
 }) => {
   const dispatch = useAppDispatch();
   const { isCreateOtpLoading, delay, isCheckOtpLoading, error } =

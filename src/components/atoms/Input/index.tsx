@@ -15,10 +15,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     ref,
   ) => (
     <div className={containerClassName}>
-      <div className={style.label}>
-        {label}
-        {required && '*'}
-      </div>
+      {label && (
+        <div className={style.label}>
+          {label}
+          {required && '*'}
+        </div>
+      )}
       <input
         {...props}
         ref={ref}

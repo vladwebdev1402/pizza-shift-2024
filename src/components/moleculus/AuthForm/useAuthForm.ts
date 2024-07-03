@@ -4,10 +4,7 @@ import { replaceToNumbers } from '@/helpers';
 import { AuthActions, useAppDispatch, useAppSelector } from '@/store';
 import { useTimer } from '@/hooks';
 
-type AuthData = {
-  phone: string;
-  otp: string;
-};
+import { AuthData } from './type';
 
 const useAuthForm = (onSuccessAuth = () => {}) => {
   const dispatch = useAppDispatch();

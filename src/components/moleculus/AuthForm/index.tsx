@@ -7,16 +7,12 @@ import { makeMaskedPhone, replaceToNumbers } from '@/helpers';
 
 import style from './style.module.scss';
 import { useAuthForm } from './useAuthForm';
-
-type AuthData = {
-  phone: string;
-  otp: string;
-};
+import { AuthData } from './type';
 
 type AuthFormProps = {
   className?: string;
   isShowTitle?: boolean;
-  onSuccessAuth: () => void;
+  onSuccessAuth?: () => void;
 };
 
 const AuthForm: FC<AuthFormProps> = ({
@@ -43,6 +39,10 @@ const AuthForm: FC<AuthFormProps> = ({
     onNewOtpClick,
     seconds,
   } = useAuthForm(onSuccessAuth);
+
+  const onSubmit = (data: AuthData) => {
+    onFormSubmit(data, reset);
+  };
 
   const setErrorPhone = (value?: string) => {
     setError('phone', { message: value });
@@ -72,20 +72,16 @@ const AuthForm: FC<AuthFormProps> = ({
           Введите номер телефона для входа
           <br /> в личный кабинет
         </Typography>
-        <form
-          className={style.form}
-          onSubmit={handleSubmit((data) => onFormSubmit(data, reset))}
-        >
+        <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={style.group}>
             <Input
               placeholder="+7 913 123 45 67"
               {...register('phone', {
                 onChange: onPhoneChange,
                 value: watch('phone'),
-                validate: (value) => {
-                  const phone = makeMaskedPhone(value);
-                  if (phone.length < 11)
-                    return 'Длина телефона равна 11 числам';
+                pattern: {
+                  value: /\+\d \d\d\d \d\d\d \d\d \d\d/g,
+                  message: 'Введите телфон в формате +X XXX XXX XX XX',
                 },
               })}
               error={formState.errors.phone?.message}

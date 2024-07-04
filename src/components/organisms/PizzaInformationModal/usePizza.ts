@@ -5,6 +5,7 @@ import { Dough, Ingredient, PizzaOrder, Size } from '@/types';
 
 const usePizza = (
   currentId: string | null,
+  currentPizzaOrder: PizzaOrder | null,
   onAddInBasket: (pizza: PizzaOrder) => void,
 ) => {
   const pizzas = useAppSelector((state) => state.PizzaReducer.pizzas);
@@ -15,11 +16,11 @@ const usePizza = (
   const currentPizza = useMemo(() => {
     if (!pizzas || !currentId) return null;
     const pizza = pizzas.find((pizza) => pizza.id === currentId);
-    setCurrentSize(pizza!.sizes[0]);
-    setCurrentDough(pizza!.doughs[0]);
-    setCurrentToppings([]);
+    setCurrentSize(currentPizzaOrder?.size || pizza!.sizes[0]);
+    setCurrentDough(currentPizzaOrder?.doughs || pizza!.doughs[0]);
+    setCurrentToppings(currentPizzaOrder?.toppings || []);
     return pizza;
-  }, [pizzas, currentId]);
+  }, [pizzas, currentId, currentPizzaOrder]);
 
   const onSizeClick = (size: Size) => {
     setCurrentSize(size);
@@ -47,6 +48,7 @@ const usePizza = (
       doughs: currentDough!,
       size: currentSize!,
       toppings: currentToppings,
+      count: currentPizzaOrder?.count || 1,
     });
   };
 

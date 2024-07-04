@@ -22,12 +22,14 @@ import { usePizza } from './usePizza';
 
 type Props = {
   currentId: string | null;
+  currentPizzaOrder?: PizzaOrder | null;
   onClose: () => void;
   onAddInBasket: (pizza: PizzaOrder) => void;
 };
 
 const PizzaInformationModal: FC<Props> = ({
   currentId,
+  currentPizzaOrder = null,
   onClose,
   onAddInBasket,
 }) => {
@@ -39,7 +41,7 @@ const PizzaInformationModal: FC<Props> = ({
     onSizeClick,
     onToppingClick,
     onAddBasket,
-  } = usePizza(currentId, onAddInBasket);
+  } = usePizza(currentId, currentPizzaOrder, onAddInBasket);
 
   return (
     <Modal

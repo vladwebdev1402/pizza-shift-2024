@@ -104,6 +104,7 @@ type PizzaOrder = {
   toppings: Ingredient[];
   size: Size;
   doughs: Dough;
+  count: number;
 };
 
 export {

@@ -9,16 +9,26 @@ import {
   SizeToCm,
 } from '@/types';
 import { Button, Counter, Typography } from '@/components/atoms';
+import { calcPricePizzaOrder } from '@/helpers';
 import CrossIcon from '@/assets/decorative/cross.svg?react';
 
 import style from './style.module.scss';
-import { getTotalPrice } from './helpers';
 
 type PizzaBasketCardProps = {
   pizza: PizzaOrder;
+  onChangeClick: (pizza: PizzaOrder) => void;
+  onIncrement: (pizza: PizzaOrder) => void;
+  onDecrement: (pizza: PizzaOrder) => void;
+  onDelete: (pizza: PizzaOrder) => void;
 };
 
-const PizzaBasketCard: FC<PizzaBasketCardProps> = ({ pizza }) => {
+const PizzaBasketCard: FC<PizzaBasketCardProps> = ({
+  pizza,
+  onChangeClick,
+  onIncrement,
+  onDecrement,
+  onDelete,
+}) => {
   return (
     <div className={style.container}>
       <div className={style.img}>
@@ -52,22 +62,33 @@ const PizzaBasketCard: FC<PizzaBasketCardProps> = ({ pizza }) => {
         </div>
         <div className={style.options}>
           <Counter
-            onAdd={() => {}}
-            onMinus={() => {}}
+            onAdd={() => {
+              onIncrement(pizza);
+            }}
+            onMinus={() => {
+              onDecrement(pizza);
+            }}
             className={style.counter}
           >
-            1
+            {pizza.count}
           </Counter>
 
-          <Button variant="text" className={style.change_button}>
+          <Button
+            variant="text"
+            className={style.change_button}
+            onClick={() => onChangeClick(pizza)}
+          >
             <Typography variant="paragraph_12">Изменить</Typography>
           </Button>
 
           <Typography className={style.price}>
-            {getTotalPrice(pizza)} ₽
+            {calcPricePizzaOrder(pizza)} ₽
           </Typography>
 
-          <button className={style.delete_button}>
+          <button
+            className={style.delete_button}
+            onClick={() => onDelete(pizza)}
+          >
             <CrossIcon />
           </button>
         </div>

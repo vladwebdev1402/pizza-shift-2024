@@ -1,7 +1,6 @@
-import { FC, useMemo, useState } from 'react';
+import { FC } from 'react';
 import clsx from 'clsx';
 
-import { useAppSelector } from '@/store';
 import {
   Button,
   IngridientCard,
@@ -11,48 +10,29 @@ import {
 } from '@/components/atoms';
 import { API_URL } from '@/constants';
 import {
-  Dough,
-  Ingredient,
   NameDoughTranslate,
   NameIngredientsTranslate,
   NameSizeTranslate,
-  Size,
   SizeToCm,
 } from '@/types';
 
 import style from './style.module.scss';
+import { usePizza } from './usePizza';
 
 type Props = {
-  currentId?: string | null;
+  currentId: string | null;
   onClose: () => void;
 };
 
 const PizzaInformationModal: FC<Props> = ({ currentId, onClose }) => {
-  const pizzas = useAppSelector((state) => state.PizzaReducer.pizzas);
-  const [currentSize, setCurrentSize] = useState<Size | null>(null);
-  const [currentDough, setCurrentDough] = useState<Dough | null>(null);
-  const [currentToppings, setCurrentToppings] = useState<Ingredient[]>([]);
-
-  const currentPizza = useMemo(() => {
-    if (!pizzas || !currentId) return null;
-    const pizza = pizzas.find((pizza) => pizza.id === currentId);
-    setCurrentSize(pizza!.sizes[0]);
-    setCurrentDough(pizza!.doughs[0]);
-    return pizza;
-  }, [pizzas, currentId]);
-
-  const onToppingClick = (topping: Ingredient) => {
-    if (
-      currentToppings.find((item) => item.name === topping.name) !== undefined
-    ) {
-      setCurrentToppings(
-        currentToppings.filter((item) => item.name !== topping.name),
-      );
-      return;
-    }
-
-    setCurrentToppings([...currentToppings, topping]);
-  };
+  const {
+    currentToppings,
+    currentDough,
+    currentPizza,
+    currentSize,
+    onSizeClick,
+    onToppingClick,
+  } = usePizza(currentId);
 
   return (
     <Modal
@@ -94,7 +74,7 @@ const PizzaInformationModal: FC<Props> = ({ currentId, onClose }) => {
                 {currentPizza.sizes.map((size) => (
                   <Tab
                     isActive={size.name === currentSize.name}
-                    onClick={() => setCurrentSize(size)}
+                    onClick={() => onSizeClick(size)}
                     key={size.name}
                     className={style.tab}
                   >

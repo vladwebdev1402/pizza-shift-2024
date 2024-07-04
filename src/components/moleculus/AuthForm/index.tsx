@@ -76,9 +76,14 @@ const AuthForm: FC<AuthFormProps> = ({
           <div className={style.group}>
             <Input
               placeholder="+7 913 123 45 67"
+              required
               {...register('phone', {
                 onChange: onPhoneChange,
                 value: watch('phone'),
+                required: {
+                  value: true,
+                  message: 'Поле обязательно для заполнения',
+                },
                 pattern: {
                   value: /\+\d \d\d\d \d\d\d \d\d \d\d/g,
                   message: 'Введите телфон в формате +X XXX XXX XX XX',

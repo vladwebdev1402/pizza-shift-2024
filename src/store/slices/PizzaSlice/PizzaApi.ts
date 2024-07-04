@@ -3,10 +3,10 @@ import { Pizza } from '@/types';
 
 class PizzaApi {
   static async getCatalog() {
-    const response = await axiosInstance.get<{ catalog: Pizza[] }>(
+    const { data } = await axiosInstance.get<{ catalog: Pizza[] }>(
       '/pizza/catalog',
     );
-    return response.data;
+    return data;
   }
 }
 

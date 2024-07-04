@@ -6,7 +6,7 @@ const axiosInstance = axios.create();
 axiosInstance.interceptors.request.use(
   (config) => {
     config.baseURL = 'https://shift-backend.onrender.com';
-    config.headers.Authorization = LocaleStorageService.getToken();
+    config.headers.Authorization = `Bearer ${LocaleStorageService.getToken()}`;
     return config;
   },
   (error) => {

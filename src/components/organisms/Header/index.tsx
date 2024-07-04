@@ -58,7 +58,7 @@ const Header = () => {
                   <NavLink
                     type="header"
                     icon={<BasketIcon />}
-                    to={ROUTER_PATHS.orders}
+                    to={ROUTER_PATHS.basket}
                     svgStyle="stroke"
                   >
                     Корзина

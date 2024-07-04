@@ -95,6 +95,16 @@ type Pizza = {
   isHit: boolean;
   img: string;
 };
+
+type PizzaOrder = {
+  id: string;
+  name: string;
+  toppings: Ingredient[];
+  description: string;
+  size: Size;
+  doughs: Dough;
+};
+
 export {
   NameIngredientsTranslate,
   NameSizeTranslate,
@@ -103,6 +113,7 @@ export {
 };
 export type {
   Pizza,
+  PizzaOrder,
   Ingredient,
   Size,
   NameIngredients,

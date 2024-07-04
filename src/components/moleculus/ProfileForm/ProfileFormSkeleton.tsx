@@ -1,17 +1,16 @@
-import { FC } from 'react';
+import { ComponentPropsWithoutRef, FC } from 'react';
 import clsx from 'clsx';
 
 import { Skeleton } from '@/components/atoms';
 
 import style from './style.module.scss';
 
-type ProfileFormSkeletonProps = {
-  className?: string;
-};
-
-const ProfileFormSkeleton: FC<ProfileFormSkeletonProps> = ({ className }) => {
+const ProfileFormSkeleton: FC<ComponentPropsWithoutRef<'div'>> = ({
+  className,
+  ...props
+}) => {
   return (
-    <div className={clsx(style.form, className)}>
+    <div {...props} className={clsx(style.form, className)}>
       <Skeleton className={style.skeleton} />
       <Skeleton className={style.skeleton} />
       <Skeleton className={style.skeleton} />

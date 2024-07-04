@@ -21,7 +21,7 @@ type ProfileFormProps = {
   isDisabledPhone?: boolean;
   className?: string;
   onSubmit: (data: User) => void;
-  buttons?: ReactNode;
+  children?: ReactNode;
 };
 
 const ProfileForm: FC<ProfileFormProps> = ({
@@ -29,7 +29,7 @@ const ProfileForm: FC<ProfileFormProps> = ({
   isDisabledPhone = false,
   className,
   onSubmit,
-  buttons,
+  children,
 }) => {
   const { register, formState, handleSubmit, setValue, watch } = useForm<User>({
     defaultValues: {
@@ -160,7 +160,7 @@ const ProfileForm: FC<ProfileFormProps> = ({
         })}
         error={formState.errors.city?.message}
       />
-      {buttons && <div className={style.buttons}>{buttons}</div>}
+      {children && <div className={style.buttons}>{children}</div>}
     </form>
   );
 };

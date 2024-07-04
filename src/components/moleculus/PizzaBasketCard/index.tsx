@@ -3,13 +3,12 @@ import { FC } from 'react';
 import { API_URL } from '@/constants';
 import {
   NameDoughTranslate,
-  NameIngredientsTranslate,
   NameSizeTranslate,
   PizzaOrder,
   SizeToCm,
 } from '@/types';
 import { Button, Counter, Typography } from '@/components/atoms';
-import { calcPricePizzaOrder } from '@/helpers';
+import { calcPricePizzaOrder, makeJoinIngridients } from '@/helpers';
 import CrossIcon from '@/assets/decorative/cross.svg?react';
 
 import style from './style.module.scss';
@@ -50,13 +49,7 @@ const PizzaBasketCard: FC<PizzaBasketCardProps> = ({
             )}
             <br />
             {pizza.toppings.length > 0 && (
-              <>
-                +{' '}
-                {pizza.toppings
-                  .map((i) => NameIngredientsTranslate[i.name])
-                  .join(', ')
-                  .toLowerCase()}
-              </>
+              <>+ {makeJoinIngridients(pizza.toppings)}</>
             )}
           </Typography>
         </div>

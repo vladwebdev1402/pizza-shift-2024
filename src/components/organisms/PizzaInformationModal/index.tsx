@@ -11,11 +11,11 @@ import {
 import { API_URL } from '@/constants';
 import {
   NameDoughTranslate,
-  NameIngredientsTranslate,
   NameSizeTranslate,
   PizzaOrder,
   SizeToCm,
 } from '@/types';
+import { makeJoinIngridients } from '@/helpers';
 
 import style from './style.module.scss';
 import { usePizza } from './usePizza';
@@ -23,15 +23,15 @@ import { usePizza } from './usePizza';
 type Props = {
   currentId: string | null;
   currentPizzaOrder?: PizzaOrder | null;
-  onClose: () => void;
   onAddInBasket: (pizza: PizzaOrder) => void;
+  onClose?: () => void;
 };
 
 const PizzaInformationModal: FC<Props> = ({
   currentId,
   currentPizzaOrder = null,
-  onClose,
   onAddInBasket,
+  onClose = () => {},
 }) => {
   const {
     currentToppings,
@@ -71,11 +71,7 @@ const PizzaInformationModal: FC<Props> = ({
                   {NameDoughTranslate[currentDough.name]}
                 </Typography>
                 <Typography className={style.description}>
-                  {currentPizza.ingredients
-                    .map((ing) => NameIngredientsTranslate[ing.name])
-                    .join(', ')
-                    .toLowerCase()
-                    .replace(/^\D/, (s) => s.toUpperCase())}
+                  {makeJoinIngridients(currentPizza.ingredients, true)}
                 </Typography>
               </div>
 

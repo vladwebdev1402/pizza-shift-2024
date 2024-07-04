@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { PizzaOrder } from '@/types';
 
@@ -13,7 +13,11 @@ const initialState: InitialState = {
 const OrderSlice = createSlice({
   name: 'OrderSlice',
   initialState,
-  reducers: {},
+  reducers: {
+    addPizzaInBasket: (state, action: PayloadAction<PizzaOrder>) => {
+      state.basket.push(action.payload);
+    },
+  },
 });
 
 const OrderReducer = OrderSlice.reducer;

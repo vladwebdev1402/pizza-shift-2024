@@ -1,6 +1,12 @@
 import { useEffect } from 'react';
 
-import { PizzaActions, useAppDispatch, useAppSelector } from '@/store';
+import {
+  OrderActions,
+  PizzaActions,
+  useAppDispatch,
+  useAppSelector,
+} from '@/store';
+import { PizzaOrder } from '@/types';
 
 const useGetPizzas = () => {
   const dispatch = useAppDispatch();
@@ -8,6 +14,11 @@ const useGetPizzas = () => {
     (state) => state.PizzaReducer,
   );
   const isAuth = useAppSelector((state) => state.AuthReducer.isAuth);
+  const addPizzaInBasket = OrderActions.addPizzaInBasket;
+
+  const onAddInBasket = (pizza: PizzaOrder) => {
+    dispatch(addPizzaInBasket(pizza));
+  };
 
   useEffect(() => {
     if (pizzas === null) {
@@ -15,7 +26,7 @@ const useGetPizzas = () => {
     }
   }, [pizzas]);
 
-  return { isLoading, error, pizzas, isAuth };
+  return { isLoading, error, pizzas, isAuth, onAddInBasket };
 };
 
 export { useGetPizzas };

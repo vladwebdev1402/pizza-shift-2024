@@ -12,7 +12,7 @@ import { MainPageSkeleton } from './MainPageSkeleton';
 const MainPage = () => {
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [currentId, setCurrentId] = useState<string | null>(null);
-  const { pizzas, isLoading, error, isAuth } = useGetPizzas();
+  const { pizzas, isLoading, error, isAuth, onAddInBasket } = useGetPizzas();
 
   const onPizzaSwitch = (id: string) => {
     if (!isAuth) {
@@ -59,6 +59,7 @@ const MainPage = () => {
         <PizzaInformationModal
           currentId={currentId}
           onClose={() => setCurrentId(null)}
+          onAddInBasket={onAddInBasket}
         />
       </>
     );

@@ -99,8 +99,9 @@ type Pizza = {
 type PizzaOrder = {
   id: string;
   name: string;
-  toppings: Ingredient[];
   description: string;
+  img: string;
+  toppings: Ingredient[];
   size: Size;
   doughs: Dough;
 };

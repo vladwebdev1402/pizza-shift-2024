@@ -1,9 +1,12 @@
 import { useMemo, useState } from 'react';
 
 import { useAppSelector } from '@/store';
-import { Dough, Ingredient, Size } from '@/types';
+import { Dough, Ingredient, PizzaOrder, Size } from '@/types';
 
-const usePizza = (currentId: string | null) => {
+const usePizza = (
+  currentId: string | null,
+  onAddInBasket: (pizza: PizzaOrder) => void,
+) => {
   const pizzas = useAppSelector((state) => state.PizzaReducer.pizzas);
   const [currentSize, setCurrentSize] = useState<Size | null>(null);
   const [currentDough, setCurrentDough] = useState<Dough | null>(null);
@@ -14,6 +17,7 @@ const usePizza = (currentId: string | null) => {
     const pizza = pizzas.find((pizza) => pizza.id === currentId);
     setCurrentSize(pizza!.sizes[0]);
     setCurrentDough(pizza!.doughs[0]);
+    setCurrentToppings([]);
     return pizza;
   }, [pizzas, currentId]);
 
@@ -34,6 +38,18 @@ const usePizza = (currentId: string | null) => {
     setCurrentToppings([...currentToppings, topping]);
   };
 
+  const onAddBasket = () => {
+    onAddInBasket({
+      id: currentPizza!.id,
+      description: currentPizza!.description,
+      name: currentPizza!.name,
+      img: currentPizza!.img,
+      doughs: currentDough!,
+      size: currentSize!,
+      toppings: currentToppings,
+    });
+  };
+
   return {
     currentToppings,
     currentSize,
@@ -41,6 +57,7 @@ const usePizza = (currentId: string | null) => {
     currentPizza,
     onSizeClick,
     onToppingClick,
+    onAddBasket,
   };
 };
 

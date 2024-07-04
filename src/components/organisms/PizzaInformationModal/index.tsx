@@ -13,6 +13,7 @@ import {
   NameDoughTranslate,
   NameIngredientsTranslate,
   NameSizeTranslate,
+  PizzaOrder,
   SizeToCm,
 } from '@/types';
 
@@ -22,9 +23,14 @@ import { usePizza } from './usePizza';
 type Props = {
   currentId: string | null;
   onClose: () => void;
+  onAddInBasket: (pizza: PizzaOrder) => void;
 };
 
-const PizzaInformationModal: FC<Props> = ({ currentId, onClose }) => {
+const PizzaInformationModal: FC<Props> = ({
+  currentId,
+  onClose,
+  onAddInBasket,
+}) => {
   const {
     currentToppings,
     currentDough,
@@ -32,7 +38,8 @@ const PizzaInformationModal: FC<Props> = ({ currentId, onClose }) => {
     currentSize,
     onSizeClick,
     onToppingClick,
-  } = usePizza(currentId);
+    onAddBasket,
+  } = usePizza(currentId, onAddInBasket);
 
   return (
     <Modal
@@ -103,7 +110,15 @@ const PizzaInformationModal: FC<Props> = ({ currentId, onClose }) => {
                 </div>
               </div>
             </div>
-            <Button className={style.button}>Добавить в корзину</Button>
+            <Button
+              className={style.button}
+              onClick={() => {
+                onAddBasket();
+                onClose();
+              }}
+            >
+              Добавить в корзину
+            </Button>
           </div>
         </div>
       )}

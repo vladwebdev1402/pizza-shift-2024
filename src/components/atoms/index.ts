@@ -7,3 +7,4 @@ export * from './NavLink';
 export * from './Skeleton';
 export * from './ErrorMessage';
 export * from './IngridientCard';
+export * from './Counter';

@@ -1,0 +1,25 @@
+@import '@/styles/variables.scss';
+
+.container {
+  padding: 6px 13px;
+  display: flex;
+  background-color: $bg-secondary;
+  border-radius: 14px;
+  align-items: center;
+  line-height: 24px;
+}
+
+.button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  font-size: 18px;
+
+  &_left {
+    padding-right: 24px;
+  }
+
+  &_right {
+    padding-left: 24px;
+  }
+}

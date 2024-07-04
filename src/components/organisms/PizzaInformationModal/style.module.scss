@@ -1,5 +1,9 @@
 @import '@/styles/variables.scss';
 
+.modal {
+  margin-top: 48px;
+}
+
 .container {
   display: flex;
   gap: 32px;
@@ -17,19 +21,33 @@
     max-width: 100%;
   }
 }
-
-.information {
+.pizza {
   flex: 1 1 100%;
 }
+.scroll_container {
+  max-height: 476px;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
 
-.size_info {
-  color: $text-body-primary;
-  margin-top: 8px;
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(206, 210, 218, 1);
+    border-radius: 6px;
+  }
 }
 
-.ingridients {
-  margin-top: 8px;
-  color: $text-body-primary;
+.title {
+  color: $text-title;
+}
+
+.information {
+  padding: 0 16px;
+
+  .description {
+    margin-top: 8px;
+    color: $text-body-primary;
+  }
 }
 
 .tab_container {
@@ -37,5 +55,26 @@
 }
 
 .tab {
+  width: 100%;
+}
+
+.toppings {
+  padding: 8px 8px 8px 16px;
+  margin-top: 24px;
+
+  .title {
+    font-weight: 500;
+  }
+
+  .body {
+    margin-top: 8px;
+    display: grid;
+    gap: 11px;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  }
+}
+
+.button {
+  margin-top: 24px;
   width: 100%;
 }

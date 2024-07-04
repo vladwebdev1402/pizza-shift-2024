@@ -6,3 +6,4 @@ export * from './Tab';
 export * from './NavLink';
 export * from './Skeleton';
 export * from './ErrorMessage';
+export * from './IngridientCard';

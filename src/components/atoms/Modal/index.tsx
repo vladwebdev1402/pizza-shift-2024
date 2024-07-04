@@ -7,6 +7,7 @@ import style from './style.module.scss';
 
 type ModalProps = {
   size?: 'medium' | 'large';
+  bodyClassName?: string;
   isOpen: boolean;
   isClosable?: boolean;
   isMobileFullScreen?: boolean;
@@ -17,6 +18,7 @@ type ModalProps = {
 
 const Modal: FC<ModalProps> = ({
   size = 'medium',
+  bodyClassName = '',
   isOpen,
   isClosable = true,
   isMobileFullScreen = false,
@@ -47,10 +49,14 @@ const Modal: FC<ModalProps> = ({
       onClick={onClose}
     >
       <div
-        className={clsx(style.body, {
-          [style.body_medium]: size === 'medium',
-          [style.body_large]: size === 'large',
-        })}
+        className={clsx(
+          style.body,
+          {
+            [style.body_medium]: size === 'medium',
+            [style.body_large]: size === 'large',
+          },
+          bodyClassName,
+        )}
         onClick={onBodyClick}
       >
         <div className={style.title}>

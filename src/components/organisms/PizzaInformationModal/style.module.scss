@@ -21,9 +21,11 @@
     max-width: 100%;
   }
 }
+
 .pizza {
   flex: 1 1 100%;
 }
+
 .scroll_container {
   max-height: 476px;
   overflow: auto;
@@ -77,4 +79,33 @@
 .button {
   margin-top: 24px;
   width: 100%;
+}
+
+@media (max-width: 660px) {
+  .container {
+    display: block;
+  }
+
+  .img {
+    margin: 0 auto;
+  }
+
+  .pizza {
+    margin-top: 32px;
+  }
+
+  .scroll_container {
+    max-height: unset;
+  }
+  .information {
+    padding: 0;
+  }
+
+  .toppings {
+    padding: 0;
+  }
+
+  .modal {
+    padding: 0 0 70px 0;
+  }
 }

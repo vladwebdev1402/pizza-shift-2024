@@ -1,6 +1,7 @@
 @import '@/styles/variables.scss';
 
-.container {
+.desktop_container {
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -16,6 +17,10 @@
   }
 }
 
+.skeleton_img {
+  border-radius: 100%;
+}
+
 .title,
 .price {
   color: $text-title;
@@ -25,8 +30,14 @@
   color: $text-body-primary;
 }
 
-.info {
+.body {
   margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.info {
   margin-bottom: 32px;
   display: flex;
   flex-direction: column;
@@ -43,4 +54,41 @@
 .skeleton {
   align-self: flex-start;
   display: inline-block;
+}
+
+.mobile_container {
+  display: none;
+}
+
+@media (max-width: 568px) {
+  .desktop_container {
+    display: none;
+  }
+
+  .img {
+    flex: 0 0 116px;
+    width: 116px;
+    height: 116px;
+  }
+
+  .mobile_container {
+    display: flex;
+    background-color: white;
+    border: none;
+    gap: 24px;
+  }
+
+  .body {
+    margin-top: 0;
+    text-align: left;
+  }
+
+  .info {
+    margin-bottom: 0;
+  }
+
+  .price {
+    font-weight: 500;
+    margin-top: 8px;
+  }
 }

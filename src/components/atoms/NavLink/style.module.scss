@@ -5,7 +5,8 @@
   text-decoration: none;
   transition: $transition;
 
-  svg path {
+  svg path,
+  circle {
     transition: $transition;
   }
 
@@ -48,7 +49,8 @@
       fill: $orange;
     }
 
-    .icon_stroke svg path {
+    .icon_stroke svg path,
+    circle {
       stroke: $orange;
     }
   }
@@ -59,7 +61,8 @@
       fill: $orange;
     }
 
-    .icon_stroke svg path {
+    .icon_stroke svg path,
+    circle {
       stroke: $orange;
     }
   }

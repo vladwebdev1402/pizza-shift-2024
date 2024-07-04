@@ -1,0 +1,41 @@
+@import '@/styles/variables.scss';
+
+.container {
+  display: flex;
+  gap: 32px;
+  margin-top: 24px;
+  padding: 0px 16px;
+}
+
+.img {
+  flex: 0 0 220px;
+  width: 220px;
+  height: 220px;
+
+  img {
+    object-fit: cover;
+    max-width: 100%;
+  }
+}
+
+.information {
+  flex: 1 1 100%;
+}
+
+.size_info {
+  color: $text-body-primary;
+  margin-top: 8px;
+}
+
+.ingridients {
+  margin-top: 8px;
+  color: $text-body-primary;
+}
+
+.tab_container {
+  margin-top: 26px;
+}
+
+.tab {
+  width: 100%;
+}

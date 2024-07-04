@@ -3,18 +3,13 @@ import clsx from 'clsx';
 
 import style from './style.module.scss';
 
-type SkeletonProps = {
-  display?: 'block' | 'inline';
-} & ComponentProps<'div'>;
-
-const Skeleton: FC<SkeletonProps> = ({
-  display = 'block',
+const Skeleton: FC<ComponentProps<'div'>> = ({
   children,
   className,
   ...props
 }) => {
   return (
-    <div className={clsx(style.skeleton, style[display], className)} {...props}>
+    <div className={clsx(style.skeleton, className)} {...props}>
       <span className={clsx(style.child)}>{children}</span>
     </div>
   );

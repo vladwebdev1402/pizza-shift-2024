@@ -7,6 +7,7 @@ const useGetPizzas = () => {
   const { isLoading, error, pizzas } = useAppSelector(
     (state) => state.PizzaReducer,
   );
+  const isAuth = useAppSelector((state) => state.AuthReducer.isAuth);
 
   useEffect(() => {
     if (pizzas === null) {
@@ -14,7 +15,7 @@ const useGetPizzas = () => {
     }
   }, [pizzas]);
 
-  return { isLoading, error, pizzas };
+  return { isLoading, error, pizzas, isAuth };
 };
 
 export { useGetPizzas };

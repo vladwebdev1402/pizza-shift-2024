@@ -25,7 +25,7 @@ enum NameIngredientsTranslate {
   'PINEAPPLE' = 'Ананас',
   'MOZZARELLA' = 'Моцарелла',
   'PEPERONI' = 'Пеперони',
-  'GREEN_PEPPER' = 'зелёный перец',
+  'GREEN_PEPPER' = 'Зелёный перец',
   'MUSHROOMS' = 'Грибы',
   'BASIL' = 'Базилик',
   'CHEDDAR' = 'Чеддер',
@@ -48,9 +48,15 @@ enum NameSizeTranslate {
   'LARGE' = 'Большая',
 }
 
+enum SizeToCm {
+  'SMALL' = '30 см',
+  'MEDIUM' = '40 см',
+  'LARGE' = '50 см',
+}
+
 enum NameDoughTranslate {
-  'THIN' = 'Тонкое',
-  'THICK' = 'Толстое',
+  'THIN' = 'Традиционное тесто',
+  'THICK' = 'Толстое тесто',
 }
 
 type Size = {
@@ -64,6 +70,11 @@ type Ingredient = {
   img: string;
 };
 
+type Dough = {
+  name: NameDough;
+  price: number;
+};
+
 type Pizza = {
   id: string;
   name: string;
@@ -71,7 +82,7 @@ type Pizza = {
   toppings: Ingredient[];
   description: string;
   sizes: Size[];
-  doughs: NameDough[];
+  doughs: Dough[];
   calories: number;
   protein: string;
   totalFat: string;
@@ -84,5 +95,18 @@ type Pizza = {
   isHit: boolean;
   img: string;
 };
-export { NameIngredientsTranslate, NameSizeTranslate, NameDoughTranslate };
-export type { Pizza, Ingredient, Size, NameIngredients, NameSizes, NameDough };
+export {
+  NameIngredientsTranslate,
+  NameSizeTranslate,
+  NameDoughTranslate,
+  SizeToCm,
+};
+export type {
+  Pizza,
+  Ingredient,
+  Size,
+  NameIngredients,
+  NameSizes,
+  NameDough,
+  Dough,
+};

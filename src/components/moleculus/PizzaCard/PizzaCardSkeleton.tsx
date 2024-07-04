@@ -7,13 +7,13 @@ const PizzaCardSkeleton = () => {
     <div className={style.container}>
       <Skeleton className={style.img} />
       <div className={style.info}>
-        <Skeleton display="inline" className={style.skeleton}>
+        <Skeleton className={style.skeleton}>
           <Typography variant="h3" tag="span">
             Название пиццы
           </Typography>
         </Skeleton>
 
-        <Skeleton display="inline" className={style.skeleton}>
+        <Skeleton className={style.skeleton}>
           <Typography>
             Шифт пицца с пепперони, колбасой, зеленым перцем, луком, оливками и
             шампиньонами.
@@ -21,7 +21,7 @@ const PizzaCardSkeleton = () => {
         </Skeleton>
       </div>
       <div className={style.footer}>
-        <Skeleton display="inline" className={style.skeleton}>
+        <Skeleton className={style.skeleton}>
           <Typography variant="h3" tag="span">
             от 999 ₽
           </Typography>

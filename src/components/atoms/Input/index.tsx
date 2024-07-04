@@ -4,7 +4,7 @@ import style from './style.module.scss';
 import clsx from 'clsx';
 
 type InputProps = {
-  label: string;
+  label?: string;
   error?: string;
   containerClassName?: string;
 } & ComponentPropsWithRef<'input'>;
@@ -15,10 +15,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     ref,
   ) => (
     <div className={containerClassName}>
-      <div className={style.label}>
-        {label}
-        {required && '*'}
-      </div>
+      {label && (
+        <div className={style.label}>
+          {label}
+          {required && '*'}
+        </div>
+      )}
       <input
         {...props}
         ref={ref}

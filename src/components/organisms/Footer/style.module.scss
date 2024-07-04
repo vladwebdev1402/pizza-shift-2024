@@ -1,0 +1,26 @@
+@import '@/styles/variables.scss';
+
+.footer {
+  display: none;
+  border-top: 1px solid $border-light;
+  padding: 10px 0px;
+}
+
+.nav {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    display: block;
+  }
+}

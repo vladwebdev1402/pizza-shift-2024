@@ -1,9 +1,15 @@
 import { Outlet } from 'react-router-dom';
 
+import { Footer, Header } from '@/components/organisms';
+
 const Layout = () => (
-  <div>
-    <Outlet />
-  </div>
+  <>
+    <Header />
+    <main>
+      <Outlet />
+    </main>
+    <Footer />
+  </>
 );
 
 export { Layout };

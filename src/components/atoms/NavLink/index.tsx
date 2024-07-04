@@ -7,11 +7,18 @@ import style from './style.module.scss';
 type NavLinkProps = {
   to: string;
   type: 'header' | 'footer';
+  svgStyle?: 'stroke' | 'fill';
   icon: ReactNode;
   children: ReactNode;
 };
 
-const NavLink: FC<NavLinkProps> = ({ to, type, icon, children }) => {
+const NavLink: FC<NavLinkProps> = ({
+  to,
+  type,
+  svgStyle = 'fill',
+  icon,
+  children,
+}) => {
   const match = useMatch(to);
 
   return (
@@ -20,10 +27,18 @@ const NavLink: FC<NavLinkProps> = ({ to, type, icon, children }) => {
       className={clsx(style.link, {
         [style.link_footer]: type === 'footer',
         [style.link_header]: type === 'header',
+
         [style.link_active]: match,
       })}
     >
-      <div className={style.icon}>{icon}</div>
+      <div
+        className={clsx(style.icon, {
+          [style.icon_fill]: svgStyle === 'fill',
+          [style.icon_stroke]: svgStyle === 'stroke',
+        })}
+      >
+        {icon}
+      </div>
       <span>{children}</span>
     </Link>
   );

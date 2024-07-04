@@ -46,13 +46,12 @@ const ProfilePage = () => {
           className={style.form}
           defaultValues={user}
           onSubmit={onProfileSbumit}
-          buttons={
-            <Button className={style.update} loading={isUpdateLoading}>
-              Обновить данные
-            </Button>
-          }
           isDisabledPhone
-        />
+        >
+          <Button className={style.update} loading={isUpdateLoading}>
+            Обновить данные
+          </Button>
+        </ProfileForm>
       </div>
     );
 

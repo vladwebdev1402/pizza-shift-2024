@@ -1,9 +1,9 @@
-import { ComponentProps, FC } from 'react';
+import { ComponentPropsWithoutRef, FC } from 'react';
 import clsx from 'clsx';
 
 import style from './style.module.scss';
 
-const Skeleton: FC<ComponentProps<'div'>> = ({
+const Skeleton: FC<ComponentPropsWithoutRef<'div'>> = ({
   children,
   className,
   ...props

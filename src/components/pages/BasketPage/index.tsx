@@ -5,7 +5,7 @@ import { PizzaInformationModal } from '@/components/organisms';
 import { Button, ErrorMessage, Typography } from '@/components/atoms';
 
 import { calcTotalPrice } from './helpers';
-import { useBasket } from './useBasket';
+import { useBasketPage } from './useBasketPage';
 import style from './style.module.scss';
 
 const BasketPage = () => {
@@ -18,7 +18,7 @@ const BasketPage = () => {
     onDelete,
     onIncrement,
     clearCurrentPizza,
-  } = useBasket();
+  } = useBasketPage();
 
   if (basket.length > 0)
     return (

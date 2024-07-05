@@ -5,14 +5,14 @@ import { ErrorMessage, Modal } from '@/components/atoms';
 import { AuthForm, PizzaCard } from '@/components/moleculus';
 import { PizzaInformationModal } from '@/components/organisms';
 
-import { useGetPizzas } from './useGetPizzas';
+import { useMainPage } from './useMainPage';
 import { MainPageSkeleton } from './MainPageSkeleton';
 import style from './style.module.scss';
 
 const MainPage = () => {
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [currentId, setCurrentId] = useState<string | null>(null);
-  const { pizzas, isLoading, error, isAuth, onAddInBasket } = useGetPizzas();
+  const { pizzas, isLoading, error, isAuth, onAddInBasket } = useMainPage();
 
   const onPizzaSwitch = (id: string) => {
     if (!isAuth) {

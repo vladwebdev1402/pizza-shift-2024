@@ -28,7 +28,7 @@ const emailFieldValidate = (value: string) => {
 };
 
 const removeCitySprecCharacters = (value: string) => {
-  return value.replace(/[^а-яА-Яa-zA-Z\s-,.]/g, '');
+  return value.replace(/[^а-яА-Яa-zA-Z0-9\s-,.]/g, '');
 };
 
 const removeNamefieldSpecCharacters = (value: string) => {

@@ -1,10 +1,13 @@
 @import '@/styles/variables.scss';
 
+.form {
+  max-width: 381px;
+}
+
 .card {
   padding: 24px;
   border-radius: 16px;
   background-color: $bg-disabled;
-  max-width: 381px;
 }
 
 .footer {

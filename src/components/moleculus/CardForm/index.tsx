@@ -10,15 +10,11 @@ import { makeExpireDateMask, makePanMask, validateExpireDate } from './helpers';
 import style from './style.module.scss';
 type CardFormProps = {
   defaultValues?: DebitCard;
-  onSuccessSubmit: (data: DebitCard) => void;
+  onSubmit: (data: DebitCard) => void;
   children?: ReactNode;
 };
 
-const CardForm: FC<CardFormProps> = ({
-  defaultValues,
-  onSuccessSubmit,
-  children,
-}) => {
+const CardForm: FC<CardFormProps> = ({ defaultValues, onSubmit, children }) => {
   const { register, watch, setValue, formState, handleSubmit } = useForm({
     defaultValues,
   });
@@ -39,7 +35,7 @@ const CardForm: FC<CardFormProps> = ({
   };
 
   return (
-    <form onSubmit={handleSubmit(onSuccessSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
       <div className={style.card}>
         <Input
           label="Номер"

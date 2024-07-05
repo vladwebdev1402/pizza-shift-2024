@@ -8,7 +8,7 @@ import {
   SizeToCm,
 } from '@/types';
 import { Button, Counter, Typography } from '@/components/atoms';
-import { calcPricePizzaOrder, makeJoinIngridients } from '@/helpers';
+import { calcPricePizzaBasket, makeJoinIngridients } from '@/helpers';
 import CrossIcon from '@/assets/decorative/cross.svg?react';
 
 import style from './style.module.scss';
@@ -75,7 +75,7 @@ const PizzaBasketCard: FC<PizzaBasketCardProps> = ({
           </Button>
 
           <Typography className={style.price}>
-            {calcPricePizzaOrder(pizza)} ₽
+            {calcPricePizzaBasket(pizza)} ₽
           </Typography>
 
           <button

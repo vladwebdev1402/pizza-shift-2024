@@ -1,8 +1,8 @@
-import { calcPricePizzaOrder } from '@/helpers';
-import { PizzaOrder } from '@/types';
+import { calcPricePizzaBasket } from '@/helpers';
+import { PizzaBasket } from '@/types';
 
-const calcTotalPrice = (pizzas: PizzaOrder[]) => {
-  return pizzas.reduce((acc, pizza) => acc + calcPricePizzaOrder(pizza), 0);
+const calcTotalPrice = (pizzas: PizzaBasket[]) => {
+  return pizzas.reduce((acc, pizza) => acc + calcPricePizzaBasket(pizza), 0);
 };
 
 export { calcTotalPrice };

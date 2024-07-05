@@ -1,6 +1,6 @@
-import { PizzaOrder } from '@/types';
+import { PizzaBasket } from '@/types';
 
-const calcPricePizzaOrder = (pizza: PizzaOrder) => {
+const calcPricePizzaBasket = (pizza: PizzaBasket) => {
   const price = pizza.doughs.price + pizza.size.price;
   const toppingsPrice = pizza.toppings.reduce((acc, ing) => {
     return acc + ing.cost;
@@ -9,4 +9,4 @@ const calcPricePizzaOrder = (pizza: PizzaOrder) => {
   return (price + toppingsPrice) * pizza.count;
 };
 
-export { calcPricePizzaOrder };
+export { calcPricePizzaBasket };

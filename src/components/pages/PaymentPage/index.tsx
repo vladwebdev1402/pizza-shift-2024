@@ -1,9 +1,6 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 
 import { ROUTER_PATHS } from '@/constants';
-import { AuthActions, useAppDispatch, useAppSelector } from '@/store';
 import { Button, Typography } from '@/components/atoms';
 import {
   AddressForm,
@@ -12,26 +9,21 @@ import {
   ProfileFormSkeleton,
 } from '@/components/moleculus';
 
+import { usePaymentPage } from './usePaymentPage';
 import style from './style.module.scss';
 
 const PaymentPage = () => {
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-
-  const { isFetchLoading, user } = useAppSelector((state) => state.AuthReducer);
-  const [step, setStep] = useState(1);
-
-  const onProfileSubmit = () => {
-    setStep(2);
-  };
-
-  const onCardSubmit = () => {};
-
-  useEffect(() => {
-    if (user === null) {
-      dispatch(AuthActions.getSession());
-    }
-  }, [user]);
+  const {
+    step,
+    user,
+    isFetchLoading,
+    isPayLoading,
+    onAddressSubmit,
+    onBackPage,
+    onCardSubmit,
+    onProfileSubmit,
+    prevStep,
+  } = usePaymentPage();
 
   if (isFetchLoading)
     return (
@@ -39,8 +31,6 @@ const PaymentPage = () => {
         <ProfileFormSkeleton className={style.profile} />
       </div>
     );
-
-  return <AddressForm onSubmit={() => {}} />;
 
   if (step === 1 && user !== null)
     return (
@@ -56,7 +46,7 @@ const PaymentPage = () => {
           <div className={style.profile_buttons}>
             <Button
               variant="outlined"
-              onClick={() => navigate(ROUTER_PATHS.basket)}
+              onClick={onBackPage}
               className={style.profile_button}
             >
               Назад
@@ -71,11 +61,34 @@ const PaymentPage = () => {
     return (
       <div className={clsx('container', style.container)}>
         <Typography variant="h2" tag="h2">
+          Куда доставить
+        </Typography>
+        <AddressForm className={style.profile} onSubmit={onAddressSubmit}>
+          <div className={style.profile_buttons}>
+            <Button
+              variant="outlined"
+              onClick={prevStep}
+              className={style.profile_button}
+            >
+              Назад
+            </Button>
+            <Button className={style.profile_button}>Продолжить</Button>
+          </div>
+        </AddressForm>
+      </div>
+    );
+
+  if (step === 3)
+    return (
+      <div className={clsx('container', style.container)}>
+        <Typography variant="h2" tag="h2">
           Введите данные карты для оплаты
         </Typography>
         <div className={style.form}>
           <CardForm onSubmit={onCardSubmit}>
-            <Button className={style.card_button}>Оплатить</Button>
+            <Button className={style.card_button} loading={isPayLoading}>
+              Оплатить
+            </Button>
           </CardForm>
         </div>
       </div>

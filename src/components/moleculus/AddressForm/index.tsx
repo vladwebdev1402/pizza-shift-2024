@@ -39,6 +39,7 @@ const AddressForm: FC<FormProps<Address>> = ({
       <Input
         label="Улица"
         required
+        placeholder="Улица"
         error={formState.errors.street?.message}
         {...register('street', {
           onChange: onStreetChange,
@@ -53,6 +54,7 @@ const AddressForm: FC<FormProps<Address>> = ({
       <Input
         label="Номер дома"
         required
+        placeholder="Дом"
         error={formState.errors.house?.message}
         {...register('house', {
           onChange: onHouseChange,
@@ -67,6 +69,7 @@ const AddressForm: FC<FormProps<Address>> = ({
       <Input
         label="Номер квартиры"
         required
+        placeholder="Квартира"
         error={formState.errors.apartment?.message}
         {...register('apartment', {
           onChange: onApartmentChange,
@@ -78,7 +81,11 @@ const AddressForm: FC<FormProps<Address>> = ({
           },
         })}
       />
-      <Input label="Заметка" {...register('comment')} />
+      <Input
+        label="Заметка"
+        placeholder="Заметка для курьера"
+        {...register('comment')}
+      />
       {children && <div className={style.buttons}>{children}</div>}
     </form>
   );

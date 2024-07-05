@@ -10,12 +10,12 @@ import { PizzaCardSkeleton } from './PizzaCardSkeleton';
 
 type PizzaCardProps = {
   pizza: Pizza;
-  onPizzaSwitch: (id: string) => void;
+  handleSwitchPizza: (id: string) => void;
 };
 
-const PizzaCard: FC<PizzaCardProps> = ({ pizza, onPizzaSwitch }) => {
+const PizzaCard: FC<PizzaCardProps> = ({ pizza, handleSwitchPizza }) => {
   const onSwitchClick = () => {
-    onPizzaSwitch(pizza.id);
+    handleSwitchPizza(pizza.id);
   };
 
   return (
@@ -41,10 +41,7 @@ const PizzaCard: FC<PizzaCardProps> = ({ pizza, onPizzaSwitch }) => {
           </div>
         </div>
       </div>
-      <button
-        className={style.mobile_container}
-        onClick={() => onPizzaSwitch(pizza.id)}
-      >
+      <button className={style.mobile_container} onClick={onSwitchClick}>
         <div className={style.img}>
           <img src={API_URL + pizza.img} />
         </div>

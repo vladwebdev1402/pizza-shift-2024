@@ -10,7 +10,7 @@ const Skeleton: FC<ComponentPropsWithoutRef<'div'>> = ({
 }) => {
   return (
     <div className={clsx(style.skeleton, className)} {...props}>
-      {children}
+      <span className={clsx(style.child)}>{children}</span>
     </div>
   );
 };

@@ -13,6 +13,7 @@
     position: absolute;
     height: 100%;
     width: 150px;
+    top: 0;
     left: 0;
     background: linear-gradient(
       to right,
@@ -22,6 +23,11 @@
     );
     animation: load 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   }
+}
+
+.child {
+  position: relative;
+  z-index: -1;
 }
 
 @keyframes load {

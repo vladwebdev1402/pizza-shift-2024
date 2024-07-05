@@ -13,7 +13,12 @@ const Footer = () => {
       <nav className={style.nav}>
         <ul className={style.list}>
           <li>
-            <NavLink to={ROUTER_PATHS.main} icon={<CircleIcon />} type="footer">
+            <NavLink
+              to={ROUTER_PATHS.main}
+              icon={<CircleIcon />}
+              type="footer"
+              svgStyle="stroke"
+            >
               Пицца
             </NavLink>
           </li>

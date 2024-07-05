@@ -6,6 +6,7 @@ import { ROUTER_PATHS } from '@/constants';
 import { AuthActions, useAppDispatch, useAppSelector } from '@/store';
 import { Button, Typography } from '@/components/atoms';
 import {
+  AddressForm,
   CardForm,
   ProfileForm,
   ProfileFormSkeleton,
@@ -38,6 +39,8 @@ const PaymentPage = () => {
         <ProfileFormSkeleton className={style.profile} />
       </div>
     );
+
+  return <AddressForm onSubmit={() => {}} />;
 
   if (step === 1 && user !== null)
     return (

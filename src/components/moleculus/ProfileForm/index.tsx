@@ -4,13 +4,16 @@ import { useForm } from 'react-hook-form';
 
 import { Input } from '@/components/atoms';
 import { User } from '@/types';
-import { makeMaskedPhone, replaceToNumbers } from '@/helpers';
+import {
+  addressFieldValidate,
+  makeMaskedPhone,
+  removeAddressSprecCharacters,
+  replaceToNumbers,
+} from '@/helpers';
 
 import {
-  cityFieldValidate,
   emailFieldValidate,
   nameFieldsValidate,
-  removeCitySprecCharacters,
   removeNamefieldSpecCharacters,
 } from './helpers';
 import { ProfileFormSkeleton } from './ProfileFormSkeleton';
@@ -60,7 +63,7 @@ const ProfileForm: FC<ProfileFormProps> = ({
   };
 
   const onCityChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue('city', removeCitySprecCharacters(e.target.value));
+    setValue('city', removeAddressSprecCharacters(e.target.value));
   };
 
   const onPhoneChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -156,7 +159,7 @@ const ProfileForm: FC<ProfileFormProps> = ({
         {...register('city', {
           value: watch('city'),
           onChange: onCityChange,
-          validate: cityFieldValidate,
+          validate: addressFieldValidate,
         })}
         error={formState.errors.city?.message}
       />

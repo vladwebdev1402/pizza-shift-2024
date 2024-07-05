@@ -1,12 +1,11 @@
-import lodash from 'lodash';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { PizzaOrder } from '@/types';
+import { PizzaBasket } from '@/types';
 
-import { ChangeCountPayload, ChangePizzaPayload } from './type';
+import { ChangeCountPayload } from './type';
 
 type InitialState = {
-  basket: PizzaOrder[];
+  basket: PizzaBasket[];
 };
 
 const initialState: InitialState = {
@@ -17,23 +16,20 @@ const OrderSlice = createSlice({
   name: 'OrderSlice',
   initialState,
   reducers: {
-    addPizzaInBasket: (state, action: PayloadAction<PizzaOrder>) => {
+    addPizzaInBasket: (state, action: PayloadAction<PizzaBasket>) => {
       state.basket.push(action.payload);
     },
-    changePizzaInBasket: (state, action: ChangePizzaPayload) => {
-      state.basket = state.basket.map((pizza) => {
-        if (lodash.isEqual(pizza, action.payload.oldPizza)) {
-          return action.payload.newPizza;
-        }
-        return pizza;
-      });
+    changePizzaInBasket: (state, action: PayloadAction<PizzaBasket>) => {
+      state.basket = state.basket.map((pizza) =>
+        pizza.uuid === action.payload.uuid ? action.payload : pizza,
+      );
     },
     changeCountPizzaInBasket: (
       state,
       { payload: { pizza, type } }: ChangeCountPayload,
     ) => {
       state.basket = state.basket.map((item) => {
-        if (lodash.isEqual(item, pizza)) {
+        if (item.uuid === pizza.uuid) {
           return {
             ...pizza,
             count: type === 'increment' ? pizza.count + 1 : pizza.count - 1,
@@ -44,9 +40,9 @@ const OrderSlice = createSlice({
 
       state.basket = state.basket.filter((pizza) => pizza.count > 0);
     },
-    deletePizzaFromBasket: (state, action: PayloadAction<PizzaOrder>) => {
+    deletePizzaFromBasket: (state, action: PayloadAction<PizzaBasket>) => {
       state.basket = state.basket.filter(
-        (pizza) => !lodash.isEqual(pizza, action.payload),
+        (pizza) => pizza.uuid !== action.payload.uuid,
       );
     },
   },

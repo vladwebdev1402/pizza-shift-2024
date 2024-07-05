@@ -12,7 +12,7 @@ import { API_URL } from '@/constants';
 import {
   NameDoughTranslate,
   NameSizeTranslate,
-  PizzaOrder,
+  PizzaBasket,
   SizeToCm,
 } from '@/types';
 import { makeJoinIngridients } from '@/helpers';
@@ -22,14 +22,14 @@ import { usePizza } from './usePizza';
 
 type Props = {
   currentId: string | null;
-  currentPizzaOrder?: PizzaOrder | null;
-  onAddInBasket: (pizza: PizzaOrder) => void;
+  currentPizzaBasket?: PizzaBasket | null;
+  onAddInBasket: (pizza: PizzaBasket) => void;
   onClose?: () => void;
 };
 
 const PizzaInformationModal: FC<Props> = ({
   currentId,
-  currentPizzaOrder = null,
+  currentPizzaBasket = null,
   onAddInBasket,
   onClose = () => {},
 }) => {
@@ -41,7 +41,7 @@ const PizzaInformationModal: FC<Props> = ({
     onSizeClick,
     onToppingClick,
     onAddBasket,
-  } = usePizza(currentId, currentPizzaOrder, onAddInBasket);
+  } = usePizza(currentId, currentPizzaBasket, onAddInBasket);
 
   return (
     <Modal

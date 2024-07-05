@@ -1,15 +1,15 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 
-import { PizzaOrder } from '@/types';
+import { PizzaBasket } from '@/types';
 
 type ChangeCountPayload = PayloadAction<{
-  pizza: PizzaOrder;
+  pizza: PizzaBasket;
   type: 'increment' | 'decrement';
 }>;
 
 type ChangePizzaPayload = PayloadAction<{
-  oldPizza: PizzaOrder;
-  newPizza: PizzaOrder;
+  oldPizza: PizzaBasket;
+  newPizza: PizzaBasket;
 }>;
 
 export type { ChangeCountPayload, ChangePizzaPayload };

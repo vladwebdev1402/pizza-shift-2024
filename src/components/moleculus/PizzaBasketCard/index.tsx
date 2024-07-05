@@ -4,7 +4,7 @@ import { API_URL } from '@/constants';
 import {
   NameDoughTranslate,
   NameSizeTranslate,
-  PizzaOrder,
+  PizzaBasket,
   SizeToCm,
 } from '@/types';
 import { Button, Counter, Typography } from '@/components/atoms';
@@ -14,11 +14,11 @@ import CrossIcon from '@/assets/decorative/cross.svg?react';
 import style from './style.module.scss';
 
 type PizzaBasketCardProps = {
-  pizza: PizzaOrder;
-  onChangeClick: (pizza: PizzaOrder) => void;
-  onIncrement: (pizza: PizzaOrder) => void;
-  onDecrement: (pizza: PizzaOrder) => void;
-  onDelete: (pizza: PizzaOrder) => void;
+  pizza: PizzaBasket;
+  onChangeClick: (pizza: PizzaBasket) => void;
+  onIncrement: (pizza: PizzaBasket) => void;
+  onDecrement: (pizza: PizzaBasket) => void;
+  onDelete: (pizza: PizzaBasket) => void;
 };
 
 const PizzaBasketCard: FC<PizzaBasketCardProps> = ({

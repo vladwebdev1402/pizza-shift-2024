@@ -46,7 +46,7 @@ const BasketPage = () => {
         <PizzaInformationModal
           currentId={currentPizza?.id || null}
           onAddInBasket={onAddInBasket}
-          currentPizzaOrder={currentPizza}
+          currentPizzaBasket={currentPizza}
         />
       </>
     );

@@ -104,8 +104,12 @@ type PizzaOrder = {
   toppings: Ingredient[];
   size: Size;
   doughs: Dough;
-  count: number;
 };
+
+type PizzaBasket = {
+  uuid: string;
+  count: number;
+} & PizzaOrder;
 
 export {
   NameIngredientsTranslate,
@@ -116,6 +120,7 @@ export {
 export type {
   Pizza,
   PizzaOrder,
+  PizzaBasket,
   Ingredient,
   Size,
   NameIngredients,

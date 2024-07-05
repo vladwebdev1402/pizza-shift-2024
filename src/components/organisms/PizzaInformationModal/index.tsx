@@ -101,7 +101,7 @@ const PizzaInformationModal: FC<Props> = ({
                         ) !== undefined
                       }
                       ingridient={topping}
-                      handleChooseIngridient={onToppingClick}
+                      onClick={onToppingClick}
                       key={topping.name}
                     />
                   ))}

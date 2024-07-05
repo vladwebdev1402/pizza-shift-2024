@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AuthApi } from './api';
-import { SignInData } from './type';
+
 import { User } from '@/types';
+import { AuthApi, SignInData } from '@/api';
 
 const createOtp = createAsyncThunk(
   'auth/otp',

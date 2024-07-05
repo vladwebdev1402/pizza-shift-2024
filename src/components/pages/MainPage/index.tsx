@@ -42,7 +42,7 @@ const MainPage = () => {
             {pizzas.map((pizza) => (
               <PizzaCard
                 pizza={pizza}
-                onPizzaSwitch={onPizzaSwitch}
+                handleSwitchPizza={onPizzaSwitch}
                 key={pizza.id}
               />
             ))}

@@ -10,20 +10,20 @@ import { Typography } from '../Typography';
 type IngridientCardProps = {
   ingridient: Ingredient;
   isActive?: boolean;
-  onClick?: (topping: Ingredient) => void;
+  handleChooseIngridient?: (topping: Ingredient) => void;
 };
 
 const IngridientCard: FC<IngridientCardProps> = ({
   ingridient,
   isActive = false,
-  onClick = () => {},
+  handleChooseIngridient = () => {},
 }) => {
   return (
     <button
       className={clsx(style.ingridient, {
         [style.ingridient_active]: isActive,
       })}
-      onClick={() => onClick(ingridient)}
+      onClick={() => handleChooseIngridient(ingridient)}
     >
       <div className={style.img}>
         <img src={API_URL + ingridient.img} alt="Изображение ингридиента" />

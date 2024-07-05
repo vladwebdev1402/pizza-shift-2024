@@ -5,9 +5,9 @@ import clsx from 'clsx';
 import { Button, Input, Typography } from '@/components/atoms';
 import { makeMaskedPhone, replaceToNumbers } from '@/helpers';
 
-import style from './style.module.scss';
 import { useAuthForm } from './useAuthForm';
 import { AuthData } from './type';
+import style from './style.module.scss';
 
 type AuthFormProps = {
   className?: string;

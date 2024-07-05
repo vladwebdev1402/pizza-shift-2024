@@ -4,9 +4,9 @@ import { PizzaBasketCard } from '@/components/moleculus';
 import { PizzaInformationModal } from '@/components/organisms';
 import { Button, ErrorMessage, Typography } from '@/components/atoms';
 
-import style from './style.module.scss';
 import { calcTotalPrice } from './helpers';
 import { useBasket } from './useBasket';
+import style from './style.module.scss';
 
 const BasketPage = () => {
   const {
@@ -17,6 +17,7 @@ const BasketPage = () => {
     onDecrement,
     onDelete,
     onIncrement,
+    clearCurrentPizza,
   } = useBasket();
 
   if (basket.length > 0)
@@ -47,6 +48,7 @@ const BasketPage = () => {
           currentId={currentPizza?.id || null}
           onAddInBasket={onAddInBasket}
           currentPizzaBasket={currentPizza}
+          onClose={clearCurrentPizza}
         />
       </>
     );

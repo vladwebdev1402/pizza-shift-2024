@@ -17,8 +17,8 @@ import {
 } from '@/types';
 import { makeJoinIngridients } from '@/helpers';
 
-import style from './style.module.scss';
 import { usePizza } from './usePizza';
+import style from './style.module.scss';
 
 type Props = {
   currentId: string | null;

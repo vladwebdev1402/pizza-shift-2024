@@ -7,9 +7,4 @@ type ChangeCountPayload = PayloadAction<{
   type: 'increment' | 'decrement';
 }>;
 
-type ChangePizzaPayload = PayloadAction<{
-  oldPizza: PizzaBasket;
-  newPizza: PizzaBasket;
-}>;
-
-export type { ChangeCountPayload, ChangePizzaPayload };
+export type { ChangeCountPayload };

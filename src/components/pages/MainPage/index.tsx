@@ -5,9 +5,9 @@ import { ErrorMessage, Modal } from '@/components/atoms';
 import { AuthForm, PizzaCard } from '@/components/moleculus';
 import { PizzaInformationModal } from '@/components/organisms';
 
-import style from './style.module.scss';
 import { useGetPizzas } from './useGetPizzas';
 import { MainPageSkeleton } from './MainPageSkeleton';
+import style from './style.module.scss';
 
 const MainPage = () => {
   const [isAuthOpen, setIsAuthOpen] = useState(false);

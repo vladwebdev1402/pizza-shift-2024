@@ -6,7 +6,6 @@ import { Input } from '@/components/atoms';
 import { User } from '@/types';
 import { makeMaskedPhone, replaceToNumbers } from '@/helpers';
 
-import style from './style.module.scss';
 import {
   cityFieldValidate,
   emailFieldValidate,
@@ -15,6 +14,7 @@ import {
   removeNamefieldSpecCharacters,
 } from './helpers';
 import { ProfileFormSkeleton } from './ProfileFormSkeleton';
+import style from './style.module.scss';
 
 type ProfileFormProps = {
   defaultValues?: User;

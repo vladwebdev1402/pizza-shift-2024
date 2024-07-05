@@ -39,6 +39,10 @@ const useBasket = () => {
     dispatch(OrderActions.deletePizzaFromBasket(pizza));
   };
 
+  const clearCurrentPizza = () => {
+    setCurrentPizza(null);
+  };
+
   return {
     currentPizza,
     basket,
@@ -47,6 +51,7 @@ const useBasket = () => {
     onIncrement,
     onDecrement,
     onDelete,
+    clearCurrentPizza,
   };
 };
 

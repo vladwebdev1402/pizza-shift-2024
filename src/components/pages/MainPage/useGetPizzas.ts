@@ -6,7 +6,7 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '@/store';
-import { PizzaOrder } from '@/types';
+import { PizzaBasket } from '@/types';
 
 const useGetPizzas = () => {
   const dispatch = useAppDispatch();
@@ -16,7 +16,7 @@ const useGetPizzas = () => {
   const isAuth = useAppSelector((state) => state.AuthReducer.isAuth);
   const addPizzaInBasket = OrderActions.addPizzaInBasket;
 
-  const onAddInBasket = (pizza: PizzaOrder) => {
+  const onAddInBasket = (pizza: PizzaBasket) => {
     dispatch(addPizzaInBasket(pizza));
   };
 

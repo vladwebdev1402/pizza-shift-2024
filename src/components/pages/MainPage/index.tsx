@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import clsx from 'clsx';
 
-import { ErrorMessage, Modal } from '@/components/atoms';
+import { ErrorMessage, Modal, Typography } from '@/components/atoms';
 import { AuthForm, PizzaCard } from '@/components/moleculus';
 import { PizzaInformationModal } from '@/components/organisms';
 
@@ -54,7 +54,10 @@ const MainPage = () => {
           isClosable
           isMobileFullScreen
         >
-          <AuthForm isShowTitle />
+          <Typography className={style.auth_title} variant="h2" tag="h2">
+            Авторизация
+          </Typography>
+          <AuthForm />
         </Modal>
         <PizzaInformationModal
           currentId={currentId}

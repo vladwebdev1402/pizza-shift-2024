@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 
-import { OrderRowCard } from '@/components/moleculus';
+import { OrderCard, OrderRowCard } from '@/components/moleculus';
 import { Typography } from '@/components/atoms';
 import { useAppSelector } from '@/store';
 
@@ -11,7 +11,7 @@ const OrderPage = () => {
 
   return (
     <div className={clsx('container', style.container)}>
-      <div className={style.header}>
+      {/* <div className={style.header}>
         <Typography className={style.title} variant="paragraph_14">
           Статус
         </Typography>
@@ -30,7 +30,8 @@ const OrderPage = () => {
             className={style.order}
           />
         ))}
-      </div>
+      </div> */}
+      <OrderCard order={orders[0]} onCancel={() => {}} />
     </div>
   );
 };

@@ -6,3 +6,4 @@ export * from './CardForm';
 export * from './AddressForm';
 export * from './PaymentInformationModal';
 export * from './OrderRowCard';
+export * from './OrderCard';

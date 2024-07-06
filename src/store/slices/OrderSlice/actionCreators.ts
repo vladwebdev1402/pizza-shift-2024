@@ -1,8 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { Payment } from '@/types';
-
-import { OrderApi } from './api';
+import { OrderApi } from '@/api';
 
 const paymentPizza = createAsyncThunk(
   'pizza/payment',

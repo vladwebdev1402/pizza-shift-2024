@@ -52,6 +52,9 @@ const OrderSlice = createSlice({
         (pizza) => pizza.uuid !== action.payload.uuid,
       );
     },
+    clearBasket: (state) => {
+      state.basket = [];
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(paymentPizza.pending, (state) => {

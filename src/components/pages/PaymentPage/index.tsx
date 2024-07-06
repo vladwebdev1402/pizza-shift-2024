@@ -1,10 +1,10 @@
 import clsx from 'clsx';
 
-import { ROUTER_PATHS } from '@/constants';
 import { Button, Typography } from '@/components/atoms';
 import {
   AddressForm,
   CardForm,
+  PaymentInformationModal,
   ProfileForm,
   ProfileFormSkeleton,
 } from '@/components/moleculus';
@@ -16,8 +16,12 @@ const PaymentPage = () => {
   const {
     step,
     user,
+    basket,
+    receiverAddress,
     isFetchLoading,
     isPayLoading,
+    isShowOrder,
+    goToMainPage,
     onAddressSubmit,
     onBackPage,
     onCardSubmit,
@@ -78,20 +82,28 @@ const PaymentPage = () => {
       </div>
     );
 
-  if (step === 3)
+  if (step === 3 && receiverAddress)
     return (
-      <div className={clsx('container', style.container)}>
-        <Typography variant="h2" tag="h2">
-          Введите данные карты для оплаты
-        </Typography>
-        <div className={style.form}>
-          <CardForm onSubmit={onCardSubmit}>
-            <Button className={style.card_button} loading={isPayLoading}>
-              Оплатить
-            </Button>
-          </CardForm>
+      <>
+        <div className={clsx('container', style.container)}>
+          <Typography variant="h2" tag="h2">
+            Введите данные карты для оплаты
+          </Typography>
+          <div className={style.form}>
+            <CardForm onSubmit={onCardSubmit}>
+              <Button className={style.card_button} loading={isPayLoading}>
+                Оплатить
+              </Button>
+            </CardForm>
+          </div>
         </div>
-      </div>
+        <PaymentInformationModal
+          basket={basket}
+          isOpen={isShowOrder}
+          onClose={goToMainPage}
+          receiverAddress={receiverAddress}
+        />
+      </>
     );
 };
 

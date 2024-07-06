@@ -4,3 +4,4 @@ export * from './PizzaCard';
 export * from './PizzaBasketCard';
 export * from './CardForm';
 export * from './AddressForm';
+export * from './PaymentInformationModal';

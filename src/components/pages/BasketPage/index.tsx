@@ -5,8 +5,8 @@ import { PizzaBasketCard } from '@/components/moleculus';
 import { PizzaInformationModal } from '@/components/organisms';
 import { Button, ErrorMessage, Typography } from '@/components/atoms';
 import { ROUTER_PATHS } from '@/constants';
+import { calcPriceBasket } from '@/helpers';
 
-import { calcTotalPrice } from './helpers';
 import { useBasketPage } from './useBasketPage';
 import style from './style.module.scss';
 
@@ -43,7 +43,7 @@ const BasketPage = () => {
           <div className={style.divider} />
           <div className={style.order}>
             <Typography variant="h2" className={style.price}>
-              Стоимость заказа: {calcTotalPrice(basket)} ₽
+              Стоимость заказа: {calcPriceBasket(basket)} ₽
             </Typography>
             <Button
               className={style.button}

@@ -14,6 +14,7 @@ const usePaymentPage = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [step, setStep] = useState(1);
+  const [isShowOrder, setIsShowOrder] = useState(false);
   const { isFetchLoading, user } = useAppSelector((state) => state.AuthReducer);
   const { basket, isPayLoading } = useAppSelector(
     (state) => state.OrderReducer,
@@ -25,6 +26,11 @@ const usePaymentPage = () => {
 
   const onBackPage = () => {
     navigate(ROUTER_PATHS.basket);
+  };
+
+  const goToMainPage = () => {
+    navigate(ROUTER_PATHS.main);
+    dispatch(OrderActions.clearBasket());
   };
 
   const prevStep = () => {
@@ -40,12 +46,12 @@ const usePaymentPage = () => {
     setStep(3);
   };
 
-  const onCardSubmit = (debitCard: DebitCard) => {
+  const onCardSubmit = async (debitCard: DebitCard) => {
     if (
       personInfo.person !== undefined &&
       personInfo.receiverAddress !== undefined
     ) {
-      dispatch(
+      const response = await dispatch(
         OrderActions.paymentPizza({
           person: personInfo.person,
           receiverAddress: personInfo.receiverAddress,
@@ -53,6 +59,9 @@ const usePaymentPage = () => {
           pizzas: basket,
         }),
       );
+      if (response.meta.requestStatus === 'fulfilled') {
+        setIsShowOrder(true);
+      }
     }
   };
 
@@ -65,9 +74,13 @@ const usePaymentPage = () => {
   return {
     user,
     step,
+    basket,
+    receiverAddress: personInfo.receiverAddress,
     isFetchLoading,
     isPayLoading,
+    isShowOrder,
     onBackPage,
+    goToMainPage,
     prevStep,
     onProfileSubmit,
     onAddressSubmit,

@@ -1,5 +1,6 @@
 export * from './makeMaskedPhone';
 export * from './replaceToNumbers';
-export * from './calcPricePizzaOrder';
+export * from './calcPricePizzaBasket';
 export * from './makeJoinIngridients';
+export * from './calcPriceBasket';
 export * from './form';

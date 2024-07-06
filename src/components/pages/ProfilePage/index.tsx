@@ -57,7 +57,10 @@ const ProfilePage = () => {
 
   return (
     <div className={clsx('container', style.container)}>
-      <AuthForm isShowTitle />
+      <Typography variant="h2" tag="h2">
+        Авторизация
+      </Typography>
+      <AuthForm className={style.auth_form} />
     </div>
   );
 };

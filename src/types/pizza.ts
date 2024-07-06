@@ -95,6 +95,22 @@ type Pizza = {
   isHit: boolean;
   img: string;
 };
+
+type PizzaOrder = {
+  id: string;
+  name: string;
+  description: string;
+  img: string;
+  toppings: Ingredient[];
+  size: Size;
+  doughs: Dough;
+};
+
+type PizzaBasket = {
+  uuid: string;
+  count: number;
+} & PizzaOrder;
+
 export {
   NameIngredientsTranslate,
   NameSizeTranslate,
@@ -103,6 +119,8 @@ export {
 };
 export type {
   Pizza,
+  PizzaOrder,
+  PizzaBasket,
   Ingredient,
   Size,
   NameIngredients,

@@ -1,0 +1,53 @@
+@import '@/styles/variables.scss';
+
+.container {
+  margin-top: 48px;
+}
+
+.pizzas {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.divider {
+  height: 1px;
+  background-color: $border-extralight;
+  margin-top: 24px;
+}
+
+.order {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.button {
+  max-width: 328px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .button {
+    max-width: unset;
+  }
+
+  .container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 60px;
+  }
+
+  .order {
+    margin-top: auto;
+  }
+}
+
+@media (max-width: 568px) {
+  .price {
+    font-size: 16px;
+  }
+}

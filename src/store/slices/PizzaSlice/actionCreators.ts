@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { PizzaApi } from './PizzaApi';
+
+import { PizzaApi } from '@/api';
 
 const getCatalog = createAsyncThunk('pizza/catalog', async (_, thunkAPI) => {
   try {

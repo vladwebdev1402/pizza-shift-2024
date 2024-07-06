@@ -5,19 +5,17 @@ import clsx from 'clsx';
 import { Button, Input, Typography } from '@/components/atoms';
 import { makeMaskedPhone, replaceToNumbers } from '@/helpers';
 
-import style from './style.module.scss';
 import { useAuthForm } from './useAuthForm';
 import { AuthData } from './type';
+import style from './style.module.scss';
 
 type AuthFormProps = {
   className?: string;
-  isShowTitle?: boolean;
   onSuccessAuth?: () => void;
 };
 
 const AuthForm: FC<AuthFormProps> = ({
   className,
-  isShowTitle,
   onSuccessAuth = () => {},
 }) => {
   const {
@@ -59,15 +57,8 @@ const AuthForm: FC<AuthFormProps> = ({
   };
 
   return (
-    <div className={clsx('container', className)}>
+    <div className={className}>
       <div className={style.auth}>
-        {isShowTitle && (
-          <div className={style.title}>
-            <Typography variant="h2" tag="h2">
-              Авторизация
-            </Typography>
-          </div>
-        )}
         <Typography className={style.info}>
           Введите номер телефона для входа
           <br /> в личный кабинет

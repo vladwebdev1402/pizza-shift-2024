@@ -5,8 +5,8 @@ import { Pizza } from '@/types';
 import { Button, Typography } from '@/components/atoms';
 import { API_URL } from '@/constants';
 
-import style from './style.module.scss';
 import { PizzaCardSkeleton } from './PizzaCardSkeleton';
+import style from './style.module.scss';
 
 type PizzaCardProps = {
   pizza: Pizza;

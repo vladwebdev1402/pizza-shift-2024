@@ -1,9 +1,13 @@
 import { useMemo, useState } from 'react';
 
 import { useAppSelector } from '@/store';
-import { Dough, Ingredient, Size } from '@/types';
+import { Dough, Ingredient, PizzaBasket, Size } from '@/types';
 
-const usePizza = (currentId: string | null) => {
+const usePizzaInformation = (
+  currentId: string | null,
+  currentPizzaBasket: PizzaBasket | null,
+  onAddInBasket: (pizza: PizzaBasket) => void,
+) => {
   const pizzas = useAppSelector((state) => state.PizzaReducer.pizzas);
   const [currentSize, setCurrentSize] = useState<Size | null>(null);
   const [currentDough, setCurrentDough] = useState<Dough | null>(null);
@@ -12,10 +16,11 @@ const usePizza = (currentId: string | null) => {
   const currentPizza = useMemo(() => {
     if (!pizzas || !currentId) return null;
     const pizza = pizzas.find((pizza) => pizza.id === currentId);
-    setCurrentSize(pizza!.sizes[0]);
-    setCurrentDough(pizza!.doughs[0]);
+    setCurrentSize(currentPizzaBasket?.size || pizza!.sizes[0]);
+    setCurrentDough(currentPizzaBasket?.doughs || pizza!.doughs[0]);
+    setCurrentToppings(currentPizzaBasket?.toppings || []);
     return pizza;
-  }, [pizzas, currentId]);
+  }, [pizzas, currentId, currentPizzaBasket]);
 
   const onSizeClick = (size: Size) => {
     setCurrentSize(size);
@@ -34,6 +39,20 @@ const usePizza = (currentId: string | null) => {
     setCurrentToppings([...currentToppings, topping]);
   };
 
+  const onAddBasket = () => {
+    onAddInBasket({
+      uuid: currentPizzaBasket?.uuid || crypto.randomUUID(),
+      id: currentPizza!.id,
+      description: currentPizza!.description,
+      name: currentPizza!.name,
+      img: currentPizza!.img,
+      doughs: currentDough!,
+      size: currentSize!,
+      toppings: currentToppings,
+      count: currentPizzaBasket?.count || 1,
+    });
+  };
+
   return {
     currentToppings,
     currentSize,
@@ -41,7 +60,8 @@ const usePizza = (currentId: string | null) => {
     currentPizza,
     onSizeClick,
     onToppingClick,
+    onAddBasket,
   };
 };
 
-export { usePizza };
+export { usePizzaInformation };

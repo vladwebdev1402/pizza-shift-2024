@@ -11,20 +11,28 @@ import {
 import { API_URL } from '@/constants';
 import {
   NameDoughTranslate,
-  NameIngredientsTranslate,
   NameSizeTranslate,
+  PizzaBasket,
   SizeToCm,
 } from '@/types';
+import { makeJoinIngridients } from '@/helpers';
 
+import { usePizzaInformation } from './usePizzaInformation';
 import style from './style.module.scss';
-import { usePizza } from './usePizza';
 
 type Props = {
   currentId: string | null;
-  onClose: () => void;
+  currentPizzaBasket?: PizzaBasket | null;
+  onAddInBasket: (pizza: PizzaBasket) => void;
+  onClose?: () => void;
 };
 
-const PizzaInformationModal: FC<Props> = ({ currentId, onClose }) => {
+const PizzaInformationModal: FC<Props> = ({
+  currentId,
+  currentPizzaBasket = null,
+  onAddInBasket,
+  onClose = () => {},
+}) => {
   const {
     currentToppings,
     currentDough,
@@ -32,7 +40,8 @@ const PizzaInformationModal: FC<Props> = ({ currentId, onClose }) => {
     currentSize,
     onSizeClick,
     onToppingClick,
-  } = usePizza(currentId);
+    onAddBasket,
+  } = usePizzaInformation(currentId, currentPizzaBasket, onAddInBasket);
 
   return (
     <Modal
@@ -62,11 +71,7 @@ const PizzaInformationModal: FC<Props> = ({ currentId, onClose }) => {
                   {NameDoughTranslate[currentDough.name]}
                 </Typography>
                 <Typography className={style.description}>
-                  {currentPizza.ingredients
-                    .map((ing) => NameIngredientsTranslate[ing.name])
-                    .join(', ')
-                    .toLowerCase()
-                    .replace(/^\D/, (s) => s.toUpperCase())}
+                  {makeJoinIngridients(currentPizza.ingredients, true)}
                 </Typography>
               </div>
 
@@ -96,14 +101,22 @@ const PizzaInformationModal: FC<Props> = ({ currentId, onClose }) => {
                         ) !== undefined
                       }
                       ingridient={topping}
-                      handleChooseIngridient={onToppingClick}
+                      onClick={onToppingClick}
                       key={topping.name}
                     />
                   ))}
                 </div>
               </div>
             </div>
-            <Button className={style.button}>Добавить в корзину</Button>
+            <Button
+              className={style.button}
+              onClick={() => {
+                onAddBasket();
+                onClose();
+              }}
+            >
+              Добавить в корзину
+            </Button>
           </div>
         </div>
       )}

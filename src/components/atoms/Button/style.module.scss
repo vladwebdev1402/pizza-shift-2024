@@ -18,53 +18,54 @@
   border: none;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 16px;
-
-  &_contained {
-    background-color: $orange;
-    color: $text-invert;
-
-    &:hover {
-      background-color: $dark-orange;
-    }
-  }
-
-  &_outlined {
-    background-color: transparent;
-    color: $text-secondary;
-    border: 1px solid $border-light;
-
-    &:hover {
-      background-color: $bg-secondary;
-    }
-  }
-
-  &_text {
-    background-color: transparent;
-
-    &:hover {
-      background-color: $bg-secondary;
-    }
-  }
-
-  &_iconCenter {
-    justify-content: center;
-  }
-
-  &_iconStart {
-    position: relative;
-    justify-content: center;
-    text-align: center;
-    padding-left: 72px;
-
-    .icon {
-      position: absolute;
-      left: 32px;
-    }
-  }
 
   &:disabled {
     background-color: $bg-disabled;
     cursor: not-allowed;
+  }
+}
+
+.contained {
+  background-color: $orange;
+  color: $text-invert;
+
+  &:hover {
+    background-color: $dark-orange;
+  }
+}
+
+.outlined {
+  background-color: transparent;
+  color: $text-secondary;
+  border: 1px solid $border-light;
+
+  &:hover {
+    background-color: $bg-secondary;
+  }
+}
+
+.text {
+  background-color: transparent;
+
+  &:hover {
+    background-color: $bg-secondary;
+  }
+}
+
+.iconCenter {
+  justify-content: center;
+}
+
+.iconStart {
+  position: relative;
+  justify-content: center;
+  text-align: center;
+  padding-left: 72px;
+
+  .icon {
+    position: absolute;
+    left: 32px;
   }
 }

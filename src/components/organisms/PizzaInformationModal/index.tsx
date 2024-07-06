@@ -17,7 +17,7 @@ import {
 } from '@/types';
 import { makeJoinIngridients } from '@/helpers';
 
-import { usePizza } from './usePizza';
+import { usePizzaInformation } from './usePizzaInformation';
 import style from './style.module.scss';
 
 type Props = {
@@ -41,7 +41,7 @@ const PizzaInformationModal: FC<Props> = ({
     onSizeClick,
     onToppingClick,
     onAddBasket,
-  } = usePizza(currentId, currentPizzaBasket, onAddInBasket);
+  } = usePizzaInformation(currentId, currentPizzaBasket, onAddInBasket);
 
   return (
     <Modal
@@ -101,7 +101,7 @@ const PizzaInformationModal: FC<Props> = ({
                         ) !== undefined
                       }
                       ingridient={topping}
-                      handleChooseIngridient={onToppingClick}
+                      onClick={onToppingClick}
                       key={topping.name}
                     />
                   ))}

@@ -1,4 +1,4 @@
-import { ComponentPropsWithRef, forwardRef } from 'react';
+import { ComponentPropsWithRef, forwardRef, useId } from 'react';
 
 import style from './style.module.scss';
 import clsx from 'clsx';
@@ -13,23 +13,32 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     { label, error, required, containerClassName, className, ...props },
     ref,
-  ) => (
-    <div className={containerClassName}>
-      {label && (
-        <div className={style.label}>
-          {label}
-          {required && '*'}
-        </div>
-      )}
-      <input
-        {...props}
-        ref={ref}
-        required={required}
-        className={clsx(style.input, { [style.input_error]: error }, className)}
-      />
-      {error && <div className={style.error}>{error}</div>}
-    </div>
-  ),
+  ) => {
+    const id = useId();
+
+    return (
+      <label className={containerClassName} htmlFor={id}>
+        {label && (
+          <div className={style.label}>
+            {label}
+            {required && '*'}
+          </div>
+        )}
+        <input
+          {...props}
+          id={id}
+          ref={ref}
+          required={required}
+          className={clsx(
+            style.input,
+            { [style.input_error]: error },
+            className,
+          )}
+        />
+        {error && <p className={style.error}>{error}</p>}
+      </label>
+    );
+  },
 );
 
 export { Input };

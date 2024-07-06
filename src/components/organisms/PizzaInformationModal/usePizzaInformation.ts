@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 import { useAppSelector } from '@/store';
 import { Dough, Ingredient, PizzaBasket, Size } from '@/types';
 
-const usePizza = (
+const usePizzaInformation = (
   currentId: string | null,
   currentPizzaBasket: PizzaBasket | null,
   onAddInBasket: (pizza: PizzaBasket) => void,
@@ -64,4 +64,4 @@ const usePizza = (
   };
 };
 
-export { usePizza };
+export { usePizzaInformation };

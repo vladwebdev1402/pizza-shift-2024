@@ -8,7 +8,7 @@ import {
 } from '@/store';
 import { PizzaBasket } from '@/types';
 
-const useGetPizzas = () => {
+const useMainPage = () => {
   const dispatch = useAppDispatch();
   const { isLoading, error, pizzas } = useAppSelector(
     (state) => state.PizzaReducer,
@@ -29,4 +29,4 @@ const useGetPizzas = () => {
   return { isLoading, error, pizzas, isAuth, onAddInBasket };
 };
 
-export { useGetPizzas };
+export { useMainPage };

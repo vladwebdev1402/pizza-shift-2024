@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { OrderActions, useAppDispatch, useAppSelector } from '@/store';
 import { PizzaBasket } from '@/types';
 
-const useBasket = () => {
+const useBasketPage = () => {
   const dispatch = useAppDispatch();
   const [currentPizza, setCurrentPizza] = useState<PizzaBasket | null>(null);
   const basket = useAppSelector((state) => state.OrderReducer.basket);
@@ -55,4 +55,4 @@ const useBasket = () => {
   };
 };
 
-export { useBasket };
+export { useBasketPage };

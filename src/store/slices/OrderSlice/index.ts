@@ -4,6 +4,7 @@ import { Order, PizzaBasket } from '@/types';
 
 import { ChangeCountPayload } from './type';
 import { paymentPizza } from './actionCreators';
+import { orders } from './data';
 
 type InitialState = {
   basket: PizzaBasket[];
@@ -14,7 +15,7 @@ type InitialState = {
 
 const initialState: InitialState = {
   basket: [],
-  orders: [],
+  orders: orders,
   isPayLoading: false,
   error: '',
 };

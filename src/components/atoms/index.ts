@@ -8,3 +8,4 @@ export * from './Skeleton';
 export * from './ErrorMessage';
 export * from './IngridientCard';
 export * from './Counter';
+export * from './StatusIndicator';

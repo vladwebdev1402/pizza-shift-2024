@@ -1,0 +1,52 @@
+@import '@/styles/variables.scss';
+
+.container {
+  margin-top: 48px;
+}
+
+.header {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 200px 2.5fr 160px 160px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid $border-extralight;
+}
+
+.title {
+  color: $text-tertiary;
+}
+
+.order {
+  padding: 24px 0px;
+  border-bottom: 1px solid $border-extralight;
+
+  &:last-child {
+    border: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    display: none;
+  }
+
+  .body {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 520px) and (max-width: 768px) {
+  .order {
+    &:last-child {
+      border-bottom: 1px solid $border-extralight;
+    }
+  }
+}
+
+@media (max-width: 520px) {
+  .body {
+    grid-template-columns: 1fr;
+  }
+}

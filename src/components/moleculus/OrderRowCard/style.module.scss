@@ -1,0 +1,36 @@
+@import '@/styles/variables.scss';
+
+.card {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 200px 2.5fr 160px 160px;
+}
+
+.subtitle {
+  margin-bottom: 2px;
+  color: $text-tertiary;
+  display: none;
+}
+
+.button {
+  padding: 5px 5px;
+  align-self: start;
+  color: $text-quartenery;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .subtitle {
+    display: block;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .button {
+    padding-left: 0px;
+  }
+}

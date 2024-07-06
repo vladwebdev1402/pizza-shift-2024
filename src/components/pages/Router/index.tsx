@@ -5,6 +5,7 @@ import {
   Route,
 } from 'react-router-dom';
 
+import { useAppSelector } from '@/store';
 import { ROUTER_PATHS } from '@/constants';
 
 import { Layout } from '../Layout';
@@ -13,17 +14,24 @@ import { ProfilePage } from '../ProfilePage';
 import { BasketPage } from '../BasketPage';
 import { PaymentPage } from '../PaymentPage';
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route element={<Layout />}>
-      <Route path={ROUTER_PATHS.main} element={<MainPage />} />
-      <Route path={ROUTER_PATHS.profile} element={<ProfilePage />} />
-      <Route path={ROUTER_PATHS.basket} element={<BasketPage />} />
-      <Route path={ROUTER_PATHS.payment} element={<PaymentPage />} />
-    </Route>,
-  ),
-);
+const createRouter = (isAuth: boolean) =>
+  createBrowserRouter(
+    createRoutesFromElements(
+      <Route element={<Layout />}>
+        <Route path={ROUTER_PATHS.main} element={<MainPage />} />
+        <Route path={ROUTER_PATHS.profile} element={<ProfilePage />} />
+        <Route path={ROUTER_PATHS.basket} element={<BasketPage />} />
+        {isAuth && (
+          <Route path={ROUTER_PATHS.payment} element={<PaymentPage />} />
+        )}
+      </Route>,
+    ),
+  );
 
-const Router = () => <RouterProvider router={router} />;
+const Router = () => {
+  const isAuth = useAppSelector((state) => state.AuthReducer.isAuth);
+
+  return <RouterProvider router={createRouter(isAuth)} />;
+};
 
 export { Router };

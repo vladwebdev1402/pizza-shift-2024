@@ -1,20 +1,21 @@
-import { ChangeEvent, FC, ReactNode } from 'react';
+import { ChangeEvent, FC } from 'react';
+import clsx from 'clsx';
 import { useForm } from 'react-hook-form';
 
-import { DebitCard } from '@/types';
+import { DebitCard, FormProps } from '@/types';
 import { replaceToNumbers } from '@/helpers';
 import { Input } from '@/components/atoms';
 
 import { makeExpireDateMask, makePanMask, validateExpireDate } from './helpers';
 
 import style from './style.module.scss';
-type CardFormProps = {
-  defaultValues?: DebitCard;
-  onSubmit: (data: DebitCard) => void;
-  children?: ReactNode;
-};
 
-const CardForm: FC<CardFormProps> = ({ defaultValues, onSubmit, children }) => {
+const CardForm: FC<FormProps<DebitCard>> = ({
+  className,
+  defaultValues,
+  onSubmit,
+  children,
+}) => {
   const { register, watch, setValue, formState, handleSubmit } = useForm({
     defaultValues,
   });
@@ -35,7 +36,10 @@ const CardForm: FC<CardFormProps> = ({ defaultValues, onSubmit, children }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className={clsx(style.form, className)}
+    >
       <div className={style.card}>
         <Input
           label="Номер"

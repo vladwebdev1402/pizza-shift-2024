@@ -1,9 +1,9 @@
 import clsx from 'clsx';
-import { ChangeEvent, FC, ReactNode } from 'react';
+import { ChangeEvent, FC } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { Input } from '@/components/atoms';
-import { User } from '@/types';
+import { FormProps, User } from '@/types';
 import {
   addressFieldValidate,
   makeMaskedPhone,
@@ -20,12 +20,8 @@ import { ProfileFormSkeleton } from './ProfileFormSkeleton';
 import style from './style.module.scss';
 
 type ProfileFormProps = {
-  defaultValues?: User;
   isDisabledPhone?: boolean;
-  className?: string;
-  onSubmit: (data: User) => void;
-  children?: ReactNode;
-};
+} & FormProps<User>;
 
 const ProfileForm: FC<ProfileFormProps> = ({
   defaultValues,

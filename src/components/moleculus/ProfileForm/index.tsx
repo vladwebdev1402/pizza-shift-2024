@@ -33,7 +33,7 @@ const ProfileForm: FC<ProfileFormProps> = ({
   const { register, formState, handleSubmit, setValue, watch } = useForm<User>({
     defaultValues: {
       ...defaultValues,
-      phone: makeMaskedPhone(defaultValues?.phone || ''),
+      phone: makeMaskedPhone(replaceToNumbers(defaultValues?.phone || '')),
     },
   });
 

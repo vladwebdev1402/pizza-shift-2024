@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { Button, StatusIndicator, Typography } from '@/components/atoms';
 import { Order } from '@/types';
 
+import { OrderRowCardSkeleton } from './OrderRowCardSkeleton';
 import style from './style.module.scss';
 
 type OrderRowCardProps = {
@@ -60,4 +61,4 @@ const OrderRowCard: FC<OrderRowCardProps> = ({
   );
 };
 
-export { OrderRowCard };
+export { OrderRowCard, OrderRowCardSkeleton };

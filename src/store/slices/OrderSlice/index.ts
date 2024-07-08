@@ -10,6 +10,7 @@ type InitialState = {
   basket: PizzaBasket[];
   orders: Order[];
   isPayLoading: boolean;
+  isLoading: boolean;
   error: string;
 };
 
@@ -17,6 +18,7 @@ const initialState: InitialState = {
   basket: [],
   orders: orders,
   isPayLoading: false,
+  isLoading: false,
   error: '',
 };
 

@@ -3,6 +3,7 @@ const ROUTER_PATHS = {
   profile: '/profile',
   orders: '/orders',
   basket: '/basket',
+  payment: '/basket/payment',
 };
 
 export { ROUTER_PATHS };

@@ -1,14 +1,18 @@
+import { useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 
 import { PizzaBasketCard } from '@/components/moleculus';
 import { PizzaInformationModal } from '@/components/organisms';
 import { Button, ErrorMessage, Typography } from '@/components/atoms';
+import { ROUTER_PATHS } from '@/constants';
+import { calcPriceBasket } from '@/helpers';
 
-import { calcTotalPrice } from './helpers';
 import { useBasketPage } from './useBasketPage';
 import style from './style.module.scss';
 
 const BasketPage = () => {
+  const navigate = useNavigate();
+
   const {
     basket,
     currentPizza,
@@ -39,9 +43,14 @@ const BasketPage = () => {
           <div className={style.divider} />
           <div className={style.order}>
             <Typography variant="h2" className={style.price}>
-              Стоимость заказа: {calcTotalPrice(basket)} ₽
+              Стоимость заказа: {calcPriceBasket(basket)} ₽
             </Typography>
-            <Button className={style.button}>Оформить заказ</Button>
+            <Button
+              className={style.button}
+              onClick={() => navigate(ROUTER_PATHS.payment)}
+            >
+              Оформить заказ
+            </Button>
           </div>
         </div>
         <PizzaInformationModal

@@ -1,0 +1,26 @@
+.container {
+  margin-top: 48px;
+}
+
+.profile {
+  max-width: 464px;
+  margin-top: 24px;
+}
+
+.profile_buttons {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.profile_button {
+  flex: 1 1 45%;
+}
+
+.form {
+  margin-top: 24px;
+}
+
+.card_button {
+  width: 100%;
+}

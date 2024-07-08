@@ -1,0 +1,51 @@
+@import '@/styles/variables.scss';
+
+.accept {
+  padding: 12px;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+}
+
+.icon {
+  height: 56px;
+  width: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  background: linear-gradient(360deg, #7dba6e 0%, #c6e99a 95.31%);
+}
+
+.payment_title {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.payment {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.subtitle {
+  color: $text-tertiary;
+  margin-bottom: 2px;
+}
+
+.sms {
+  color: $text-quartenery;
+}
+
+.button_container {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  font-size: 16px;
+  color: $text-tertiary;
+  text-decoration: underline;
+  margin: 24px auto 0 auto;
+}

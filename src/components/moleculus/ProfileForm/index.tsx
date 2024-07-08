@@ -1,28 +1,27 @@
 import clsx from 'clsx';
-import { ChangeEvent, FC, ReactNode } from 'react';
+import { ChangeEvent, FC } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { Input } from '@/components/atoms';
-import { User } from '@/types';
-import { makeMaskedPhone, replaceToNumbers } from '@/helpers';
+import { FormProps, User } from '@/types';
+import {
+  addressFieldValidate,
+  makeMaskedPhone,
+  removeAddressSprecCharacters,
+  replaceToNumbers,
+} from '@/helpers';
 
 import {
-  cityFieldValidate,
   emailFieldValidate,
   nameFieldsValidate,
-  removeCitySprecCharacters,
   removeNamefieldSpecCharacters,
 } from './helpers';
 import { ProfileFormSkeleton } from './ProfileFormSkeleton';
 import style from './style.module.scss';
 
 type ProfileFormProps = {
-  defaultValues?: User;
   isDisabledPhone?: boolean;
-  className?: string;
-  onSubmit: (data: User) => void;
-  children?: ReactNode;
-};
+} & FormProps<User>;
 
 const ProfileForm: FC<ProfileFormProps> = ({
   defaultValues,
@@ -60,7 +59,7 @@ const ProfileForm: FC<ProfileFormProps> = ({
   };
 
   const onCityChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue('city', removeCitySprecCharacters(e.target.value));
+    setValue('city', removeAddressSprecCharacters(e.target.value));
   };
 
   const onPhoneChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -156,7 +155,7 @@ const ProfileForm: FC<ProfileFormProps> = ({
         {...register('city', {
           value: watch('city'),
           onChange: onCityChange,
-          validate: cityFieldValidate,
+          validate: addressFieldValidate,
         })}
         error={formState.errors.city?.message}
       />

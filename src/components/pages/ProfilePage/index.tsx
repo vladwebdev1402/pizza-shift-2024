@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import clsx from 'clsx';
 
 import { Button, Typography } from '@/components/atoms';
@@ -7,24 +6,13 @@ import {
   ProfileForm,
   ProfileFormSkeleton,
 } from '@/components/moleculus';
-import { AuthActions, useAppDispatch, useAppSelector } from '@/store';
-import { User } from '@/types';
 
+import { useProfilePage } from './useProfilePage';
 import style from './style.module.scss';
 
 const ProfilePage = () => {
-  const dispatch = useAppDispatch();
-  const { isAuth, user, isFetchLoading, isUpdateLoading } = useAppSelector(
-    (state) => state.AuthReducer,
-  );
-
-  const onProfileSbumit = (data: User) => {
-    dispatch(AuthActions.updateProfile(data));
-  };
-
-  useEffect(() => {
-    if (user === null && isAuth) dispatch(AuthActions.getSession());
-  }, [user, isAuth]);
+  const { user, isAuth, isFetchLoading, isUpdateLoading, onProfileSbumit } =
+    useProfilePage();
 
   if (isAuth && isFetchLoading)
     return (
@@ -57,7 +45,10 @@ const ProfilePage = () => {
 
   return (
     <div className={clsx('container', style.container)}>
-      <AuthForm isShowTitle />
+      <Typography variant="h2" tag="h2">
+        Авторизация
+      </Typography>
+      <AuthForm className={style.auth_form} />
     </div>
   );
 };

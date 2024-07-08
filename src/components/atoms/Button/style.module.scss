@@ -8,25 +8,6 @@
   align-items: center;
 }
 
-.button {
-  font-weight: 600;
-  line-height: 24px;
-  transition: $transition;
-  cursor: pointer;
-  padding: 16px 32px;
-  border-radius: 16px;
-  border: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-
-  &:disabled {
-    background-color: $bg-disabled;
-    cursor: not-allowed;
-  }
-}
-
 .contained {
   background-color: $orange;
   color: $text-invert;
@@ -51,6 +32,25 @@
 
   &:hover {
     background-color: $bg-secondary;
+  }
+}
+
+.button {
+  font-weight: 600;
+  line-height: 24px;
+  transition: $transition;
+  cursor: pointer;
+  padding: 16px 32px;
+  border-radius: 16px;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+
+  &:disabled {
+    background-color: $bg-disabled;
+    cursor: not-allowed;
   }
 }
 

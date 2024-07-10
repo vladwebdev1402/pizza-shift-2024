@@ -58,9 +58,11 @@ const OrderCard: FC<OrderCardProps> = ({ order, onCancel }) => {
         </Typography>
         <Typography>{calcOrderPrice(order.pizzas)} ₽</Typography>
       </div>
-      <Button onClick={() => onCancel(order)} className={style.button}>
-        Отменить заказ
-      </Button>
+      {order.cancellable && (
+        <Button onClick={() => onCancel(order)} className={style.button}>
+          Отменить заказ
+        </Button>
+      )}
     </div>
   );
 };

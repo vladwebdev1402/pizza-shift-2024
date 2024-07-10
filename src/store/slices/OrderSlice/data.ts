@@ -2,6 +2,7 @@ import { Order } from '@/types';
 
 const orders: Order[] = [
   {
+    _id: crypto.randomUUID(),
     person: {
       firstname: 'firstname',
       lastname: 'lastname',
@@ -9,13 +10,13 @@ const orders: Order[] = [
       phone: '89214206901',
     },
     receiverAddress: {
-      street: 'street',
-      house: 'house',
-      apartment: 'apartment',
-      comment: 'comment',
+      street: 'ул. пушкина',
+      house: 'д. 67',
+      apartment: 'кв 88',
+      comment: '',
     },
     status: 1,
-    cancellable: false,
+    cancellable: true,
     pizzas: [
       {
         id: '1',
@@ -54,7 +55,7 @@ const orders: Order[] = [
       },
       {
         id: '2',
-        name: 'Чикибамбони',
+        name: 'ШИФТ Суприм',
         toppings: [
           {
             name: 'PINEAPPLE',
@@ -89,7 +90,7 @@ const orders: Order[] = [
       },
       {
         id: '3',
-        name: 'Тренболони',
+        name: 'Маргарита',
         toppings: [
           {
             name: 'PINEAPPLE',
@@ -125,6 +126,7 @@ const orders: Order[] = [
     ],
   },
   {
+    _id: crypto.randomUUID(),
     person: {
       firstname: 'firstname',
       lastname: 'lastname',
@@ -132,13 +134,13 @@ const orders: Order[] = [
       phone: '89214206901',
     },
     receiverAddress: {
-      street: 'street',
-      house: 'house',
-      apartment: 'apartment',
-      comment: 'comment',
+      street: 'ул. пушкина',
+      house: 'д. 67',
+      apartment: 'кв 88',
+      comment: '',
     },
     status: 2,
-    cancellable: false,
+    cancellable: true,
     pizzas: [
       {
         id: '1',
@@ -177,7 +179,7 @@ const orders: Order[] = [
       },
       {
         id: '2',
-        name: 'Чикибамбони',
+        name: 'Вегетарианская',
         toppings: [
           {
             name: 'PINEAPPLE',
@@ -212,7 +214,7 @@ const orders: Order[] = [
       },
       {
         id: '3',
-        name: 'Тренболони',
+        name: 'Четыре Сыра',
         toppings: [
           {
             name: 'PINEAPPLE',

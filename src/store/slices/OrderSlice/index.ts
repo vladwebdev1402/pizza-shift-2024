@@ -58,6 +58,13 @@ const OrderSlice = createSlice({
     clearBasket: (state) => {
       state.basket = [];
     },
+    cancelOrder: (state, action: PayloadAction<string>) => {
+      state.orders = state.orders.map((order) => {
+        if (order._id === action.payload)
+          return { ...order, status: 4, cancellable: false };
+        return order;
+      });
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(paymentPizza.pending, (state) => {
@@ -66,7 +73,8 @@ const OrderSlice = createSlice({
     });
     builder.addCase(paymentPizza.fulfilled, (state, action) => {
       state.isPayLoading = false;
-      state.orders.push(action.payload);
+      console.log(action.payload);
+      state.orders = [action.payload.order, ...state.orders];
     });
     builder.addCase(paymentPizza.rejected, (state, action) => {
       state.isPayLoading = false;

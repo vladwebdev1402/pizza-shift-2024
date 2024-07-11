@@ -1,5 +1,11 @@
+@import '@/styles/variables.scss';
+
 .container {
   margin-top: 48px;
+}
+
+.page_title {
+  display: none;
 }
 
 .body {
@@ -12,8 +18,44 @@
   margin-bottom: 24px;
 }
 
+.modal_title {
+  padding: 16px 0px;
+  display: none;
+}
+
+.modal_button {
+  padding: 0;
+
+  path {
+    fill: $indicator-elements_light;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal_title {
+    display: block;
+  }
+
+  .auth_title {
+    display: none;
+  }
+
+  .body {
+    margin-top: 24px;
+  }
+}
+
 @media (max-width: 568px) {
   .body {
     grid-template-columns: 1fr;
+  }
+
+  .container {
+    margin-top: 12px;
+  }
+
+  .modal_title,
+  .page_title {
+    display: block;
   }
 }

@@ -26,6 +26,13 @@ const OrderPage = () => {
       <div className={clsx('container', style.container)}>
         {!isMoreMode && (
           <>
+            <Typography
+              variant="h2"
+              tag="h2"
+              className={clsx(style.title, style.title_mobile)}
+            >
+              Заказы
+            </Typography>
             <div className={style.header}>
               <Typography className={style.subtitle} variant="paragraph_14">
                 Статус
@@ -53,8 +60,8 @@ const OrderPage = () => {
         )}
         {isMoreMode && (
           <>
-            <Typography variant="h2" tag="h2">
-              История
+            <Typography variant="h2" tag="h2" className={style.title}>
+              Детали заказа
             </Typography>
             <div className={style.body_more}>
               {orders.map((order) => (

@@ -11,6 +11,8 @@ type ModalProps = {
   isOpen: boolean;
   isClosable?: boolean;
   isMobileFullScreen?: boolean;
+  isHiddenMobileClosable?: boolean;
+  isMobileShowFooter?: boolean;
   onClose: () => void;
   title?: ReactNode;
   children: ReactNode;
@@ -21,6 +23,8 @@ const Modal: FC<ModalProps> = ({
   bodyClassName = '',
   isOpen,
   isClosable = true,
+  isHiddenMobileClosable = true,
+  isMobileShowFooter = false,
   isMobileFullScreen = false,
   onClose,
   title,
@@ -45,6 +49,7 @@ const Modal: FC<ModalProps> = ({
       className={clsx(style.modal, {
         [style.modal_open]: isOpen,
         [style.modal_mobileFullScreen]: isMobileFullScreen,
+        [style.modal_mobileShowFooter]: isMobileShowFooter,
       })}
       onClick={onClose}
     >
@@ -62,7 +67,12 @@ const Modal: FC<ModalProps> = ({
         <div className={style.title}>
           {title}
           {isClosable && (
-            <button className={style.close} onClick={onClose}>
+            <button
+              className={clsx(style.close, {
+                [style.close_mobileHidden]: isHiddenMobileClosable,
+              })}
+              onClick={onClose}
+            >
               <CrossSVG />
             </button>
           )}

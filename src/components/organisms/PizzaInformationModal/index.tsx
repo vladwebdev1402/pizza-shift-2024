@@ -1,20 +1,9 @@
 import { FC } from 'react';
 import clsx from 'clsx';
 
-import {
-  Button,
-  IngridientCard,
-  Modal,
-  Tab,
-  Typography,
-} from '@/components/atoms';
+import { Button, IngridientCard, Modal, Tab, Typography } from '@/components/atoms';
 import { API_URL } from '@/constants';
-import {
-  NameDoughTranslate,
-  NameSizeTranslate,
-  PizzaBasket,
-  SizeToCm,
-} from '@/types';
+import { NameDoughTranslate, NameSizeTranslate, PizzaBasket, SizeToCm } from '@/types';
 import { makeJoinIngridients } from '@/helpers';
 import ArrowIcon from '@/assets/decorative/arrow.svg?react';
 
@@ -71,12 +60,8 @@ const PizzaInformationModal: FC<Props> = ({
                 <Typography variant="h2" tag="h2" className={style.title}>
                   {currentPizza.name}
                 </Typography>
-                <Typography
-                  variant="paragraph_14"
-                  className={style.description}
-                >
-                  {SizeToCm[currentSize.name]},{' '}
-                  {NameDoughTranslate[currentDough.name]}
+                <Typography variant="paragraph_14" className={style.description}>
+                  {SizeToCm[currentSize.name]}, {NameDoughTranslate[currentDough.name]}
                 </Typography>
                 <Typography className={style.description}>
                   {makeJoinIngridients(currentPizza.ingredients, true)}
@@ -97,16 +82,12 @@ const PizzaInformationModal: FC<Props> = ({
               </div>
 
               <div className={style.toppings}>
-                <Typography className={style.title}>
-                  Добавить по вкусу
-                </Typography>
+                <Typography className={style.title}>Добавить по вкусу</Typography>
                 <div className={style.body}>
                   {currentPizza.toppings.map((topping) => (
                     <IngridientCard
                       isActive={
-                        currentToppings.find(
-                          (item) => item.name === topping.name,
-                        ) !== undefined
+                        currentToppings.find((item) => item.name === topping.name) !== undefined
                       }
                       ingridient={topping}
                       onClick={onToppingClick}

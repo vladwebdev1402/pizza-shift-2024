@@ -14,19 +14,9 @@ type AuthFormProps = {
   onSuccessAuth?: () => void;
 };
 
-const AuthForm: FC<AuthFormProps> = ({
-  className,
-  onSuccessAuth = () => {},
-}) => {
-  const {
-    formState,
-    watch,
-    register,
-    setValue,
-    handleSubmit,
-    setError,
-    reset,
-  } = useForm<AuthData>();
+const AuthForm: FC<AuthFormProps> = ({ className, onSuccessAuth = () => {} }) => {
+  const { formState, watch, register, setValue, handleSubmit, setError, reset } =
+    useForm<AuthData>();
 
   const {
     delay,
@@ -103,9 +93,7 @@ const AuthForm: FC<AuthFormProps> = ({
             )}
           </div>
           <div className={clsx(style.group, style.buttons)}>
-            <Button
-              loading={(!delay && isCreateOtpLoading) || isCheckOtpLoading}
-            >
+            <Button loading={(!delay && isCreateOtpLoading) || isCheckOtpLoading}>
               {delay ? 'Войти' : 'Продолжить'}
             </Button>
 

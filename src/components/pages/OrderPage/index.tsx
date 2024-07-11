@@ -1,23 +1,36 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import clsx from 'clsx';
 
-import {
-  OrderCancelModal,
-  OrderCard,
-  OrderRowCard,
-} from '@/components/moleculus';
+import { OrderCancelModal, OrderCard, OrderRowCard } from '@/components/moleculus';
 import { Typography } from '@/components/atoms';
 import { OrderActions, useAppDispatch, useAppSelector } from '@/store';
 
 import { OrderPageSkeleton } from './OrderPageSkeleton';
 import style from './style.module.scss';
+import { AuthForm } from '@/components/organisms';
 
 const OrderPage = () => {
   const dispatch = useAppDispatch();
   const [isMoreMode, setIsMoreMode] = useState(false);
   const [currentCancelId, setCurrentCancelId] = useState<string | null>(null);
+  const { isAuth } = useAppSelector((state) => state.AuthReducer);
   const { orders, isLoading } = useAppSelector((state) => state.OrderReducer);
-  const cancelOrder = OrderActions.cancelOrder;
+
+  useEffect(() => {
+    if (isAuth) {
+      dispatch(OrderActions.getOrders());
+    }
+  }, [isAuth]);
+
+  if (!isAuth)
+    return (
+      <div className={clsx('container', style.container)}>
+        <Typography variant="h2" tag="h2" className={style.title}>
+          Авторизация
+        </Typography>
+        <AuthForm className={style.auth_form} />
+      </div>
+    );
 
   if (isLoading) return <OrderPageSkeleton />;
 
@@ -26,11 +39,7 @@ const OrderPage = () => {
       <div className={clsx('container', style.container)}>
         {!isMoreMode && (
           <>
-            <Typography
-              variant="h2"
-              tag="h2"
-              className={clsx(style.title, style.title_mobile)}
-            >
+            <Typography variant="h2" tag="h2" className={clsx(style.title, style.title_mobile)}>
               Заказы
             </Typography>
             <div className={style.header}>
@@ -81,7 +90,7 @@ const OrderPage = () => {
         isOpen={currentCancelId !== null}
         onClose={() => setCurrentCancelId(null)}
         onCancel={() => {
-          dispatch(cancelOrder(currentCancelId || ''));
+          dispatch(OrderActions.cancelOrder(currentCancelId || ''));
           setCurrentCancelId(null);
         }}
       />

@@ -2,12 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { User } from '@/types';
 import { LocaleStorageService } from '@/api';
-import {
-  createOtp,
-  getSession,
-  updateProfile,
-  userSignin,
-} from './actionCreators';
+
+import { createOtp, getSession, updateProfile, userSignin } from './actionCreators';
 
 type InitialState = {
   user: null | User;
@@ -52,10 +48,7 @@ const AuthSlice = createSlice({
     });
     builder.addCase(createOtp.rejected, (state, action) => {
       state.isCreateOtpLoading = false;
-      state.error =
-        typeof action.payload === 'string'
-          ? action.payload
-          : 'Произошла неизвестная ошибка';
+      state.error = action.payload as string;
     });
 
     builder.addCase(userSignin.pending, (state) => {
@@ -66,14 +59,10 @@ const AuthSlice = createSlice({
       state.isCheckOtpLoading = false;
       state.user = action.payload.user;
       state.isAuth = true;
-      LocaleStorageService.setToken(action.payload.token);
     });
     builder.addCase(userSignin.rejected, (state, action) => {
       state.isCheckOtpLoading = false;
-      state.error =
-        typeof action.payload === 'string'
-          ? action.payload
-          : 'Произошла неизвестная ошибка';
+      state.error = action.payload as string;
     });
 
     builder.addCase(getSession.pending, (state) => {
@@ -86,10 +75,8 @@ const AuthSlice = createSlice({
     });
     builder.addCase(getSession.rejected, (state, action) => {
       state.isFetchLoading = false;
-      state.error =
-        typeof action.payload === 'string'
-          ? action.payload
-          : 'Произошла неизвестная ошибка';
+      state.isAuth = false;
+      state.error = action.payload as string;
     });
 
     builder.addCase(updateProfile.pending, (state) => {
@@ -102,10 +89,8 @@ const AuthSlice = createSlice({
     });
     builder.addCase(updateProfile.rejected, (state, action) => {
       state.isUpdateLoading = false;
-      state.error =
-        typeof action.payload === 'string'
-          ? action.payload
-          : 'Произошла неизвестная ошибка';
+      state.isAuth = false;
+      state.error = action.payload as string;
     });
   },
 });

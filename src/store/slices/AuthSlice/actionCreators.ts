@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { User } from '@/types';
-import { AuthApi, SignInData } from '@/api';
+import { AuthApi, LocaleStorageService, SignInData } from '@/api';
 
 const createOtp = createAsyncThunk(
   'auth/otp',
@@ -21,6 +21,7 @@ const userSignin = createAsyncThunk(
   async (data: SignInData, thunkAPI) => {
     try {
       const response = await AuthApi.userSignin(data);
+      LocaleStorageService.setToken(response.token);
       return response;
     } catch (e) {
       if (e instanceof Error) return thunkAPI.rejectWithValue(e.message);
@@ -34,6 +35,7 @@ const getSession = createAsyncThunk('auth/session', async (_, thunkAPI) => {
     const response = await AuthApi.getSession();
     return response;
   } catch (e) {
+    LocaleStorageService.removeToken();
     if (e instanceof Error) return thunkAPI.rejectWithValue(e.message);
     else return thunkAPI.rejectWithValue('Происзошла неизвестна ошибка');
   }
@@ -46,6 +48,7 @@ const updateProfile = createAsyncThunk(
       await AuthApi.updateProfile(user);
       return user;
     } catch (e) {
+      LocaleStorageService.removeToken();
       if (e instanceof Error) return thunkAPI.rejectWithValue(e.message);
       else return thunkAPI.rejectWithValue('Происзошла неизвестна ошибка');
     }

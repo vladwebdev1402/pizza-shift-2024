@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Order, PizzaBasket } from '@/types';
 
 import { ChangeCountPayload } from './type';
-import { paymentPizza } from './actionCreators';
+import { getOrders, paymentPizza } from './actionCreators';
 import { orders } from './data';
 
 type InitialState = {
@@ -73,20 +73,28 @@ const OrderSlice = createSlice({
     });
     builder.addCase(paymentPizza.fulfilled, (state, action) => {
       state.isPayLoading = false;
-      console.log(action.payload);
       state.orders = [action.payload.order, ...state.orders];
     });
     builder.addCase(paymentPizza.rejected, (state, action) => {
       state.isPayLoading = false;
-      state.error =
-        typeof action.payload === 'string'
-          ? action.payload
-          : 'Произошла неизвестная ошибка';
+      state.error = action.payload as string;
+    });
+
+    builder.addCase(getOrders.pending, (state) => {
+      state.isLoading = true;
+      state.error = '';
+    });
+    builder.addCase(getOrders.fulfilled, (state) => {
+      state.isLoading = false;
+    });
+    builder.addCase(getOrders.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload as string;
     });
   },
 });
 
 const OrderReducer = OrderSlice.reducer;
-const OrderActions = { ...OrderSlice.actions, paymentPizza };
+const OrderActions = { ...OrderSlice.actions, paymentPizza, getOrders };
 
 export { OrderActions, OrderReducer };

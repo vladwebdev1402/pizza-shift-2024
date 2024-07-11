@@ -11,6 +11,13 @@ class OrderApi {
     );
     return data;
   }
+
+  static async getOrders() {
+    const { data } = await axiosInstance.get<{ orders: Order[] }>(
+      '/pizza/orders',
+    );
+    return data;
+  }
 }
 
 export { OrderApi };

@@ -13,11 +13,11 @@
   pointer-events: none;
   cursor: pointer;
   z-index: 100;
-
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   &_open {
     opacity: 1;
     background-color: rgba(20, 28, 36, 0.3);
-    pointer-events: auto;
+    pointer-events: inherit;
 
     .body {
       transform: scale(1);

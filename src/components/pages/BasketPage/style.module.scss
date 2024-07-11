@@ -18,7 +18,6 @@
 
 .order {
   margin-top: 24px;
-
   &_wrapper {
     display: flex;
     justify-content: space-between;
@@ -42,13 +41,16 @@
     display: flex;
     flex-direction: column;
     margin-top: 12px;
-    padding-bottom: 16px;
+    padding-bottom: 160px;
   }
 
   .order {
     margin-top: auto;
     padding: 16px 0px;
     box-shadow: 0px -6px 30px 0px rgba(72, 72, 72, 0.1);
+    position: fixed;
+    bottom: 58.8px;
+    background-color: white;
   }
 
   .pizzas {

@@ -1,5 +1,7 @@
-import { Pizza } from '@/types';
 import { createSlice } from '@reduxjs/toolkit';
+
+import { Pizza } from '@/types';
+
 import { getCatalog } from './actionCreators';
 
 type InitialState = {
@@ -29,10 +31,7 @@ const PizzaSlice = createSlice({
     });
     builder.addCase(getCatalog.rejected, (state, action) => {
       state.isLoading = false;
-      state.error =
-        typeof action.payload === 'string'
-          ? action.payload
-          : 'Произошла неизвестная ошибка';
+      state.error = action.payload as string;
     });
   },
 });

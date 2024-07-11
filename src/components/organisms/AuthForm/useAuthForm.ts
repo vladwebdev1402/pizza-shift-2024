@@ -8,8 +8,9 @@ import { AuthData } from './type';
 
 const useAuthForm = (onSuccessAuth = () => {}) => {
   const dispatch = useAppDispatch();
-  const { isCreateOtpLoading, delay, isCheckOtpLoading, error } =
-    useAppSelector((state) => state.AuthReducer);
+  const { isCreateOtpLoading, delay, isCheckOtpLoading, error } = useAppSelector(
+    (state) => state.AuthReducer,
+  );
   const { seconds, resetTimer } = useTimer(0);
 
   const onFormSubmit = async (data: AuthData, reset: () => void) => {
@@ -28,13 +29,11 @@ const useAuthForm = (onSuccessAuth = () => {}) => {
     if (resultAction.meta.requestStatus === 'fulfilled') {
       onSuccessAuth();
       reset();
+      resetTimer(0);
     }
   };
 
-  const onNewOtpClick = async (
-    phone: string,
-    setErrorPhone: (value?: string) => void,
-  ) => {
+  const onNewOtpClick = async (phone: string, setErrorPhone: (value?: string) => void) => {
     if (phone.length === 0) setErrorPhone('Поле обязательное для заполнения');
     else if (!/\+\d \d\d\d \d\d\d \d\d \d\d/g.test(phone))
       setErrorPhone('Введите телфон в формате +X XXX XXX XX XX');

@@ -2,8 +2,8 @@ import { useState } from 'react';
 import clsx from 'clsx';
 
 import { Button, ErrorMessage, Modal, Typography } from '@/components/atoms';
-import { AuthForm, PizzaCard } from '@/components/moleculus';
-import { PizzaInformationModal } from '@/components/organisms';
+import { PizzaCard } from '@/components/moleculus';
+import { AuthForm, PizzaInformationModal } from '@/components/organisms';
 import CrossIcon from '@/assets/decorative/cross.svg?react';
 
 import { useMainPage } from './useMainPage';
@@ -44,11 +44,7 @@ const MainPage = () => {
           </Typography>
           <div className={style.body}>
             {pizzas.map((pizza) => (
-              <PizzaCard
-                pizza={pizza}
-                handleSwitchPizza={onPizzaSwitch}
-                key={pizza.id}
-              />
+              <PizzaCard pizza={pizza} handleSwitchPizza={onPizzaSwitch} key={pizza.id} />
             ))}
           </div>
         </div>

@@ -1,17 +1,13 @@
 import { useEffect, useState } from 'react';
 import clsx from 'clsx';
 
-import {
-  AuthForm,
-  OrderCancelModal,
-  OrderCard,
-  OrderRowCard,
-} from '@/components/moleculus';
+import { OrderCancelModal, OrderCard, OrderRowCard } from '@/components/moleculus';
 import { Typography } from '@/components/atoms';
 import { OrderActions, useAppDispatch, useAppSelector } from '@/store';
 
 import { OrderPageSkeleton } from './OrderPageSkeleton';
 import style from './style.module.scss';
+import { AuthForm } from '@/components/organisms';
 
 const OrderPage = () => {
   const dispatch = useAppDispatch();
@@ -43,11 +39,7 @@ const OrderPage = () => {
       <div className={clsx('container', style.container)}>
         {!isMoreMode && (
           <>
-            <Typography
-              variant="h2"
-              tag="h2"
-              className={clsx(style.title, style.title_mobile)}
-            >
+            <Typography variant="h2" tag="h2" className={clsx(style.title, style.title_mobile)}>
               Заказы
             </Typography>
             <div className={style.header}>

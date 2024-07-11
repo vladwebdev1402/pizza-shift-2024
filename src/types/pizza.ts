@@ -100,7 +100,6 @@ type PizzaOrder = {
   id: string;
   name: string;
   description: string;
-  img: string;
   toppings: Ingredient[];
   size: Size;
   doughs: Dough;
@@ -109,6 +108,7 @@ type PizzaOrder = {
 type PizzaBasket = {
   uuid: string;
   count: number;
+  img: string;
 } & PizzaOrder;
 
 export {

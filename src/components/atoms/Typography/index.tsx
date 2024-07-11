@@ -3,12 +3,7 @@ import { clsx } from 'clsx';
 
 import style from './style.module.scss';
 
-type TypographyVariants =
-  | 'h2'
-  | 'h3'
-  | 'paragraph_16'
-  | 'paragraph_14'
-  | 'paragraph_12';
+type TypographyVariants = 'h2' | 'h3' | 'paragraph_16' | 'paragraph_14' | 'paragraph_12';
 
 type TypographyTags = 'h1' | 'h2' | 'h3' | 'div' | 'p' | 'span';
 
@@ -23,8 +18,6 @@ const Typography = <Tag extends TypographyTags = 'div'>({
   variant = 'paragraph_16',
   tag: Tag = 'p',
   children,
-}: TypographyProps<Tag>) => (
-  <Tag className={clsx(style[variant], className)}>{children}</Tag>
-);
+}: TypographyProps<Tag>) => <Tag className={clsx(style[variant], className)}>{children}</Tag>;
 
 export { Typography };

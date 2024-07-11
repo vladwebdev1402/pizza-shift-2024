@@ -11,11 +11,7 @@ import {
   replaceToNumbers,
 } from '@/helpers';
 
-import {
-  emailFieldValidate,
-  nameFieldsValidate,
-  removeNamefieldSpecCharacters,
-} from './helpers';
+import { emailFieldValidate, nameFieldsValidate, removeNamefieldSpecCharacters } from './helpers';
 import { ProfileFormSkeleton } from './ProfileFormSkeleton';
 import style from './style.module.scss';
 
@@ -38,24 +34,15 @@ const ProfileForm: FC<ProfileFormProps> = ({
   });
 
   const onLastnameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue(
-      'lastname',
-      removeNamefieldSpecCharacters(e.target.value).slice(0, 60),
-    );
+    setValue('lastname', removeNamefieldSpecCharacters(e.target.value).slice(0, 60));
   };
 
   const onFirstnameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue(
-      'firstname',
-      removeNamefieldSpecCharacters(e.target.value).slice(0, 60),
-    );
+    setValue('firstname', removeNamefieldSpecCharacters(e.target.value).slice(0, 60));
   };
 
   const onMiddlenameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue(
-      'middlename',
-      removeNamefieldSpecCharacters(e.target.value).slice(0, 60),
-    );
+    setValue('middlename', removeNamefieldSpecCharacters(e.target.value).slice(0, 60));
   };
 
   const onCityChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -67,10 +54,7 @@ const ProfileForm: FC<ProfileFormProps> = ({
   };
 
   return (
-    <form
-      className={clsx(style.form, className)}
-      onSubmit={handleSubmit(onSubmit)}
-    >
+    <form className={clsx(style.form, className)} onSubmit={handleSubmit(onSubmit)}>
       <Input
         label="Фамилия"
         required

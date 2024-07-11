@@ -27,12 +27,8 @@ const usePizzaInformation = (
   };
 
   const onToppingClick = (topping: Ingredient) => {
-    if (
-      currentToppings.find((item) => item.name === topping.name) !== undefined
-    ) {
-      setCurrentToppings(
-        currentToppings.filter((item) => item.name !== topping.name),
-      );
+    if (currentToppings.find((item) => item.name === topping.name) !== undefined) {
+      setCurrentToppings(currentToppings.filter((item) => item.name !== topping.name));
       return;
     }
 

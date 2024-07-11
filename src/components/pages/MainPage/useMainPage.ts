@@ -1,18 +1,11 @@
 import { useEffect } from 'react';
 
-import {
-  OrderActions,
-  PizzaActions,
-  useAppDispatch,
-  useAppSelector,
-} from '@/store';
+import { OrderActions, PizzaActions, useAppDispatch, useAppSelector } from '@/store';
 import { PizzaBasket } from '@/types';
 
 const useMainPage = () => {
   const dispatch = useAppDispatch();
-  const { isLoading, error, pizzas } = useAppSelector(
-    (state) => state.PizzaReducer,
-  );
+  const { isLoading, error, pizzas } = useAppSelector((state) => state.PizzaReducer);
   const isAuth = useAppSelector((state) => state.AuthReducer.isAuth);
   const addPizzaInBasket = OrderActions.addPizzaInBasket;
 

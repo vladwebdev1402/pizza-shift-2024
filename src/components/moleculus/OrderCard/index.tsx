@@ -1,12 +1,7 @@
 import { FC } from 'react';
 
 import { Button, StatusIndicator, Typography } from '@/components/atoms';
-import {
-  NameDoughTranslate,
-  NameSizeTranslate,
-  Order,
-  SizeToCm,
-} from '@/types';
+import { NameDoughTranslate, NameSizeTranslate, Order, SizeToCm } from '@/types';
 import { makeJoinIngridients } from '@/helpers';
 
 import style from './style.module.scss';
@@ -41,14 +36,9 @@ const OrderCard: FC<OrderCardProps> = ({ order, onCancel }) => {
         </Typography>
         {order.pizzas.map((pizza) => (
           <Typography>
-            {pizza.name},{NameSizeTranslate[pizza.size.name]},{' '}
-            {SizeToCm[pizza.size.name]},{' '}
-            {NameDoughTranslate[pizza.doughs.name].replace(/\D/, (s) =>
-              s.toLowerCase(),
-            )}
-            {pizza.toppings.length > 0 && (
-              <>+ {makeJoinIngridients(pizza.toppings)}</>
-            )}
+            {pizza.name},{NameSizeTranslate[pizza.size.name]}, {SizeToCm[pizza.size.name]},{' '}
+            {NameDoughTranslate[pizza.doughs.name].replace(/\D/, (s) => s.toLowerCase())}
+            {pizza.toppings.length > 0 && <>+ {makeJoinIngridients(pizza.toppings)}</>}
           </Typography>
         ))}
       </div>

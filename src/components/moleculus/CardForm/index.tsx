@@ -10,12 +10,7 @@ import { makeExpireDateMask, makePanMask, validateExpireDate } from './helpers';
 
 import style from './style.module.scss';
 
-const CardForm: FC<FormProps<DebitCard>> = ({
-  className,
-  defaultValues,
-  onSubmit,
-  children,
-}) => {
+const CardForm: FC<FormProps<DebitCard>> = ({ className, defaultValues, onSubmit, children }) => {
   const { register, watch, setValue, formState, handleSubmit } = useForm({
     defaultValues,
   });
@@ -25,10 +20,7 @@ const CardForm: FC<FormProps<DebitCard>> = ({
   };
 
   const onExpireDateChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue(
-      'expireDate',
-      makeExpireDateMask(replaceToNumbers(e.target.value)),
-    );
+    setValue('expireDate', makeExpireDateMask(replaceToNumbers(e.target.value)));
   };
 
   const onCvvChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -36,10 +28,7 @@ const CardForm: FC<FormProps<DebitCard>> = ({
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className={clsx(style.form, className)}
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className={clsx(style.form, className)}>
       <div className={style.card}>
         <Input
           label="Номер"

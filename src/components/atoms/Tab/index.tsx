@@ -10,12 +10,7 @@ type TabProps = {
   children: ReactNode;
 };
 
-const Tab: FC<TabProps> = ({
-  className = '',
-  isActive = false,
-  onClick,
-  children,
-}) => (
+const Tab: FC<TabProps> = ({ className = '', isActive = false, onClick, children }) => (
   <button
     className={clsx(className, style.tab, {
       [style.tab_active]: isActive,

@@ -24,12 +24,7 @@ const Button: FC<ButtonProps> = ({
   <button
     {...props}
     disabled={disabled || loading}
-    className={clsx(
-      style.button,
-      style[variant],
-      style[iconPosition],
-      className,
-    )}
+    className={clsx(style.button, style[variant], style[iconPosition], className)}
   >
     {loading && <Loader />}
     {!loading && icon && <span className={style.icon}>{icon}</span>}

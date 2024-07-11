@@ -13,11 +13,7 @@ type OrderRowCardProps = {
   onMoreClick: (order: Order) => void;
 };
 
-const OrderRowCard: FC<OrderRowCardProps> = ({
-  order,
-  className = '',
-  onMoreClick,
-}) => {
+const OrderRowCard: FC<OrderRowCardProps> = ({ order, className = '', onMoreClick }) => {
   console.log(order);
   return (
     <div className={clsx(style.card, className)}>
@@ -51,11 +47,7 @@ const OrderRowCard: FC<OrderRowCardProps> = ({
           ))}
         </Typography>
       </div>
-      <Button
-        className={style.button}
-        variant="text"
-        onClick={() => onMoreClick(order)}
-      >
+      <Button className={style.button} variant="text" onClick={() => onMoreClick(order)}>
         Подробнее
       </Button>
     </div>

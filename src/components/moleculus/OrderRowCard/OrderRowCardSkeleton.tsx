@@ -1,18 +1,11 @@
 import { ComponentProps, FC } from 'react';
 import clsx from 'clsx';
 
-import {
-  Button,
-  Skeleton,
-  StatusIndicator,
-  Typography,
-} from '@/components/atoms';
+import { Button, Skeleton, StatusIndicator, Typography } from '@/components/atoms';
 
 import style from './style.module.scss';
 
-const OrderRowCardSkeleton: FC<ComponentProps<'div'>> = ({
-  className = '',
-}) => {
+const OrderRowCardSkeleton: FC<ComponentProps<'div'>> = ({ className = '' }) => {
   return (
     <div className={clsx(style.card, className)}>
       <div>

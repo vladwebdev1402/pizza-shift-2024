@@ -10,25 +10,14 @@ type CounterProps = {
   children: ReactNode;
 };
 
-const Counter: FC<CounterProps> = ({
-  className = '',
-  onAdd,
-  onMinus,
-  children,
-}) => {
+const Counter: FC<CounterProps> = ({ className = '', onAdd, onMinus, children }) => {
   return (
     <div className={clsx(style.container, className)}>
-      <button
-        className={clsx(style.button, style.button_left)}
-        onClick={onMinus}
-      >
+      <button className={clsx(style.button, style.button_left)} onClick={onMinus}>
         -
       </button>
       <span className={style.count}>{children}</span>
-      <button
-        className={clsx(style.button, style.button_right)}
-        onClick={onAdd}
-      >
+      <button className={clsx(style.button, style.button_right)} onClick={onAdd}>
         +
       </button>
     </div>

@@ -12,13 +12,7 @@ type NavLinkProps = {
   children: ReactNode;
 };
 
-const NavLink: FC<NavLinkProps> = ({
-  to,
-  type,
-  svgStyle = 'fill',
-  icon,
-  children,
-}) => {
+const NavLink: FC<NavLinkProps> = ({ to, type, svgStyle = 'fill', icon, children }) => {
   const match = useMatch(to);
 
   return (

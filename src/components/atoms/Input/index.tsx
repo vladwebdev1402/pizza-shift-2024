@@ -10,10 +10,7 @@ type InputProps = {
 } & ComponentPropsWithRef<'input'>;
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  (
-    { label, error, required, containerClassName, className, ...props },
-    ref,
-  ) => {
+  ({ label, error, required, containerClassName, className, ...props }, ref) => {
     const id = useId();
 
     return (
@@ -29,11 +26,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           id={id}
           ref={ref}
           required={required}
-          className={clsx(
-            style.input,
-            { [style.input_error]: error },
-            className,
-          )}
+          className={clsx(style.input, { [style.input_error]: error }, className)}
         />
         {error && <p className={style.error}>{error}</p>}
       </label>

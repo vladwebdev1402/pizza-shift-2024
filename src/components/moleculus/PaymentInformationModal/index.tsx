@@ -46,8 +46,7 @@ const PaymentInformationModal: FC<PaymentInformationModalProps> = ({
           </Typography>
           {receiverAddress && (
             <Typography>
-              {receiverAddress.street} {receiverAddress.house}{' '}
-              {receiverAddress.apartment}
+              {receiverAddress.street} {receiverAddress.house} {receiverAddress.apartment}
             </Typography>
           )}
         </div>

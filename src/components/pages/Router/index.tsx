@@ -23,9 +23,7 @@ const createRouter = (isAuth: boolean) =>
         <Route path={ROUTER_PATHS.profile} element={<ProfilePage />} />
         <Route path={ROUTER_PATHS.basket} element={<BasketPage />} />
         <Route path={ROUTER_PATHS.orders} element={<OrderPage />} />
-        {isAuth && (
-          <Route path={ROUTER_PATHS.payment} element={<PaymentPage />} />
-        )}
+        {isAuth && <Route path={ROUTER_PATHS.payment} element={<PaymentPage />} />}
       </Route>,
     ),
   );

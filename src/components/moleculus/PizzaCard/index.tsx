@@ -29,9 +29,7 @@ const PizzaCard: FC<PizzaCardProps> = ({ pizza, handleSwitchPizza }) => {
             <Typography variant="h3" tag="h3" className={style.title}>
               {pizza.name}
             </Typography>
-            <Typography className={style.description}>
-              {pizza.description}
-            </Typography>
+            <Typography className={style.description}>{pizza.description}</Typography>
           </div>
           <div className={style.footer}>
             <Typography variant="h3" tag="div" className={style.price}>
@@ -55,11 +53,7 @@ const PizzaCard: FC<PizzaCardProps> = ({ pizza, handleSwitchPizza }) => {
             </Typography>
           </div>
           <div className={style.footer}>
-            <Typography
-              variant="paragraph_16"
-              tag="div"
-              className={style.price}
-            >
+            <Typography variant="paragraph_16" tag="div" className={style.price}>
               от {pizza.sizes[0].price} ₽
             </Typography>
           </div>

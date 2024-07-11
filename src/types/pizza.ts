@@ -111,12 +111,7 @@ type PizzaBasket = {
   img: string;
 } & PizzaOrder;
 
-export {
-  NameIngredientsTranslate,
-  NameSizeTranslate,
-  NameDoughTranslate,
-  SizeToCm,
-};
+export { NameIngredientsTranslate, NameSizeTranslate, NameDoughTranslate, SizeToCm };
 export type {
   Pizza,
   PizzaOrder,

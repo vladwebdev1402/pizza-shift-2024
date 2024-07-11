@@ -30,10 +30,7 @@ const BasketPage = () => {
       <>
         <div className={style.container}>
           <div className={'container'}>
-            <MobileTitleButton
-              icon={<ArrowIcon />}
-              onClick={() => navigate(ROUTER_PATHS.main)}
-            >
+            <MobileTitleButton icon={<ArrowIcon />} onClick={() => navigate(ROUTER_PATHS.main)}>
               Пицца
             </MobileTitleButton>
             <div className={style.pizzas}>
@@ -56,10 +53,7 @@ const BasketPage = () => {
               <Typography variant="h2" className={style.price}>
                 Стоимость заказа: {calcPriceBasket(basket)} ₽
               </Typography>
-              <Button
-                className={style.button}
-                onClick={() => navigate(ROUTER_PATHS.payment)}
-              >
+              <Button className={style.button} onClick={() => navigate(ROUTER_PATHS.payment)}>
                 Оформить заказ
               </Button>
             </div>
@@ -76,10 +70,7 @@ const BasketPage = () => {
 
   return (
     <div className={clsx('container', style.container)}>
-      <ErrorMessage
-        title="Корзина пустая"
-        description="Добавьте пиццу в корзину"
-      />
+      <ErrorMessage title="Корзина пустая" description="Добавьте пиццу в корзину" />
     </div>
   );
 };

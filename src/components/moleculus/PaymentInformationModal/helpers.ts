@@ -1,10 +1,5 @@
 import { makeJoinIngridients } from '@/helpers';
-import {
-  NameDoughTranslate,
-  NameSizeTranslate,
-  PizzaOrder,
-  SizeToCm,
-} from '@/types';
+import { NameDoughTranslate, NameSizeTranslate, PizzaOrder, SizeToCm } from '@/types';
 
 const getPizzaInformation = (pizza: PizzaOrder) => {
   return `${pizza.name}, ${NameSizeTranslate[pizza.size.name]} ${SizeToCm[pizza.size.name].toLowerCase()}, 

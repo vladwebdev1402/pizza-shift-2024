@@ -34,10 +34,7 @@ const OrderSlice = createSlice({
         pizza.uuid === action.payload.uuid ? action.payload : pizza,
       );
     },
-    changeCountPizzaInBasket: (
-      state,
-      { payload: { pizza, type } }: ChangeCountPayload,
-    ) => {
+    changeCountPizzaInBasket: (state, { payload: { pizza, type } }: ChangeCountPayload) => {
       state.basket = state.basket.map((item) => {
         if (item.uuid === pizza.uuid) {
           return {
@@ -51,17 +48,14 @@ const OrderSlice = createSlice({
       state.basket = state.basket.filter((pizza) => pizza.count > 0);
     },
     deletePizzaFromBasket: (state, action: PayloadAction<PizzaBasket>) => {
-      state.basket = state.basket.filter(
-        (pizza) => pizza.uuid !== action.payload.uuid,
-      );
+      state.basket = state.basket.filter((pizza) => pizza.uuid !== action.payload.uuid);
     },
     clearBasket: (state) => {
       state.basket = [];
     },
     cancelOrder: (state, action: PayloadAction<string>) => {
       state.orders = state.orders.map((order) => {
-        if (order._id === action.payload)
-          return { ...order, status: 4, cancellable: false };
+        if (order._id === action.payload) return { ...order, status: 4, cancellable: false };
         return order;
       });
     },

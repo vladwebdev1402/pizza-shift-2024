@@ -19,8 +19,7 @@ const PizzaCardSkeleton = () => {
 
             <Skeleton className={style.skeleton}>
               <Typography>
-                Шифт пицца с пепперони, колбасой, зеленым перцем, луком,
-                оливками и шампиньонами.
+                Шифт пицца с пепперони, колбасой, зеленым перцем, луком, оливками и шампиньонами.
               </Typography>
             </Skeleton>
           </div>
@@ -42,28 +41,19 @@ const PizzaCardSkeleton = () => {
         <div className={style.body}>
           <div className={style.info}>
             <Skeleton className={style.skeleton}>
-              <Typography
-                variant="paragraph_16"
-                tag="h3"
-                className={style.title}
-              >
+              <Typography variant="paragraph_16" tag="h3" className={style.title}>
                 Название пиццы
               </Typography>
             </Skeleton>
             <Skeleton className={style.skeleton}>
               <Typography variant="paragraph_12" className={style.description}>
-                Шифт пицца с пепперони, колбасой, зеленым перцем, луком,
-                оливками и шампиньонами.
+                Шифт пицца с пепперони, колбасой, зеленым перцем, луком, оливками и шампиньонами.
               </Typography>
             </Skeleton>
           </div>
           <div className={style.footer}>
             <Skeleton className={style.skeleton}>
-              <Typography
-                variant="paragraph_16"
-                tag="div"
-                className={style.price}
-              >
+              <Typography variant="paragraph_16" tag="div" className={style.price}>
                 от 599 ₽
               </Typography>
             </Skeleton>

@@ -10,11 +10,7 @@ type ErrorMessageProps = {
   className?: string;
 };
 
-const ErrorMessage: FC<ErrorMessageProps> = ({
-  title,
-  description,
-  className,
-}) => {
+const ErrorMessage: FC<ErrorMessageProps> = ({ title, description, className }) => {
   return (
     <div className={clsx(style.container, className)}>
       <Typography variant="h2" tag="h2">

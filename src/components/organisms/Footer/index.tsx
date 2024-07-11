@@ -13,12 +13,7 @@ const Footer = () => {
       <nav className={style.nav}>
         <ul className={style.list}>
           <li>
-            <NavLink
-              to={ROUTER_PATHS.main}
-              icon={<CircleIcon />}
-              type="footer"
-              svgStyle="stroke"
-            >
+            <NavLink to={ROUTER_PATHS.main} icon={<CircleIcon />} type="footer" svgStyle="stroke">
               Пицца
             </NavLink>
           </li>
@@ -28,20 +23,12 @@ const Footer = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink
-              to={ROUTER_PATHS.basket}
-              icon={<BasketIcon />}
-              type="footer"
-            >
+            <NavLink to={ROUTER_PATHS.basket} icon={<BasketIcon />} type="footer">
               Корзина
             </NavLink>
           </li>
           <li>
-            <NavLink
-              to={ROUTER_PATHS.profile}
-              icon={<ProfileIcon />}
-              type="footer"
-            >
+            <NavLink to={ROUTER_PATHS.profile} icon={<ProfileIcon />} type="footer">
               Профиль
             </NavLink>
           </li>

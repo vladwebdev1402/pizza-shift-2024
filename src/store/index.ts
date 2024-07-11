@@ -20,11 +20,4 @@ const useAppDispatch = useDispatch.withTypes<AppDispatch>();
 const useAppSelector = useSelector.withTypes<RootState>();
 
 export type { RootState };
-export {
-  useAppDispatch,
-  useAppSelector,
-  store,
-  AuthActions,
-  PizzaActions,
-  OrderActions,
-};
+export { useAppDispatch, useAppSelector, store, AuthActions, PizzaActions, OrderActions };

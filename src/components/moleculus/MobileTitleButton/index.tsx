@@ -8,11 +8,7 @@ type MobileTitleButtonProps = {
   icon: ReactNode;
 } & ButtonProps;
 
-const MobileTitleButton: FC<MobileTitleButtonProps> = ({
-  icon,
-  children,
-  ...props
-}) => {
+const MobileTitleButton: FC<MobileTitleButtonProps> = ({ icon, children, ...props }) => {
   return (
     <Button className={style.button} {...props} variant="text">
       <div className="icon">{icon}</div>

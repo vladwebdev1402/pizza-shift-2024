@@ -47,11 +47,7 @@ const PaymentPage = () => {
         <Typography variant="h2" tag="h2" className={style.title}>
           Введите ваши данные
         </Typography>
-        <ProfileForm
-          className={style.profile}
-          onSubmit={onProfileSubmit}
-          defaultValues={user}
-        >
+        <ProfileForm className={style.profile} onSubmit={onProfileSubmit} defaultValues={user}>
           <div className={style.profile_buttons}>
             <Button
               variant="outlined"

@@ -8,16 +8,10 @@ import { addressFieldValidate, removeAddressSprecCharacters } from '@/helpers';
 
 import style from './style.module.scss';
 
-const AddressForm: FC<FormProps<Address>> = ({
-  className,
-  defaultValues,
-  onSubmit,
-  children,
-}) => {
-  const { register, handleSubmit, setValue, watch, formState } =
-    useForm<Address>({
-      defaultValues,
-    });
+const AddressForm: FC<FormProps<Address>> = ({ className, defaultValues, onSubmit, children }) => {
+  const { register, handleSubmit, setValue, watch, formState } = useForm<Address>({
+    defaultValues,
+  });
 
   const onStreetChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue('street', removeAddressSprecCharacters(e.target.value));
@@ -32,10 +26,7 @@ const AddressForm: FC<FormProps<Address>> = ({
   };
 
   return (
-    <form
-      className={clsx(style.form, className)}
-      onSubmit={handleSubmit(onSubmit)}
-    >
+    <form className={clsx(style.form, className)} onSubmit={handleSubmit(onSubmit)}>
       <Input
         label="Улица"
         required
@@ -81,11 +72,7 @@ const AddressForm: FC<FormProps<Address>> = ({
           },
         })}
       />
-      <Input
-        label="Заметка"
-        placeholder="Заметка для курьера"
-        {...register('comment')}
-      />
+      <Input label="Заметка" placeholder="Заметка для курьера" {...register('comment')} />
       {children && <div className={style.buttons}>{children}</div>}
     </form>
   );

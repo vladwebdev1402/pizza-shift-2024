@@ -1,12 +1,7 @@
 import { FC } from 'react';
 
 import { API_URL } from '@/constants';
-import {
-  NameDoughTranslate,
-  NameSizeTranslate,
-  PizzaBasket,
-  SizeToCm,
-} from '@/types';
+import { NameDoughTranslate, NameSizeTranslate, PizzaBasket, SizeToCm } from '@/types';
 import { Button, Counter, Typography } from '@/components/atoms';
 import { calcPricePizzaBasket, makeJoinIngridients } from '@/helpers';
 import CrossIcon from '@/assets/decorative/cross.svg?react';
@@ -38,19 +33,11 @@ const PizzaBasketCard: FC<PizzaBasketCardProps> = ({
           <Typography className={style.name} tag="div">
             {pizza.name}
           </Typography>
-          <Typography
-            className={style.description}
-            variant="paragraph_14"
-            tag="div"
-          >
+          <Typography className={style.description} variant="paragraph_14" tag="div">
             {NameSizeTranslate[pizza.size.name]}, {SizeToCm[pizza.size.name]},{' '}
-            {NameDoughTranslate[pizza.doughs.name].replace(/\D/, (s) =>
-              s.toLowerCase(),
-            )}
+            {NameDoughTranslate[pizza.doughs.name].replace(/\D/, (s) => s.toLowerCase())}
             <br />
-            {pizza.toppings.length > 0 && (
-              <>+ {makeJoinIngridients(pizza.toppings)}</>
-            )}
+            {pizza.toppings.length > 0 && <>+ {makeJoinIngridients(pizza.toppings)}</>}
           </Typography>
         </div>
         <div className={style.options}>
@@ -74,14 +61,9 @@ const PizzaBasketCard: FC<PizzaBasketCardProps> = ({
             <Typography variant="paragraph_12">Изменить</Typography>
           </Button>
 
-          <Typography className={style.price}>
-            {calcPricePizzaBasket(pizza)} ₽
-          </Typography>
+          <Typography className={style.price}>{calcPricePizzaBasket(pizza)} ₽</Typography>
 
-          <button
-            className={style.delete_button}
-            onClick={() => onDelete(pizza)}
-          >
+          <button className={style.delete_button} onClick={() => onDelete(pizza)}>
             <CrossIcon />
           </button>
         </div>

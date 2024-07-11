@@ -2,12 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import { ROUTER_PATHS } from '@/constants';
-import {
-  AuthActions,
-  OrderActions,
-  useAppDispatch,
-  useAppSelector,
-} from '@/store';
+import { AuthActions, OrderActions, useAppDispatch, useAppSelector } from '@/store';
 import { Address, DebitCard, Person, User } from '@/types';
 
 const usePaymentPage = () => {
@@ -16,9 +11,7 @@ const usePaymentPage = () => {
   const [step, setStep] = useState(1);
   const [isShowOrder, setIsShowOrder] = useState(false);
   const { isFetchLoading, user } = useAppSelector((state) => state.AuthReducer);
-  const { basket, isPayLoading } = useAppSelector(
-    (state) => state.OrderReducer,
-  );
+  const { basket, isPayLoading } = useAppSelector((state) => state.OrderReducer);
   const [personInfo, setPersonInfo] = useState<{
     person?: Person;
     receiverAddress?: Address;
@@ -47,10 +40,7 @@ const usePaymentPage = () => {
   };
 
   const onCardSubmit = async (debitCard: DebitCard) => {
-    if (
-      personInfo.person !== undefined &&
-      personInfo.receiverAddress !== undefined
-    ) {
+    if (personInfo.person !== undefined && personInfo.receiverAddress !== undefined) {
       const response = await dispatch(
         OrderActions.paymentPizza({
           person: personInfo.person,

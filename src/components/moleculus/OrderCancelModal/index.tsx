@@ -1,7 +1,8 @@
 import { FC } from 'react';
 
-import style from './style.module.scss';
 import { Button, Modal, Typography } from '@/components/atoms';
+
+import style from './style.module.scss';
 
 type OrderCancelModalProps = {
   isOpen: boolean;
@@ -9,11 +10,7 @@ type OrderCancelModalProps = {
   onCancel: () => void;
 };
 
-const OrderCancelModal: FC<OrderCancelModalProps> = ({
-  isOpen,
-  onCancel,
-  onClose,
-}) => {
+const OrderCancelModal: FC<OrderCancelModalProps> = ({ isOpen, onCancel, onClose }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <div className={style.icon_wrapper}>

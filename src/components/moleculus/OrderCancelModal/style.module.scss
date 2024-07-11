@@ -1,0 +1,30 @@
+.icon_wrapper {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.icon {
+  border-radius: 50%;
+  text-align: center;
+  font-size: 34px;
+  padding: 8px 19px;
+  line-height: 41.15px;
+  color: white;
+  background: linear-gradient(180deg, #ff8a65 0%, #f4511e 100%);
+}
+
+.cancel_title {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.buttons {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

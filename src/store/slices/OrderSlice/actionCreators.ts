@@ -8,7 +8,12 @@ const paymentPizza = createAsyncThunk(
   async (data: Payment, thunkAPI) => {
     try {
       const response = await OrderApi.paymentPizza(data);
-      return response;
+      return {
+        order: {
+          ...response.order,
+          pizzas: data.pizzas,
+        },
+      };
     } catch (e) {
       if (e instanceof Error) return thunkAPI.rejectWithValue(e.message);
       return thunkAPI.rejectWithValue('Произошла неизвестная ошибка');

@@ -18,6 +18,7 @@ const OrderRowCard: FC<OrderRowCardProps> = ({
   className = '',
   onMoreClick,
 }) => {
+  console.log(order);
   return (
     <div className={clsx(style.card, className)}>
       <div>
@@ -34,7 +35,7 @@ const OrderRowCard: FC<OrderRowCardProps> = ({
         </Typography>
         <Typography>
           {order.receiverAddress.street}, {order.receiverAddress.house},{' '}
-          {order.receiverAddress.apartment} г. Новосибирск, ул. Кирова, д. 86
+          {order.receiverAddress.apartment}
         </Typography>
       </div>
       <div>

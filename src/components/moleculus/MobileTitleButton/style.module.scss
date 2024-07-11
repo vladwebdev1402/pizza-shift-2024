@@ -1,0 +1,11 @@
+.button {
+  display: none;
+  padding: 12px 0px;
+  gap: 32px;
+}
+
+@media (max-width: 768px) {
+  .button {
+    display: inline-flex;
+  }
+}

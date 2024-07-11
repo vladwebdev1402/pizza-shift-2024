@@ -1,11 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 
-import { PizzaBasketCard } from '@/components/moleculus';
+import { MobileTitleButton, PizzaBasketCard } from '@/components/moleculus';
 import { PizzaInformationModal } from '@/components/organisms';
 import { Button, ErrorMessage, Typography } from '@/components/atoms';
 import { ROUTER_PATHS } from '@/constants';
 import { calcPriceBasket } from '@/helpers';
+import ArrowIcon from '@/assets/decorative/arrow.svg?react';
 
 import { useBasketPage } from './useBasketPage';
 import style from './style.module.scss';
@@ -27,30 +28,41 @@ const BasketPage = () => {
   if (basket.length > 0)
     return (
       <>
-        <div className={clsx('container', style.container)}>
-          <div className={style.pizzas}>
-            {basket.map((pizza) => (
-              <PizzaBasketCard
-                pizza={pizza}
-                key={pizza.id}
-                onChangeClick={onChangeClick}
-                onIncrement={onIncrement}
-                onDecrement={onDecrement}
-                onDelete={onDelete}
-              />
-            ))}
+        <div className={style.container}>
+          <div className={'container'}>
+            <MobileTitleButton
+              icon={<ArrowIcon />}
+              onClick={() => navigate(ROUTER_PATHS.main)}
+            >
+              Пицца
+            </MobileTitleButton>
+            <div className={style.pizzas}>
+              {basket.map((pizza) => (
+                <PizzaBasketCard
+                  pizza={pizza}
+                  key={pizza.id}
+                  onChangeClick={onChangeClick}
+                  onIncrement={onIncrement}
+                  onDecrement={onDecrement}
+                  onDelete={onDelete}
+                />
+              ))}
+            </div>
           </div>
+
           <div className={style.divider} />
           <div className={style.order}>
-            <Typography variant="h2" className={style.price}>
-              Стоимость заказа: {calcPriceBasket(basket)} ₽
-            </Typography>
-            <Button
-              className={style.button}
-              onClick={() => navigate(ROUTER_PATHS.payment)}
-            >
-              Оформить заказ
-            </Button>
+            <div className={clsx('container', style.order_wrapper)}>
+              <Typography variant="h2" className={style.price}>
+                Стоимость заказа: {calcPriceBasket(basket)} ₽
+              </Typography>
+              <Button
+                className={style.button}
+                onClick={() => navigate(ROUTER_PATHS.payment)}
+              >
+                Оформить заказ
+              </Button>
+            </div>
           </div>
         </div>
         <PizzaInformationModal

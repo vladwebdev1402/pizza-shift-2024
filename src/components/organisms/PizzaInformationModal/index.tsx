@@ -16,9 +16,11 @@ import {
   SizeToCm,
 } from '@/types';
 import { makeJoinIngridients } from '@/helpers';
+import ArrowIcon from '@/assets/decorative/arrow.svg?react';
 
 import { usePizzaInformation } from './usePizzaInformation';
 import style from './style.module.scss';
+import { MobileTitleButton } from '@/components/moleculus';
 
 type Props = {
   currentId: string | null;
@@ -51,6 +53,12 @@ const PizzaInformationModal: FC<Props> = ({
       size="large"
       isClosable
       isMobileFullScreen
+      isMobileShowFooter
+      title={
+        <MobileTitleButton icon={<ArrowIcon />} onClick={onClose}>
+          Пицца
+        </MobileTitleButton>
+      }
     >
       {currentPizza && currentSize && currentDough && (
         <div className={style.container}>

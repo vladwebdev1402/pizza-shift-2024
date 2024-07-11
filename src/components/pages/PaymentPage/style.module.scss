@@ -24,3 +24,17 @@
 .card_button {
   width: 100%;
 }
+
+@media (max-width: 768px) {
+  .container {
+    margin-top: 0px;
+  }
+
+  .title {
+    display: none;
+  }
+
+  .back_button {
+    display: none;
+  }
+}

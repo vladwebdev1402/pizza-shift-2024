@@ -9,6 +9,7 @@
 }
 
 .contained {
+  border: none;
   background-color: $orange;
   color: $text-invert;
 
@@ -28,6 +29,7 @@
 }
 
 .text {
+  border: none;
   background-color: transparent;
 
   &:hover {
@@ -42,11 +44,10 @@
   cursor: pointer;
   padding: 16px 32px;
   border-radius: 16px;
-  border: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 32px;
 
   &:disabled {
     background-color: $bg-disabled;

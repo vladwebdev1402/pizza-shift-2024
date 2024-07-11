@@ -27,7 +27,7 @@ const ProfilePage = () => {
   if (isAuth && user)
     return (
       <div className={clsx('container', style.container)}>
-        <Typography variant="h2" tag="h2">
+        <Typography variant="h2" tag="h2" className={style.title}>
           Профиль
         </Typography>
         <ProfileForm

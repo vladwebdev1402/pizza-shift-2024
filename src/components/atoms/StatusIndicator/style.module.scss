@@ -13,11 +13,20 @@
   width: 8px;
   border-radius: 100%;
 
-  &_1 {
+  &_0 {
     background-color: $indicator-attention;
   }
 
-  &_2 {
+  &_1 {
+    background-color: $indicator-normal;
+  }
+
+  &_2,
+  &_3 {
     background-color: $indicator-positive;
+  }
+
+  &_4 {
+    background-color: $indicator-error;
   }
 }

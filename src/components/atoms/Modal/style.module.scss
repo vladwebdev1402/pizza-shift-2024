@@ -12,6 +12,7 @@
   opacity: 0;
   pointer-events: none;
   cursor: pointer;
+  z-index: 100;
 
   &_open {
     opacity: 1;
@@ -94,7 +95,13 @@
         width: 100%;
         border-top-right-radius: 0;
         border-top-left-radius: 0;
+        padding-left: 16px;
+        padding-right: 16px;
       }
+    }
+
+    &_mobileShowFooter {
+      z-index: 5;
     }
   }
 
@@ -104,5 +111,9 @@
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     transform: translateY(100%);
+  }
+
+  .close_mobileHidden {
+    display: none;
   }
 }

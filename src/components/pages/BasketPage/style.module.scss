@@ -18,10 +18,13 @@
 
 .order {
   margin-top: 24px;
-  display: flex;
-  justify-content: space-between;
-  gap: 24px;
-  flex-wrap: wrap;
+
+  &_wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
 }
 
 .button {
@@ -38,11 +41,18 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    padding-bottom: 60px;
+    margin-top: 12px;
+    padding-bottom: 16px;
   }
 
   .order {
     margin-top: auto;
+    padding: 16px 0px;
+    box-shadow: 0px -6px 30px 0px rgba(72, 72, 72, 0.1);
+  }
+
+  .pizzas {
+    margin-top: 24px;
   }
 }
 

@@ -60,7 +60,7 @@ const PaymentInformationModal: FC<PaymentInformationModalProps> = ({
         </Typography>
       </div>
       <div className={style.button_container}>
-        <Button className={style.button} variant="text">
+        <Button className={style.button} onClick={onClose} variant="text">
           Перейти в главное меню
         </Button>
       </div>

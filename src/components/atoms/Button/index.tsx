@@ -38,3 +38,4 @@ const Button: FC<ButtonProps> = ({
 );
 
 export { Button };
+export type { ButtonProps };

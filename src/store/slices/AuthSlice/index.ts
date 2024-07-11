@@ -66,7 +66,6 @@ const AuthSlice = createSlice({
       state.isCheckOtpLoading = false;
       state.user = action.payload.user;
       state.isAuth = true;
-      LocaleStorageService.setToken(action.payload.token);
     });
     builder.addCase(userSignin.rejected, (state, action) => {
       state.isCheckOtpLoading = false;
@@ -86,6 +85,7 @@ const AuthSlice = createSlice({
     });
     builder.addCase(getSession.rejected, (state, action) => {
       state.isFetchLoading = false;
+      state.isAuth = false;
       state.error =
         typeof action.payload === 'string'
           ? action.payload
@@ -102,6 +102,7 @@ const AuthSlice = createSlice({
     });
     builder.addCase(updateProfile.rejected, (state, action) => {
       state.isUpdateLoading = false;
+      state.isAuth = false;
       state.error =
         typeof action.payload === 'string'
           ? action.payload

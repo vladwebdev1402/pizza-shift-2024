@@ -2,14 +2,20 @@ import { Outlet } from 'react-router-dom';
 
 import { Footer, Header } from '@/components/organisms';
 
-const Layout = () => (
-  <>
-    <Header />
-    <main>
-      <Outlet />
-    </main>
-    <Footer />
-  </>
-);
+import { useLayout } from './useLayout';
+
+const Layout = () => {
+  useLayout();
+
+  return (
+    <>
+      <Header />
+      <main>
+        <Outlet />
+      </main>
+      <Footer />
+    </>
+  );
+};
 
 export { Layout };

@@ -1,18 +1,14 @@
 import clsx from 'clsx';
 
 import { Button, Typography } from '@/components/atoms';
-import {
-  AuthForm,
-  ProfileForm,
-  ProfileFormSkeleton,
-} from '@/components/moleculus';
+import { ProfileForm, ProfileFormSkeleton } from '@/components/moleculus';
 
 import { useProfilePage } from './useProfilePage';
 import style from './style.module.scss';
+import { AuthForm } from '@/components/organisms';
 
 const ProfilePage = () => {
-  const { user, isAuth, isFetchLoading, isUpdateLoading, onProfileSbumit } =
-    useProfilePage();
+  const { user, isAuth, isFetchLoading, isUpdateLoading, onProfileSbumit } = useProfilePage();
 
   if (isAuth && isFetchLoading)
     return (

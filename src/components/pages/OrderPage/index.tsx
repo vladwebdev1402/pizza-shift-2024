@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import clsx from 'clsx';
 
 import {
+  AuthForm,
   OrderCancelModal,
   OrderCard,
   OrderRowCard,
@@ -16,8 +17,24 @@ const OrderPage = () => {
   const dispatch = useAppDispatch();
   const [isMoreMode, setIsMoreMode] = useState(false);
   const [currentCancelId, setCurrentCancelId] = useState<string | null>(null);
+  const { isAuth } = useAppSelector((state) => state.AuthReducer);
   const { orders, isLoading } = useAppSelector((state) => state.OrderReducer);
-  const cancelOrder = OrderActions.cancelOrder;
+
+  useEffect(() => {
+    if (isAuth) {
+      dispatch(OrderActions.getOrders());
+    }
+  }, [isAuth]);
+
+  if (!isAuth)
+    return (
+      <div className={clsx('container', style.container)}>
+        <Typography variant="h2" tag="h2" className={style.title}>
+          Авторизация
+        </Typography>
+        <AuthForm className={style.auth_form} />
+      </div>
+    );
 
   if (isLoading) return <OrderPageSkeleton />;
 
@@ -81,7 +98,7 @@ const OrderPage = () => {
         isOpen={currentCancelId !== null}
         onClose={() => setCurrentCancelId(null)}
         onCancel={() => {
-          dispatch(cancelOrder(currentCancelId || ''));
+          dispatch(OrderActions.cancelOrder(currentCancelId || ''));
           setCurrentCancelId(null);
         }}
       />

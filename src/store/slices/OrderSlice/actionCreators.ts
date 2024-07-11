@@ -21,4 +21,14 @@ const paymentPizza = createAsyncThunk(
   },
 );
 
-export { paymentPizza };
+const getOrders = createAsyncThunk('pizza/orders', async (_, thunkAPI) => {
+  try {
+    const response = await OrderApi.getOrders();
+    return response;
+  } catch (e) {
+    if (e instanceof Error) return thunkAPI.rejectWithValue(e.message);
+    return thunkAPI.rejectWithValue('Произошла неизвестная ошибка');
+  }
+});
+
+export { paymentPizza, getOrders };

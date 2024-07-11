@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Modal, NavLink, Typography } from '@/components/atoms';
-import { AuthForm } from '@/components/moleculus';
 import { ROUTER_PATHS } from '@/constants';
 import { AuthActions, useAppDispatch, useAppSelector } from '@/store';
 import LogoIcon from '@/assets/decorative/logo.svg?react';
@@ -13,6 +12,7 @@ import ExitIcon from '@/assets/decorative/exit.svg?react';
 import EnterIcon from '@/assets/decorative/enter.svg?react';
 
 import style from './style.module.scss';
+import { AuthForm } from '../AuthForm';
 
 const Header = () => {
   const dispatch = useAppDispatch();
@@ -35,20 +35,12 @@ const Header = () => {
             <div className={style.links}>
               <ul className={style.list}>
                 <li>
-                  <NavLink
-                    type="header"
-                    icon={<ProfileIcon />}
-                    to={ROUTER_PATHS.profile}
-                  >
+                  <NavLink type="header" icon={<ProfileIcon />} to={ROUTER_PATHS.profile}>
                     Профиль
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink
-                    type="header"
-                    icon={<TimeIcon />}
-                    to={ROUTER_PATHS.orders}
-                  >
+                  <NavLink type="header" icon={<TimeIcon />} to={ROUTER_PATHS.orders}>
                     Заказы
                   </NavLink>
                 </li>

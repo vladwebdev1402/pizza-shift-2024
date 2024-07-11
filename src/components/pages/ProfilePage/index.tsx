@@ -2,10 +2,10 @@ import clsx from 'clsx';
 
 import { Button, Typography } from '@/components/atoms';
 import { ProfileForm, ProfileFormSkeleton } from '@/components/moleculus';
+import { AuthForm } from '@/components/organisms';
 
 import { useProfilePage } from './useProfilePage';
 import style from './style.module.scss';
-import { AuthForm } from '@/components/organisms';
 
 const ProfilePage = () => {
   const { user, isAuth, isFetchLoading, isUpdateLoading, onProfileSbumit } = useProfilePage();

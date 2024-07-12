@@ -46,8 +46,9 @@ const BasketPage = () => {
               ))}
             </div>
           </div>
-
-          <div className={style.divider} />
+          <div className="container">
+            <div className={style.divider} />
+          </div>
           <div className={style.order}>
             <div className={clsx('container', style.order_wrapper)}>
               <Typography variant="h2" className={style.price}>
